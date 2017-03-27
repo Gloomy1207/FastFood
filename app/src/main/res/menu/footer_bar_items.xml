@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tabHome"
+        android:icon="@drawable/ic_home_on_24dp"
+        android:title="@string/footer_bar_home"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/tabSearch"
+        android:icon="@drawable/ic_search_on_24dp"
+        android:title="@string/footer_bar_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/tabRating"
+        android:icon="@drawable/ic_rating_on_24dp"
+        android:title="@string/footer_bar_rating"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/tabPost"
+        android:icon="@drawable/ic_post_on_24dp"
+        android:title="@string/footer_bar_post"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/tabProfile"
+        android:icon="@drawable/ic_profile_on_24dp"
+        android:title="@string/footer_bar_my_page"
+        app:showAsAction="ifRoom" />
+</menu>

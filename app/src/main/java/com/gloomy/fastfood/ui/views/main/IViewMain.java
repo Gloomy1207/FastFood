@@ -5,4 +5,5 @@ package com.gloomy.fastfood.ui.views.main;
  * Created by HungTQB on 14-Mar-17.
  */
 public interface IViewMain {
+    void onFooterBarItemClick(int position);
 }
