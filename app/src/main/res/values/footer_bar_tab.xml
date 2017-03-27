@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="footer_bar_home">Home</string>
+    <string name="footer_bar_search">Search</string>
+    <string name="footer_bar_rating">Rating</string>
+    <string name="footer_bar_my_page">My Page</string>
+    <string name="footer_bar_post">Post</string>
+</resources>
