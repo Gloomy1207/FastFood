@@ -11,10 +11,10 @@ import org.androidannotations.annotations.EFragment;
  * Created by HungTQB on 27-Mar-17.
  */
 @EFragment(R.layout.frame_container)
-public class PostContainerFragment extends BaseContainerFragment {
+public class TopicContainerFragment extends BaseContainerFragment {
 
     @AfterViews
     void afterViews() {
-        replaceFragment(PostFragment_.builder().build(), false);
+        replaceFragment(TopicFragment_.builder().build(), false);
     }
 }

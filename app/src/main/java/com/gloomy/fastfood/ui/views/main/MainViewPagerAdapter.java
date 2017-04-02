@@ -5,7 +5,7 @@ import android.app.FragmentManager;
 import android.support.v13.app.FragmentStatePagerAdapter;
 
 import com.gloomy.fastfood.ui.views.main.home.HomeContainerFragment_;
-import com.gloomy.fastfood.ui.views.main.post.PostContainerFragment_;
+import com.gloomy.fastfood.ui.views.main.topic.TopicContainerFragment_;
 import com.gloomy.fastfood.ui.views.main.profile.ProfileContainerFragment_;
 import com.gloomy.fastfood.ui.views.main.rating.RatingContainerFragment_;
 import com.gloomy.fastfood.ui.views.main.search.SearchContainerFragment_;
@@ -31,7 +31,7 @@ public class MainViewPagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 return RatingContainerFragment_.builder().build();
             case 3:
-                return PostContainerFragment_.builder().build();
+                return TopicContainerFragment_.builder().build();
             case 4:
                 return ProfileContainerFragment_.builder().build();
         }

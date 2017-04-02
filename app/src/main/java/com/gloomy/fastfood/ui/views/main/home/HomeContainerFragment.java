@@ -15,6 +15,6 @@ public class HomeContainerFragment extends BaseContainerFragment {
 
     @AfterViews
     void afterViews() {
-        replaceFragment(HomeFragment_.builder().build(), false);
+        replaceFragment(HomeFragment_.builder().build(), true);
     }
 }

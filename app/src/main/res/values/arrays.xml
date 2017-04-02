@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fragment_home_view_pager_titles">
+        <item>Food</item>
+        <item>Store</item>
+        <item>Place</item>
+        <item>Favorite</item>
+    </string-array>
+    <string-array name="fragment_search_view_pager_titles">
+        <item>Store</item>
+        <item>Food</item>
+        <item>People</item>
+        <item>Topic</item>
+    </string-array>
+    <string-array name="fragment_search_result_view_pager_title">
+        <item>All</item>
+        <item>Store</item>
+        <item>Food</item>
+        <item>People</item>
+        <item>Topic</item>
+    </string-array>
+    <string-array name="fragment_rating_view_pager_title">
+        <item>Store</item>
+        <item>People</item>
+    </string-array>
+    <string-array name="fragment_topic_view_pager_titles">
+        <item>Hot</item>
+        <item>Trending</item>
+        <item>Fresh</item>
+        <item>Random</item>
+    </string-array>
+</resources>
