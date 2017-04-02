@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.ui.views.main.post;
+package com.gloomy.fastfood.ui.views.main.topic;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.BaseContainerFragment;
