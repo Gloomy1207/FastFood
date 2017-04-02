@@ -18,7 +18,7 @@ public abstract class BaseContainerFragment extends Fragment {
             transaction.addToBackStack(fragment.getTag());
         }
         transaction.replace(R.id.frameLayoutContainer, fragment);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
         getChildFragmentManager().executePendingTransactions();
     }
 

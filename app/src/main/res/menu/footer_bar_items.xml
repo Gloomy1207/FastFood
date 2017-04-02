@@ -21,8 +21,8 @@
 
     <item
         android:id="@+id/tabPost"
-        android:icon="@drawable/ic_post_on_24dp"
-        android:title="@string/footer_bar_post"
+        android:icon="@drawable/ic_topic_on_24dp"
+        android:title="@string/footer_bar_topic"
         app:showAsAction="ifRoom" />
 
     <item

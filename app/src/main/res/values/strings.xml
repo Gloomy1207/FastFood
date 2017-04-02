@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FastFood</string>
+    <string name="fragment_search_search_view_hint">Search store, food, place…</string>
 </resources>

@@ -27,13 +27,17 @@ dependencies {
     })
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
-    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     provided 'org.projectlombok:lombok:1.12.6'
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support:support-v13:25.3.0'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v13:25.3.1'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'jp.wasabeef:picasso-transformations:2.1.2'
 }
