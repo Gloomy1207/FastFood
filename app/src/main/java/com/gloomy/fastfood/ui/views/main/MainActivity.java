@@ -8,8 +8,8 @@ import android.view.MenuItem;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.BaseActivity;
+import com.gloomy.fastfood.ui.BaseContainerFragment;
 import com.gloomy.fastfood.ui.presenters.main.MainPresenter;
-import com.gloomy.fastfood.widgets.HeaderBar;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -49,5 +49,17 @@ public class MainActivity extends BaseActivity implements IViewMain, BottomNavig
     @Override
     public void onFooterBarItemClick(int position) {
         mViewPager.setCurrentItem(position, true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        boolean isPopFragment = false;
+        BaseContainerFragment baseContainerFragment = mPresenter.getCurrentBaseFragment();
+        if (baseContainerFragment != null) {
+            isPopFragment = baseContainerFragment.popFragment();
+        }
+        if (!isPopFragment) {
+            super.onBackPressed();
+        }
     }
 }

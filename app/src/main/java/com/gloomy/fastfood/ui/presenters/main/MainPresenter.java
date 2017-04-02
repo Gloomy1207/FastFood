@@ -4,6 +4,7 @@ import android.support.annotation.IntDef;
 import android.support.v4.view.ViewPager;
 
 import com.gloomy.fastfood.R;
+import com.gloomy.fastfood.ui.BaseContainerFragment;
 import com.gloomy.fastfood.ui.presenters.BasePresenter;
 import com.gloomy.fastfood.ui.views.main.IViewMain;
 import com.gloomy.fastfood.ui.views.main.MainActivity;
@@ -41,7 +42,10 @@ public class MainPresenter extends BasePresenter {
     @Accessors(prefix = "m")
     IViewMain mView;
 
+    private ViewPager mViewPager;
+
     public void initViewPager(ViewPager viewPager) {
+        mViewPager = viewPager;
         if (mContext instanceof MainActivity) {
             MainViewPagerAdapter adapter = new MainViewPagerAdapter(((MainActivity) mContext).getFragmentManager());
             viewPager.setAdapter(adapter);
@@ -67,5 +71,10 @@ public class MainPresenter extends BasePresenter {
                 mView.onFooterBarItemClick(TabPosition.SEARCH);
                 break;
         }
+    }
+
+    public BaseContainerFragment getCurrentBaseFragment() {
+        return (BaseContainerFragment) mViewPager.getAdapter()
+                .instantiateItem(mViewPager, mViewPager.getCurrentItem());
     }
 }

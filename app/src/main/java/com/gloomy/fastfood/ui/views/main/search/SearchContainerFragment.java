@@ -15,6 +15,6 @@ public class SearchContainerFragment extends BaseContainerFragment {
 
     @AfterViews
     void afterViews() {
-        replaceFragment(SearchFragment_.builder().build(), false);
+        replaceFragment(SearchFragment_.builder().build(), true);
     }
 }

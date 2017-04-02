@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="header_bar_height">50dp</dimen>
+    <dimen name="floating_action_button_size">40dp</dimen>
+    <dimen name="fragment_profile_avatar_size">75dp</dimen>
 </resources>
