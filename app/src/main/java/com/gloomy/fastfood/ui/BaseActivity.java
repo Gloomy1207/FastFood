@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.gloomy.fastfood.listener.OnBaseActivityListener;
+import com.gloomy.fastfood.widgets.CustomProgressDialog;
 
 /**
  * Copyright © 2017 Gloomy
@@ -15,12 +16,26 @@ import com.gloomy.fastfood.listener.OnBaseActivityListener;
 @SuppressLint("Registered")
 public abstract class BaseActivity extends AppCompatActivity implements OnBaseActivityListener {
 
+    private CustomProgressDialog mCustomProgressDialog = new CustomProgressDialog();
+
     @Override
     public void hideKeyboard() {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         View view = getCurrentFocus();
         if (view != null) {
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        }
+    }
+
+    @Override
+    public void showProgressDialog() {
+        mCustomProgressDialog.show(getFragmentManager(), CustomProgressDialog.class.getSimpleName());
+    }
+
+    @Override
+    public void dismissProgressDialog() {
+        if (mCustomProgressDialog != null && mCustomProgressDialog.isAdded()) {
+            mCustomProgressDialog.dismiss();
         }
     }
 }
