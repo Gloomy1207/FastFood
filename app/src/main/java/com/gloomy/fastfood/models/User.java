@@ -8,4 +8,11 @@ import lombok.Getter;
  */
 @Getter
 public class User {
+    private Long userId;
+    private String username;
+    private String fullname;
+    private String email;
+    private String description;
+    private int point;
+    private String avatar;
 }

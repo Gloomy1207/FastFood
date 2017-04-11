@@ -2,8 +2,11 @@ package com.gloomy.fastfood.ui.views.main;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.gloomy.fastfood.R;
@@ -15,6 +18,8 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+
+import java.lang.reflect.Field;
 
 /**
  * Copyright © 2017 Gloomy
@@ -35,6 +40,7 @@ public class MainActivity extends BaseActivity implements IViewMain, BottomNavig
 
     @AfterViews
     void afterViews() {
+        disableShiftMode(mFooterBar);
         mPresenter.setView(this);
         mFooterBar.setOnNavigationItemSelectedListener(this);
         mPresenter.initViewPager(mViewPager);
@@ -60,6 +66,26 @@ public class MainActivity extends BaseActivity implements IViewMain, BottomNavig
         }
         if (!isPopFragment) {
             super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("RestrictedApi")
+    public void disableShiftMode(BottomNavigationView view) {
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
+        try {
+            Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
+            shiftingMode.setAccessible(true);
+            shiftingMode.setBoolean(menuView, false);
+            shiftingMode.setAccessible(false);
+            for (int i = 0; i < menuView.getChildCount(); i++) {
+                BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+                item.setShiftingMode(false);                // set once again checked value, so view will be updated
+                item.setChecked(item.getItemData().isChecked());
+            }
+        } catch (NoSuchFieldException e) {
+            Log.e("TAG", "Unable to get shift mode field");
+        } catch (IllegalAccessException e) {
+            Log.e("TAG", "Unable to change value of shift mode");
         }
     }
 }

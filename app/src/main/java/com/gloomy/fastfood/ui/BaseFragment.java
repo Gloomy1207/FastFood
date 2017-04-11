@@ -41,4 +41,12 @@ public abstract class BaseFragment extends Fragment {
     public void hideKeyboard() {
         mOnBaseActivityListener.hideKeyboard();
     }
+
+    public void showProgressDialog() {
+        mOnBaseActivityListener.showProgressDialog();
+    }
+
+    public void dismissProgressDialog() {
+        mOnBaseActivityListener.dismissProgressDialog();
+    }
 }

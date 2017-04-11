@@ -6,4 +6,8 @@ package com.gloomy.fastfood.listener;
  */
 public interface OnBaseActivityListener {
     void hideKeyboard();
+
+    void showProgressDialog();
+
+    void dismissProgressDialog();
 }
