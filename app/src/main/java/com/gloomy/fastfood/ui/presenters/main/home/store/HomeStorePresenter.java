@@ -72,6 +72,7 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
     }
 
     public void initRecyclerView(RecyclerView recyclerView) {
+        // TODO: 11-Apr-17 Remove dummy and get data from server
         /*mStores = mHomeStoreResponse.getStores();*/
         mStores = new ArrayList<>();
         for (int i = 0; i < 20; i++) {

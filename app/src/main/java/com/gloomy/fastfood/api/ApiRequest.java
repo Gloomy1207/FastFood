@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
 
 import retrofit2.Callback;
@@ -40,5 +41,9 @@ public final class ApiRequest {
 
     public void getHomeStoreData(String page, String size, Callback<HomeStoreResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getHomeStoreData(page, size).enqueue(callback);
+    }
+
+    public void getHomeFoodData(String page, String size, Callback<HomeFoodResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getHomeFoodData(page, size).enqueue(callback);
     }
 }
