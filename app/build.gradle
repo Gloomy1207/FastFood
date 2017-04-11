@@ -3,7 +3,7 @@ def AAVersion = '4.0.0'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.gloomy.fastfood"
         minSdkVersion 17
@@ -40,4 +40,6 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'jp.wasabeef:picasso-transformations:2.1.2'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'me.grantland:autofittextview:0.2.1'
 }

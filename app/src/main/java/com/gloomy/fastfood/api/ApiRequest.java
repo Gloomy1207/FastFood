@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+
+import retrofit2.Callback;
+
 /**
  * Copyright © 2017 Gloomy
  * Created by HungTQB on 29-Mar-17.
@@ -32,5 +36,9 @@ public final class ApiRequest {
 
     public static Context getApplicationContext() {
         return sInstance.mApplicationContext;
+    }
+
+    public void getHomeStoreData(String page, String size, Callback<HomeStoreResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getHomeStoreData(page, size).enqueue(callback);
     }
 }
