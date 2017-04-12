@@ -1,6 +1,8 @@
 package com.gloomy.fastfood.ui.views.main.home.food;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
@@ -24,6 +26,12 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
 
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
+
+    @ViewById(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @ViewById(R.id.disableView)
+    View mDisableView;
 
     @AfterViews
     void afterViews() {
@@ -49,20 +57,30 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
     @Override
     public void onLoadDataComplete() {
         mPresenter.initRecyclerView(mRecyclerView);
+        mPresenter.initSwipeRefresh(mSwipeRefreshLayout, mDisableView);
     }
+
 
     @Override
     public void onLoadMoreComplete() {
-
+        mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 
     @Override
     public void onLoadDataFailure() {
-        mPresenter.initRecyclerView(mRecyclerView);
+        mDisableView.setVisibility(View.GONE);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void onItemFoodClick(Food food) {
 
+    }
+
+    @Override
+    public void onRefreshDataComplete() {
+        mSwipeRefreshLayout.setRefreshing(false);
+        mDisableView.setVisibility(View.GONE);
+        mPresenter.refreshData(mRecyclerView);
     }
 }

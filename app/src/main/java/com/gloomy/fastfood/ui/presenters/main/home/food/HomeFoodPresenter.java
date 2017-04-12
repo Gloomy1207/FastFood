@@ -1,13 +1,16 @@
 package com.gloomy.fastfood.ui.presenters.main.home.food;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.ui.presenters.BasePresenter;
+import com.gloomy.fastfood.ui.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.ui.views.main.home.food.HomeFoodAdapter;
 import com.gloomy.fastfood.ui.views.main.home.food.IHomeFoodView;
 import com.gloomy.fastfood.widgets.SpacesItemDecoration;
@@ -29,8 +32,9 @@ import retrofit2.Response;
  * Created by HungTQB on 11-Apr-17.
  */
 @EBean
-public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoodResponse>, HomeFoodAdapter.OnItemFoodListener {
-    public static final int RECYCLER_NUM_COLUMN = 2;
+public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoodResponse>, HomeFoodAdapter.OnItemFoodListener, SwipeRefreshLayout.OnRefreshListener {
+    private static final int RECYCLER_NUM_COLUMN = 2;
+    private static final int LOAD_MORE_THRESHOLD = 15;
 
     @Setter
     @Accessors(prefix = "m")
@@ -42,11 +46,17 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
 
     private boolean mIsLastPage;
     private int mCurrentPage;
-    private List<Food> mFoods;
+    private List<Food> mFoods = new ArrayList<>();
     private HomeFoodResponse mHomeFoodResponse;
+    private EndlessScrollListener mEndlessScrollListener;
+    private boolean mIsRefresh;
+
+    private View mDisableView;
 
     public void getHomeFoodData() {
-        mView.onShowProgressDialog();
+        if (!mIsRefresh) {
+            mView.onShowProgressDialog();
+        }
         ApiRequest.getInstance().getHomeFoodData(null, null, this);
     }
 
@@ -57,39 +67,85 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
             return;
         }
         mHomeFoodResponse = response.body();
-        mView.onLoadDataComplete();
+        mCurrentPage = mHomeFoodResponse.getCurrentPage();
+        mIsLastPage = mHomeFoodResponse.isLast();
+        if (!mIsRefresh) {
+            mView.onLoadDataComplete();
+        } else {
+            mIsRefresh = false;
+            mView.onRefreshDataComplete();
+        }
     }
 
     @Override
     public void onFailure(Call<HomeFoodResponse> call, Throwable t) {
+        mIsRefresh = false;
         mView.onDismissProgressDialog();
         mView.onLoadDataFailure();
     }
 
     public void initRecyclerView(RecyclerView recyclerView) {
-        // TODO: 11-Apr-17 Replace dummy with data get from server
-        /*mFoods = mHomeFoodResponse.getFoods();*/
-        mFoods = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            mFoods.add(Food.builder()
-                    .description("This is description")
-                    .foodName("This is food name")
-                    .mainImage("http://eva-img.24hstatic.com/upload/4-2015/images/2015-10-09/1444361180-white-rice.jpg")
-                    .recipe("- Rice\n- Water \n - Shit\n - Fuck")
-                    .rating(5)
-                    .numberOfRating(i)
-                    .numberOfRatingText(i + " reviewers")
-                    .build());
-        }
+        mFoods = mHomeFoodResponse.getFoods();
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(RECYCLER_NUM_COLUMN, StaggeredGridLayoutManager.VERTICAL);
         HomeFoodAdapter adapter = new HomeFoodAdapter(mContext, mFoods, this);
         recyclerView.addItemDecoration(new SpacesItemDecoration(mDecorationSpace));
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+        mEndlessScrollListener = new EndlessScrollListener(LOAD_MORE_THRESHOLD) {
+            @Override
+            public void onLoadMore() {
+                loadMoreData();
+            }
+        };
+        recyclerView.addOnScrollListener(mEndlessScrollListener);
     }
 
     @Override
     public void onFoodClick(int position) {
         mView.onItemFoodClick(mFoods.get(position));
+    }
+
+    public void initSwipeRefresh(SwipeRefreshLayout swipeRefreshLayout, View disableView) {
+        swipeRefreshLayout.setOnRefreshListener(this);
+        mDisableView = disableView;
+    }
+
+    @Override
+    public void onRefresh() {
+        mIsRefresh = true;
+        mDisableView.setVisibility(View.VISIBLE);
+        getHomeFoodData();
+        mEndlessScrollListener.resetValue();
+    }
+
+    private void loadMoreData() {
+        if (mIsLastPage) {
+            return;
+        }
+        mCurrentPage++;
+        ApiRequest.getInstance().getHomeFoodData(String.valueOf(mCurrentPage), null, new Callback<HomeFoodResponse>() {
+            @Override
+            public void onResponse(Call<HomeFoodResponse> call, Response<HomeFoodResponse> response) {
+                if (response == null || response.body() == null) {
+                    return;
+                }
+                HomeFoodResponse foodResponse = response.body();
+                mFoods.addAll(foodResponse.getFoods());
+                mIsLastPage = foodResponse.isLast();
+                mCurrentPage = foodResponse.getCurrentPage();
+                mView.onLoadMoreComplete();
+            }
+
+            @Override
+            public void onFailure(Call<HomeFoodResponse> call, Throwable t) {
+                mView.onLoadDataFailure();
+            }
+        });
+    }
+
+    public void refreshData(RecyclerView recyclerView) {
+        mFoods.clear();
+        mFoods.addAll(mHomeFoodResponse.getFoods());
+        recyclerView.getAdapter().notifyDataSetChanged();
     }
 }
