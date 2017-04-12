@@ -32,7 +32,7 @@ import retrofit2.Response;
  * Created by HungTQB on 11-Apr-17.
  */
 @EBean
-public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoodResponse>, HomeFoodAdapter.OnItemFoodListener, SwipeRefreshLayout.OnRefreshListener {
+public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoodResponse>, HomeFoodAdapter.OnHomeFoodListener, SwipeRefreshLayout.OnRefreshListener {
     private static final int RECYCLER_NUM_COLUMN = 2;
     private static final int LOAD_MORE_THRESHOLD = 15;
 

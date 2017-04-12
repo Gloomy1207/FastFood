@@ -29,19 +29,19 @@ import me.grantland.widget.AutofitTextView;
 public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStoreVH> {
 
     private List<Store> mStores;
-    private OnItemHomeStoreListener mOnItemHomeStoreListener;
+    private OnHomeStoreListener mOnHomeStoreListener;
     private SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
 
-    public HomeStoreAdapter(@NonNull Context mContext, List<Store> stores, OnItemHomeStoreListener onItemHomeStoreListener) {
+    public HomeStoreAdapter(@NonNull Context mContext, List<Store> stores, OnHomeStoreListener onHomeStoreListener) {
         super(mContext);
         mStores = stores;
-        mOnItemHomeStoreListener = onItemHomeStoreListener;
+        mOnHomeStoreListener = onHomeStoreListener;
     }
 
     @Override
     public ItemHomeStoreVH onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.item_recycler_home_store, parent, false);
-        return new ItemHomeStoreVH(view, mOnItemHomeStoreListener);
+        return new ItemHomeStoreVH(view, mOnHomeStoreListener);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
         private final AutofitTextView mTvPlaceAddress;
         private final RatingBar mRatingBar;
 
-        ItemHomeStoreVH(View itemView, final OnItemHomeStoreListener onItemHomeStoreListener) {
+        ItemHomeStoreVH(View itemView, final OnHomeStoreListener onHomeStoreListener) {
             super(itemView);
             mImgStore = (ImageView) itemView.findViewById(R.id.imgStore);
             mTvPlaceAddress = (AutofitTextView) itemView.findViewById(R.id.tvPlaceAddress);
@@ -91,8 +91,8 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (onItemHomeStoreListener != null) {
-                        onItemHomeStoreListener.onItemHomeStoreClick(getLayoutPosition());
+                    if (onHomeStoreListener != null) {
+                        onHomeStoreListener.onItemHomeStoreClick(getLayoutPosition());
                     }
                 }
             });
@@ -100,9 +100,9 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
     }
 
     /**
-     * OnItemHomeStoreListener interface
+     * OnHomeStoreListener interface
      */
-    public interface OnItemHomeStoreListener {
+    public interface OnHomeStoreListener {
         void onItemHomeStoreClick(int position);
     }
 }

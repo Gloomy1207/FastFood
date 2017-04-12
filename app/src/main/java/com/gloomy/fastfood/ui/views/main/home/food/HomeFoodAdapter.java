@@ -23,18 +23,18 @@ import java.util.List;
 public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH> {
 
     private final List<Food> mFoods;
-    private OnItemFoodListener mOnItemFoodListener;
+    private OnHomeFoodListener mOnHomeFoodListener;
 
-    public HomeFoodAdapter(@NonNull Context mContext, List<Food> foods, OnItemFoodListener onItemFoodListener) {
+    public HomeFoodAdapter(@NonNull Context mContext, List<Food> foods, OnHomeFoodListener onHomeFoodListener) {
         super(mContext);
         mFoods = foods;
-        mOnItemFoodListener = onItemFoodListener;
+        mOnHomeFoodListener = onHomeFoodListener;
     }
 
     @Override
     public ItemHomeStoreVH onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.item_recycler_home_food, parent, false);
-        return new ItemHomeStoreVH(view, mOnItemFoodListener);
+        return new ItemHomeStoreVH(view, mOnHomeFoodListener);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
         private final TextView mTvNumberStar;
         private final TextView mTvNumberRating;
 
-        ItemHomeStoreVH(View itemView, final OnItemFoodListener onItemFoodListener) {
+        ItemHomeStoreVH(View itemView, final OnHomeFoodListener onHomeFoodListener) {
             super(itemView);
             mImgFood = (ImageView) itemView.findViewById(R.id.imgFood);
             mTvFoodName = (TextView) itemView.findViewById(R.id.tvFoodName);
@@ -76,8 +76,8 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (onItemFoodListener != null) {
-                        onItemFoodListener.onFoodClick(getLayoutPosition());
+                    if (onHomeFoodListener != null) {
+                        onHomeFoodListener.onFoodClick(getLayoutPosition());
                     }
                 }
             });
@@ -85,9 +85,9 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
     }
 
     /**
-     * OnItemFoodListener interface
+     * OnHomeFoodListener interface
      */
-    public interface OnItemFoodListener {
+    public interface OnHomeFoodListener {
         void onFoodClick(int position);
     }
 }
