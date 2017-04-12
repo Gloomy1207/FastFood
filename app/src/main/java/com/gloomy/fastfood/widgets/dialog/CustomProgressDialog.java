@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.widgets;
+package com.gloomy.fastfood.widgets.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

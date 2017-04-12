@@ -10,13 +10,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="1dp"
         android:paddingBottom="10dp">
 
         <ImageView
             android:id="@+id/imgStore"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/item_recycler_home_store_image_height"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:contentDescription="@null"
+            android:maxHeight="@dimen/item_recycler_home_store_image_max_height"
             android:scaleType="centerCrop" />
 
         <LinearLayout

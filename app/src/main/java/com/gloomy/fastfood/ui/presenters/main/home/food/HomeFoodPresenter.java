@@ -13,6 +13,7 @@ import com.gloomy.fastfood.ui.presenters.BasePresenter;
 import com.gloomy.fastfood.ui.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.ui.views.main.home.food.HomeFoodAdapter;
 import com.gloomy.fastfood.ui.views.main.home.food.IHomeFoodView;
+import com.gloomy.fastfood.utils.NetworkUtil;
 import com.gloomy.fastfood.widgets.SpacesItemDecoration;
 
 import org.androidannotations.annotations.EBean;
@@ -54,6 +55,9 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
     private View mDisableView;
 
     public void getHomeFoodData() {
+        if (!NetworkUtil.isNetworkAvailable(mContext)) {
+            mView.onNoInternetConnection();
+        }
         if (!mIsRefresh) {
             mView.onShowProgressDialog();
         }

@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 
 import com.gloomy.fastfood.listener.OnBaseActivityListener;
+import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog;
 
 /**
  * Copyright © 2017 Gloomy
@@ -48,5 +49,25 @@ public abstract class BaseFragment extends Fragment {
 
     public void dismissProgressDialog() {
         mOnBaseActivityListener.dismissProgressDialog();
+    }
+
+    public void showMessageDialog() {
+        mOnBaseActivityListener.showMessageDialog();
+    }
+
+    public void showMessageDialog(CustomMessageDialog.OnCustomMessageDialogListener listener) {
+        mOnBaseActivityListener.showMessageDialog(listener);
+    }
+
+    public void dismissMessageDialog() {
+        mOnBaseActivityListener.dismissMessageDialog();
+    }
+
+    public void setMessageDialogText(String text) {
+        mOnBaseActivityListener.setMessageDialogText(text);
+    }
+
+    public void setMessageDialogButtonText(String text) {
+        mOnBaseActivityListener.setButtonMessageDialogText(text);
     }
 }
