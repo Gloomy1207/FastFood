@@ -1,5 +1,7 @@
 package com.gloomy.fastfood.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.sql.Time;
 import java.util.List;
 
@@ -18,9 +20,12 @@ public class Store {
     private String description;
     private Time openTime;
     private Time closeTime;
+    @SerializedName("place_address")
     private StoreAddress storeAddress;
     private List<StoreImage> storeImages;
+    @SerializedName("place_type")
     private StoreType storeType;
     private String mainImage;
     private float averageRating;
+    private String numberRating;
 }

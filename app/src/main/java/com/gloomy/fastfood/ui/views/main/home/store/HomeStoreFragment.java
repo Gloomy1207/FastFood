@@ -43,7 +43,7 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
 
     @Override
     public void onLoadDataFailure() {
-        mPresenter.initRecyclerView(mRecyclerView);
+
     }
 
     @Override

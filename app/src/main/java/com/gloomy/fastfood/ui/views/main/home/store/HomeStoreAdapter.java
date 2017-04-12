@@ -7,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Store;
-import com.gloomy.fastfood.models.StoreImage;
 import com.gloomy.fastfood.ui.views.BaseAdapter;
 import com.squareup.picasso.Picasso;
 
@@ -47,12 +45,9 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
     @Override
     public void onBindViewHolder(ItemHomeStoreVH holder, int position) {
         Store store = mStores.get(position);
-        List<StoreImage> storeImages = store.getStoreImages();
-        if (storeImages != null && !storeImages.isEmpty()) {
-            Picasso.with(getContext())
-                    .load(R.drawable.dummy_img_demo)
-                    .into(holder.mImgStore);
-        }
+        Picasso.with(getContext())
+                .load(store.getMainImage())
+                .into(holder.mImgStore);
         if (store.getStoreType() != null) {
             holder.mTvPlaceType.setText(store.getStoreType().getTypeName());
         }
@@ -60,8 +55,11 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
             holder.mTvPlaceAddress.setText(store.getStoreAddress().getAddressName());
         }
         holder.mTvPlaceName.setText(store.getPlaceName());
-        holder.mTvPlaceTime.setText(String.format("%s - %s", mSimpleDateFormat.format(store.getOpenTime()), mSimpleDateFormat.format(store.getCloseTime())));
-        holder.mRatingBar.setRating(store.getAverageRating());
+        if (store.getOpenTime() != null && store.getCloseTime() != null) {
+            holder.mTvPlaceTime.setText(String.format("%s - %s", mSimpleDateFormat.format(store.getOpenTime()), mSimpleDateFormat.format(store.getCloseTime())));
+        }
+        holder.mTvNumberStar.setText(String.valueOf(store.getAverageRating()));
+        holder.mTvNumberRating.setText(String.valueOf(store.getNumberRating()));
     }
 
     @Override
@@ -78,7 +76,8 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
         private final TextView mTvPlaceTime;
         private final TextView mTvPlaceType;
         private final AutofitTextView mTvPlaceAddress;
-        private final RatingBar mRatingBar;
+        private final TextView mTvNumberStar;
+        private final TextView mTvNumberRating;
 
         ItemHomeStoreVH(View itemView, final OnHomeStoreListener onHomeStoreListener) {
             super(itemView);
@@ -87,7 +86,9 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
             mTvPlaceTime = (TextView) itemView.findViewById(R.id.tvPlaceTime);
             mTvPlaceName = (TextView) itemView.findViewById(R.id.tvPlaceName);
             mTvPlaceType = (TextView) itemView.findViewById(R.id.tvPlaceType);
-            mRatingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+            mTvNumberStar = (TextView) itemView.findViewById(R.id.tvNumberStar);
+            mTvNumberRating = (TextView) itemView.findViewById(R.id.tvNumberRating);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

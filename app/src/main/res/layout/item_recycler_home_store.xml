@@ -27,14 +27,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp">
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="@style/CustomRatingBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:clickable="false"
-                android:numStars="5" />
+            <include layout="@layout/layout_number_rating" />
 
             <TextView
                 android:id="@+id/tvPlaceName"
