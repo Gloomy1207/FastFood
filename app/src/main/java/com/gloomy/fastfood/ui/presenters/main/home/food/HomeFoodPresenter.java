@@ -29,7 +29,7 @@ import retrofit2.Response;
  * Created by HungTQB on 11-Apr-17.
  */
 @EBean
-public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoodResponse>, HomeFoodAdapter.OnItemFoodListener {
+public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoodResponse>, HomeFoodAdapter.OnHomeFoodListener {
     public static final int RECYCLER_NUM_COLUMN = 2;
 
     @Setter

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
+import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
 
 import retrofit2.Callback;
@@ -45,5 +46,9 @@ public final class ApiRequest {
 
     public void getHomeFoodData(String page, String size, Callback<HomeFoodResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getHomeFoodData(page, size).enqueue(callback);
+    }
+
+    public void getHomePlaceData(String page, String size, Callback<HomePlaceResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getHomePlaceData(page, size).enqueue(callback);
     }
 }

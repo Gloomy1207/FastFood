@@ -1,6 +1,7 @@
 package com.gloomy.fastfood.api;
 
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
+import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
 
 import retrofit2.Call;
@@ -20,4 +21,8 @@ public interface ApiService {
     @GET("basic/food/home")
     Call<HomeFoodResponse> getHomeFoodData(@Query(ApiParameters.PAGE) String page,
                                            @Query(ApiParameters.SIZE) String size);
+
+    @GET("basic/location/home")
+    Call<HomePlaceResponse> getHomePlaceData(@Query(ApiParameters.PAGE) String page,
+                                             @Query(ApiParameters.SIZE) String size);
 }

@@ -34,7 +34,7 @@ import retrofit2.Response;
  * Created by HungTQB on 10-Apr-17.
  */
 @EBean
-public class HomeStorePresenter extends BasePresenter implements Callback<HomeStoreResponse>, HomeStoreAdapter.OnItemHomeStoreListener {
+public class HomeStorePresenter extends BasePresenter implements Callback<HomeStoreResponse>, HomeStoreAdapter.OnHomeStoreListener {
 
     @DimensionPixelOffsetRes(R.dimen.space_item_decoration_recycler_view)
     int mRecyclerViewDecorationSpace;
