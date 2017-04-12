@@ -13,7 +13,7 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 public abstract class BaseAdapter<V extends ViewHolder> extends RecyclerView.Adapter<V> {
     private final Context mContext;
 
-    protected BaseAdapter(@NonNull Context mContext) {
+    public BaseAdapter(@NonNull Context mContext) {
         this.mContext = mContext;
     }
 

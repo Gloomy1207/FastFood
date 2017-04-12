@@ -58,7 +58,7 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
 
     @Override
     public void onLoadDataFailure() {
-
+        mPresenter.initRecyclerView(mRecyclerView);
     }
 
     @Override

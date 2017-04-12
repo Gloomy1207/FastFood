@@ -19,4 +19,6 @@ public class Food {
     private List<FoodImage> foodImages;
     private float rating;
     private String mainImage;
+    private int numberOfRating;
+    private String numberOfRatingText;
 }

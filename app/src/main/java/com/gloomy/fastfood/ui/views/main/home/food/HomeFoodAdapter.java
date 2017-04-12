@@ -7,12 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.ui.views.BaseAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -20,12 +20,12 @@ import java.util.List;
  * Copyright © 2017 Gloomy
  * Created by HungTQB on 11-Apr-17.
  */
-public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStoreVH> {
+public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH> {
 
     private final List<Food> mFoods;
     private OnItemFoodListener mOnItemFoodListener;
 
-    protected HomeStoreAdapter(@NonNull Context mContext, List<Food> foods, OnItemFoodListener onItemFoodListener) {
+    public HomeFoodAdapter(@NonNull Context mContext, List<Food> foods, OnItemFoodListener onItemFoodListener) {
         super(mContext);
         mFoods = foods;
         mOnItemFoodListener = onItemFoodListener;
@@ -39,7 +39,21 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
 
     @Override
     public void onBindViewHolder(ItemHomeStoreVH holder, int position) {
-
+        Food food = mFoods.get(position);
+        Picasso.with(getContext())
+                .load(food.getMainImage())
+                .noFade()
+                .into(holder.mImgFood);
+        holder.mTvFoodName.setText(food.getFoodName());
+        holder.mTvFoodDescription.setText(food.getDescription());
+        float rating;
+        if (food.getRating() == Float.NaN) {
+            rating = 5;
+        } else {
+            rating = food.getRating();
+        }
+        holder.mTvNumberStar.setText(String.valueOf(rating));
+        holder.mTvNumberRating.setText(food.getNumberOfRatingText());
     }
 
     @Override
@@ -53,15 +67,17 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
     static class ItemHomeStoreVH extends RecyclerView.ViewHolder {
         private final ImageView mImgFood;
         private final TextView mTvFoodName;
-        private final RatingBar mRatingBar;
         private final TextView mTvFoodDescription;
+        private final TextView mTvNumberStar;
+        private final TextView mTvNumberRating;
 
         ItemHomeStoreVH(View itemView, final OnItemFoodListener onItemFoodListener) {
             super(itemView);
             mImgFood = (ImageView) itemView.findViewById(R.id.imgFood);
             mTvFoodName = (TextView) itemView.findViewById(R.id.tvFoodName);
             mTvFoodDescription = (TextView) itemView.findViewById(R.id.tvFoodDescription);
-            mRatingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+            mTvNumberStar = (TextView) itemView.findViewById(R.id.tvNumberStar);
+            mTvNumberRating = (TextView) itemView.findViewById(R.id.tvNumberRating);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
