@@ -16,6 +16,7 @@
             android:id="@+id/imgFood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:contentDescription="@null"
             android:maxHeight="@dimen/item_recycler_home_store_image_height"
             android:scaleType="centerCrop" />
@@ -26,8 +27,8 @@
             android:layout_below="@id/imgFood"
             android:layout_marginTop="5dp"
             android:orientation="vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -52,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/tvNumberStar"
                     android:textColor="@android:color/black"
                     android:textSize="12sp" />
@@ -62,6 +63,8 @@
                 android:id="@+id/tvFoodName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="5dp"
                 android:ellipsize="end"
                 android:lines="1"
                 android:textColor="@android:color/black" />
@@ -70,6 +73,7 @@
                 android:id="@+id/tvFoodDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:ellipsize="end"
                 android:maxLines="5"
                 android:textSize="12sp" />

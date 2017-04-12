@@ -15,4 +15,6 @@ public interface IHomeFoodView extends IBaseView {
     void onLoadDataFailure();
 
     void onItemFoodClick(Food food);
+
+    void onRefreshDataComplete();
 }

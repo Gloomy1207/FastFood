@@ -46,13 +46,7 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
                 .into(holder.mImgFood);
         holder.mTvFoodName.setText(food.getFoodName());
         holder.mTvFoodDescription.setText(food.getDescription());
-        float rating;
-        if (food.getRating() == Float.NaN) {
-            rating = 5;
-        } else {
-            rating = food.getRating();
-        }
-        holder.mTvNumberStar.setText(String.valueOf(rating));
+        holder.mTvNumberStar.setText(String.valueOf(food.getRating()));
         holder.mTvNumberRating.setText(food.getNumberOfRatingText());
     }
 
