@@ -16,6 +16,8 @@ import com.gloomy.fastfood.R;
  */
 public class CustomProgressDialog extends DialogFragment {
 
+    private boolean mIsAdded;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -34,9 +36,19 @@ public class CustomProgressDialog extends DialogFragment {
 
     @Override
     public void show(FragmentManager manager, String tag) {
-        if (isAdded()) {
+        if (mIsAdded) {
             return;
         }
+        mIsAdded = true;
         super.show(manager, tag);
+    }
+
+    @Override
+    public void dismiss() {
+        if (!mIsAdded) {
+            return;
+        }
+        mIsAdded = false;
+        super.dismiss();
     }
 }

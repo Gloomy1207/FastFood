@@ -8,4 +8,6 @@ public interface IBaseView {
     void onShowProgressDialog();
 
     void onDismissProgressDialog();
+
+    void onNoInternetConnection();
 }
