@@ -7,9 +7,6 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
 import com.gloomy.fastfood.models.Store;
-import com.gloomy.fastfood.models.StoreAddress;
-import com.gloomy.fastfood.models.StoreImage;
-import com.gloomy.fastfood.models.StoreType;
 import com.gloomy.fastfood.ui.presenters.BasePresenter;
 import com.gloomy.fastfood.ui.views.main.home.store.HomeStoreAdapter;
 import com.gloomy.fastfood.ui.views.main.home.store.IHomeStoreView;
@@ -18,9 +15,6 @@ import com.gloomy.fastfood.widgets.SpacesItemDecoration;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.res.DimensionPixelOffsetRes;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import lombok.Setter;
@@ -35,11 +29,11 @@ import retrofit2.Response;
  */
 @EBean
 public class HomeStorePresenter extends BasePresenter implements Callback<HomeStoreResponse>, HomeStoreAdapter.OnHomeStoreListener {
+    private static final int LAYOUT_COLUMN_NUM = 2;
+    private static final int LOAD_MORE_THRESHOLD = 15;
 
     @DimensionPixelOffsetRes(R.dimen.space_item_decoration_recycler_view)
     int mRecyclerViewDecorationSpace;
-
-    public static final int LAYOUT_COLUMN_NUM = 2;
 
     @Setter
     @Accessors(prefix = "m")
@@ -62,6 +56,8 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
             return;
         }
         mHomeStoreResponse = response.body();
+        mIsLastPage = mHomeStoreResponse.isLast();
+        mCurrentPage = mHomeStoreResponse.getCurrentPage();
         mView.onLoadDataComplete();
     }
 
@@ -72,21 +68,7 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
     }
 
     public void initRecyclerView(RecyclerView recyclerView) {
-        // TODO: 11-Apr-17 Remove dummy and get data from server
-        /*mStores = mHomeStoreResponse.getStores();*/
-        mStores = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            mStores.add(Store.builder()
-                    .closeTime(new Time(System.currentTimeMillis()))
-                    .openTime(new Time(System.currentTimeMillis()))
-                    .description("This is description")
-                    .placeName("This is place name")
-                    .storeAddress(StoreAddress.builder().addressName("This is address name").build())
-                    .storeImages(Collections.singletonList(StoreImage.builder().imagePath("https://i.ytimg.com/vi/b6dT4kyVUuY/maxresdefault.jpg").build()))
-                    .storeType(StoreType.builder().typeName("Restaurant").build())
-                    .averageRating(2.5f)
-                    .build());
-        }
+        mStores = mHomeStoreResponse.getStores();
         recyclerView.setHasFixedSize(true);
         HomeStoreAdapter adapter = new HomeStoreAdapter(mContext, mStores, this);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(LAYOUT_COLUMN_NUM, StaggeredGridLayoutManager.VERTICAL);
