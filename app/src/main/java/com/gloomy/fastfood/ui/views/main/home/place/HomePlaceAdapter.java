@@ -64,6 +64,11 @@ public class HomePlaceAdapter extends BaseAdapter {
         Place.PlaceProvince province = (Place.PlaceProvince) mPlaces.get(position);
         holder.mTvProvinceName.setText(province.getProvince().getProvinceName());
         holder.mTvNumberStore.setText(province.getProvince().getNumberPlaceText());
+        if (province.isFirstItem()) {
+            holder.mViewDivider.setVisibility(View.GONE);
+        } else {
+            holder.mViewDivider.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -99,11 +104,13 @@ public class HomePlaceAdapter extends BaseAdapter {
 
         private final TextView mTvProvinceName;
         private final TextView mTvNumberStore;
+        private final View mViewDivider;
 
         ItemProvinceVH(View itemView, final OnHomePlaceListener onHomePlaceListener) {
             super(itemView);
             mTvProvinceName = (TextView) itemView.findViewById(R.id.tvProvinceName);
             mTvNumberStore = (TextView) itemView.findViewById(R.id.tvNumberStore);
+            mViewDivider = itemView.findViewById(R.id.viewDivider);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

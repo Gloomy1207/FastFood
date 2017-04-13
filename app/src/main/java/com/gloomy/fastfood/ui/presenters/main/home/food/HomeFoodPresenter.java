@@ -149,9 +149,11 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
         });
     }
 
-    public void refreshData(RecyclerView recyclerView) {
+    public void refreshData() {
+        mCurrentPage = mHomeFoodResponse.getCurrentPage();
+        mIsLastPage = mHomeFoodResponse.isLast();
         mFoods.clear();
         mFoods.addAll(mHomeFoodResponse.getFoods());
-        recyclerView.getAdapter().notifyDataSetChanged();
+        mView.notifyDataSetChanged();
     }
 }

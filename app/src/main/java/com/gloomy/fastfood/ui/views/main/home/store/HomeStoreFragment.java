@@ -52,7 +52,9 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
 
     @Override
     public void onLoadDataFailure() {
-
+        mDisableView.setVisibility(View.GONE);
+        mSwipeRefreshLayout.setRefreshing(false);
+        showLoadDataFailure();
     }
 
     @Override
@@ -71,6 +73,11 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
     @Override
     public void onItemHomeStoreClick(Store store) {
 
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 
     @Override

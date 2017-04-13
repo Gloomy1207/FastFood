@@ -24,4 +24,6 @@ public interface OnBaseActivityListener {
     void setButtonMessageDialogText(String text);
 
     void showNoInternetConnection();
+
+    void showLoadDataFailure();
 }
