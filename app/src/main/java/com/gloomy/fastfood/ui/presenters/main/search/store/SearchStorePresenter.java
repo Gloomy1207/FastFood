@@ -167,12 +167,16 @@ public class SearchStorePresenter extends BasePresenter implements SearchStoreAd
         getDataSearchStore();
     }
 
-    public void refreshData() {
+    public void refreshData(RecyclerView recyclerView) {
         mIsRefresh = false;
         mCurrentPage = mSearchStoreResponse.getCurrentPage();
         mIsLastPage = mSearchStoreResponse.isLast();
         mSearchStoreItems.clear();
         mSearchStoreItems.addAll(parseToSearchStoreItem(mSearchStoreResponse.getStores()));
-        mView.notifyDataSetChanged();
+        if (recyclerView.getAdapter() != null) {
+            mView.notifyDataSetChanged();
+        } else {
+            initRecyclerView(recyclerView);
+        }
     }
 }

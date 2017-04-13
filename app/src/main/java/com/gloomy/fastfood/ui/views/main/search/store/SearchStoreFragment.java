@@ -3,7 +3,6 @@ package com.gloomy.fastfood.ui.views.main.search.store;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
@@ -55,6 +54,7 @@ public class SearchStoreFragment extends BaseFragment implements ISearchStoreVie
 
     @Override
     public void onNoInternetConnection() {
+        mSwipeRefreshLayout.setRefreshing(false);
         showNoInternetConnectionMessage();
     }
 
@@ -77,7 +77,7 @@ public class SearchStoreFragment extends BaseFragment implements ISearchStoreVie
     public void onRefreshComplete() {
         mSwipeRefreshLayout.setRefreshing(false);
         mDisableView.setVisibility(View.GONE);
-        mPresenter.refreshData();
+        mPresenter.refreshData(mRecyclerView);
     }
 
     @Override

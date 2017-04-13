@@ -83,7 +83,7 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
     public void onRefreshDataComplete() {
         mSwipeRefreshLayout.setRefreshing(false);
         mDisableView.setVisibility(View.GONE);
-        mPresenter.refreshData();
+        mPresenter.refreshData(mRecyclerView);
     }
 
     @Override

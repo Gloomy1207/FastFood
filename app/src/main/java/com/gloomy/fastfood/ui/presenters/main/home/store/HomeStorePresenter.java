@@ -123,13 +123,17 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
         getDataForStores();
     }
 
-    public void refreshData() {
+    public void refreshData(RecyclerView recyclerView) {
         mStores.clear();
         mStores.addAll(mHomeStoreResponse.getStores());
         mCurrentPage = mHomeStoreResponse.getCurrentPage();
         mIsLastPage = mHomeStoreResponse.isLast();
         mIsRefresh = false;
-        mView.notifyDataSetChanged();
+        if (recyclerView.getAdapter() == null) {
+            initRecyclerView(recyclerView);
+        } else {
+            mView.notifyDataSetChanged();
+        }
     }
 
     private void loadMoreData() {

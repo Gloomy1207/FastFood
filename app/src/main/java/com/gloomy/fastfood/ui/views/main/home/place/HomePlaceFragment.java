@@ -76,7 +76,7 @@ public class HomePlaceFragment extends BaseFragment implements IHomePlaceView {
     @Override
     public void onRefreshComplete() {
         mSwipeRefreshLayout.setRefreshing(false);
-        mPresenter.refreshData();
+        mPresenter.refreshData(mRecyclerView);
     }
 
     @Override
