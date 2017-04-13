@@ -10,4 +10,6 @@
     <string name="fragment_search_search_view_hint">Tìm kiếm quán ăn, thức ăn, địa điểm</string>
     <string name="app_name">FastFood</string>
     <string name="load_data_error">Có lỗi xảy ra, vui lòng thử lại sau.</string>
+    <string name="text_view_text_see_more">Xem thêm</string>
+    <string name="nearly_store_text">Cửa hàng gần đây</string>
 </resources>

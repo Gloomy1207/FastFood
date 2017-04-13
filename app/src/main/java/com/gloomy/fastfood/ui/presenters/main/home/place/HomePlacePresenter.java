@@ -41,14 +41,14 @@ public class HomePlacePresenter extends BasePresenter implements Callback<HomePl
     private int mCurrentPage;
     private boolean mIsLastPage;
     private HomePlaceResponse mHomePlaceResponse;
-    private List<Place> mPlaces;
+    private List<Place> mPlaces = new ArrayList<>();
     private EndlessScrollListener mEndlessScrollListener;
     private boolean mIsRefresh;
 
     private View mDisableView;
 
     public void getHomePlaceData() {
-        if (mIsRefresh) {
+        if (!mIsRefresh) {
             mView.onShowProgressDialog();
         }
         ApiRequest.getInstance().getHomePlaceData(null, null, this);
@@ -158,12 +158,16 @@ public class HomePlacePresenter extends BasePresenter implements Callback<HomePl
         getHomePlaceData();
     }
 
-    public void refreshData() {
+    public void refreshData(RecyclerView recyclerView) {
         mIsRefresh = false;
         mCurrentPage = mHomePlaceResponse.getCurrentPage();
         mIsLastPage = mHomePlaceResponse.isLast();
         mPlaces.clear();
         mPlaces.addAll(parsePlaceData(mHomePlaceResponse.getCities()));
-        mView.notifyDataSetChanged();
+        if (recyclerView.getAdapter() != null) {
+            mView.notifyDataSetChanged();
+        } else {
+            initRecyclerView(recyclerView);
+        }
     }
 }

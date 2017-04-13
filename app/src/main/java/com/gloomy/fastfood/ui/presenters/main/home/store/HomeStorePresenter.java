@@ -19,6 +19,7 @@ import com.gloomy.fastfood.widgets.SpacesItemDecoration;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.res.DimensionPixelOffsetRes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Setter;
@@ -45,7 +46,7 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
 
     private HomeStoreResponse mHomeStoreResponse;
     private EndlessScrollListener mEndlessScrollListener;
-    private List<Store> mStores;
+    private List<Store> mStores = new ArrayList<>();
     private boolean mIsLastPage;
     private int mCurrentPage;
     private boolean mIsRefresh;
@@ -122,13 +123,17 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
         getDataForStores();
     }
 
-    public void refreshData() {
+    public void refreshData(RecyclerView recyclerView) {
         mStores.clear();
         mStores.addAll(mHomeStoreResponse.getStores());
         mCurrentPage = mHomeStoreResponse.getCurrentPage();
         mIsLastPage = mHomeStoreResponse.isLast();
         mIsRefresh = false;
-        mView.notifyDataSetChanged();
+        if (recyclerView.getAdapter() == null) {
+            initRecyclerView(recyclerView);
+        } else {
+            mView.notifyDataSetChanged();
+        }
     }
 
     private void loadMoreData() {

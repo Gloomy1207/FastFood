@@ -61,7 +61,7 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
     public void onRefreshComplete() {
         mDisableView.setVisibility(View.GONE);
         mSwipeRefreshLayout.setRefreshing(false);
-        mPresenter.refreshData();
+        mPresenter.refreshData(mRecyclerView);
     }
 
     @Override
