@@ -14,5 +14,7 @@ public interface IHomeStoreView extends IBaseView {
 
     void onLoadDataFailure();
 
+    void onRefreshComplete();
+
     void onItemHomeStoreClick(Store store);
 }

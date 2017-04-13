@@ -1,6 +1,8 @@
 package com.gloomy.fastfood.ui.views.main.home.store;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Store;
@@ -25,10 +27,17 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
+    @ViewById(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @ViewById(R.id.disableView)
+    View mDisableView;
+
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
         mPresenter.getDataForStores();
+        mPresenter.initSwipeRefresh(mSwipeRefreshLayout, mDisableView);
     }
 
     @Override
@@ -38,7 +47,7 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
 
     @Override
     public void onLoadMoreComplete() {
-
+        mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 
     @Override
@@ -47,8 +56,16 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
     }
 
     @Override
-    public void onNoInternetConnection() {
+    public void onRefreshComplete() {
+        mDisableView.setVisibility(View.GONE);
+        mSwipeRefreshLayout.setRefreshing(false);
+        mPresenter.refreshData();
+    }
 
+    @Override
+    public void onNoInternetConnection() {
+        mSwipeRefreshLayout.setRefreshing(false);
+        showNoInternetConnectionMessage();
     }
 
     @Override

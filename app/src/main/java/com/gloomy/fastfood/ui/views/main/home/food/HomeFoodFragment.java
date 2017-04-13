@@ -37,6 +37,7 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
     void afterViews() {
         mPresenter.setView(this);
         mPresenter.getHomeFoodData();
+        mPresenter.initSwipeRefresh(mSwipeRefreshLayout, mDisableView);
     }
 
     @Override
@@ -51,13 +52,13 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
 
     @Override
     public void onNoInternetConnection() {
-
+        mSwipeRefreshLayout.setRefreshing(false);
+        showNoInternetConnectionMessage();
     }
 
     @Override
     public void onLoadDataComplete() {
         mPresenter.initRecyclerView(mRecyclerView);
-        mPresenter.initSwipeRefresh(mSwipeRefreshLayout, mDisableView);
     }
 
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_internet_connection">Không có kết nối Internet, làm ơn kiểm tra lại đường truyền.</string>
+    <string name="button_close">Đóng</string>
+    <string name="footer_bar_home">Trang chủ</string>
+    <string name="footer_bar_my_page">Trang cá nhân</string>
+    <string name="footer_bar_search">Tìm kiếm</string>
+    <string name="footer_bar_rating">Đánh giá</string>
+    <string name="footer_bar_topic">Bài đăng</string>
+    <string name="fragment_search_search_view_hint">Tìm kiếm quán ăn, thức ăn, địa điểm</string>
+    <string name="app_name">FastFood</string>
+</resources>
