@@ -7,4 +7,6 @@ package com.gloomy.fastfood.api;
 public final class ApiParameters {
     public static final String PAGE = "page";
     public static final String SIZE = "size";
+    public static final String LAT = "lat";
+    public static final String LNG = "lng";
 }

@@ -3,6 +3,7 @@ package com.gloomy.fastfood.api;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -25,4 +26,10 @@ public interface ApiService {
     @GET("basic/location/home")
     Call<HomePlaceResponse> getHomePlaceData(@Query(ApiParameters.PAGE) String page,
                                              @Query(ApiParameters.SIZE) String size);
+
+    @GET("basic/place/search")
+    Call<SearchStoreResponse> getSearchStoreData(@Query(ApiParameters.LAT) Double lat,
+                                                 @Query(ApiParameters.LNG) Double lng,
+                                                 @Query(ApiParameters.PAGE) String page,
+                                                 @Query(ApiParameters.SIZE) String size);
 }

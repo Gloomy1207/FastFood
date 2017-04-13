@@ -41,7 +41,7 @@ public class HomePlacePresenter extends BasePresenter implements Callback<HomePl
     private int mCurrentPage;
     private boolean mIsLastPage;
     private HomePlaceResponse mHomePlaceResponse;
-    private List<Place> mPlaces;
+    private List<Place> mPlaces = new ArrayList<>();
     private EndlessScrollListener mEndlessScrollListener;
     private boolean mIsRefresh;
 

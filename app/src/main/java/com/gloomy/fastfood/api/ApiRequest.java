@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.SearchStoreResponse;
+import com.gloomy.fastfood.models.LatLng;
 
 import retrofit2.Callback;
 
@@ -50,5 +52,13 @@ public final class ApiRequest {
 
     public void getHomePlaceData(String page, String size, Callback<HomePlaceResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getHomePlaceData(page, size).enqueue(callback);
+    }
+
+    public void getSearchStoreData(String page, String size, LatLng latLng, Callback<SearchStoreResponse> callback) {
+        if (latLng != null) {
+            ServiceHelper.createApiService(mApplicationContext).getSearchStoreData(latLng.getLat(), latLng.getLng(), page, size).enqueue(callback);
+        } else {
+            ServiceHelper.createApiService(mApplicationContext).getSearchStoreData(null, null, page, size).enqueue(callback);
+        }
     }
 }

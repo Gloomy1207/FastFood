@@ -10,4 +10,6 @@
     <string name="fragment_search_search_view_hint">Search store, food, place…</string>
     <string name="app_name">FastFood</string>
     <string name="load_data_error">Oops! Something wrong. Try it later!</string>
+    <string name="text_view_text_see_more">See More</string>
+    <string name="nearly_store_text">Nearly stores</string>
 </resources>

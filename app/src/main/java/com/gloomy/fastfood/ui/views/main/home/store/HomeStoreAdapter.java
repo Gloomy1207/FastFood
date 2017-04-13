@@ -28,7 +28,7 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
 
     private List<Store> mStores;
     private OnHomeStoreListener mOnHomeStoreListener;
-    private SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+    private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
 
     public HomeStoreAdapter(@NonNull Context mContext, List<Store> stores, OnHomeStoreListener onHomeStoreListener) {
         super(mContext);
@@ -48,9 +48,6 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
         Picasso.with(getContext())
                 .load(store.getMainImage())
                 .into(holder.mImgStore);
-        if (store.getStoreType() != null) {
-            holder.mTvPlaceType.setText(store.getStoreType().getTypeName());
-        }
         if (store.getStoreAddress() != null) {
             holder.mTvPlaceAddress.setText(store.getStoreAddress().getAddressName());
         }
@@ -74,7 +71,6 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
         private final RoundedImageView mImgStore;
         private final TextView mTvPlaceName;
         private final TextView mTvPlaceTime;
-        private final TextView mTvPlaceType;
         private final AutofitTextView mTvPlaceAddress;
         private final TextView mTvNumberStar;
         private final TextView mTvNumberRating;
@@ -85,7 +81,6 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
             mTvPlaceAddress = (AutofitTextView) itemView.findViewById(R.id.tvPlaceAddress);
             mTvPlaceTime = (TextView) itemView.findViewById(R.id.tvPlaceTime);
             mTvPlaceName = (TextView) itemView.findViewById(R.id.tvPlaceName);
-            mTvPlaceType = (TextView) itemView.findViewById(R.id.tvPlaceType);
             mTvNumberStar = (TextView) itemView.findViewById(R.id.tvNumberStar);
             mTvNumberRating = (TextView) itemView.findViewById(R.id.tvNumberRating);
 
