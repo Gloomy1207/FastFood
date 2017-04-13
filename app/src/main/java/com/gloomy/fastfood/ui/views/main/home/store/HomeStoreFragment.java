@@ -64,8 +64,8 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
 
     @Override
     public void onNoInternetConnection() {
-        setMessageDialogText(getString(R.string.no_internet_connection));
-        showMessageDialog();
+        mSwipeRefreshLayout.setRefreshing(false);
+        showNoInternetConnectionMessage();
     }
 
     @Override

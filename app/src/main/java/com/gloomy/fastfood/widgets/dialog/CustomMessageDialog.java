@@ -12,6 +12,9 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
 /**
  * Copyright © 2017 Gloomy
  * Created by HungTQB on 12-Apr-17.
@@ -27,20 +30,21 @@ public class CustomMessageDialog extends DialogFragment {
 
     private boolean mIsAdded;
     private OnCustomMessageDialogListener mOnCustomMessageDialogListener;
+    @Setter
+    @Accessors(prefix = "m")
+    private String mMessage;
+
+    @Setter
+    @Accessors(prefix = "m")
+    private String mButtonText;
 
     @AfterViews
     void afterViews() {
         if (getDialog().getWindow() != null) {
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         }
-    }
-
-    public void setMessage(String message) {
-        mTvMessage.setText(message);
-    }
-
-    public void setButtonMessage(String buttonMessage) {
-        mBtnClose.setText(buttonMessage);
+        mTvMessage.setText(mMessage);
+        mBtnClose.setText(mButtonText);
     }
 
     @Override
@@ -48,12 +52,19 @@ public class CustomMessageDialog extends DialogFragment {
         if (mIsAdded) {
             return;
         }
+        mIsAdded = true;
         super.show(manager, tag);
     }
 
     public void showWithCallback(FragmentManager manager, String tag, OnCustomMessageDialogListener listener) {
         show(manager, tag);
         mOnCustomMessageDialogListener = listener;
+    }
+
+    @Override
+    public void dismiss() {
+        mIsAdded = false;
+        super.dismiss();
     }
 
     @Click(R.id.btnClose)

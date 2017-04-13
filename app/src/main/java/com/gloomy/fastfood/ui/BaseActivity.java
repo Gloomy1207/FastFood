@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.listener.OnBaseActivityListener;
 import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog;
 import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog_;
@@ -64,6 +65,13 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
 
     @Override
     public void setButtonMessageDialogText(String text) {
-        mCustomMessageDialog.setButtonMessage(text);
+        mCustomMessageDialog.setButtonText(text);
+    }
+
+    @Override
+    public void showNoInternetConnection() {
+        mCustomMessageDialog.setMessage(getString(R.string.no_internet_connection));
+        mCustomMessageDialog.setButtonText(getString(R.string.button_close));
+        showMessageDialog();
     }
 }

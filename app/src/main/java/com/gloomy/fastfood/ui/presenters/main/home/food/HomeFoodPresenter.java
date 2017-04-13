@@ -119,7 +119,9 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
         mIsRefresh = true;
         mDisableView.setVisibility(View.VISIBLE);
         getHomeFoodData();
-        mEndlessScrollListener.resetValue();
+        if (mEndlessScrollListener != null) {
+            mEndlessScrollListener.resetValue();
+        }
     }
 
     private void loadMoreData() {

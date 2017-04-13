@@ -52,8 +52,8 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
 
     @Override
     public void onNoInternetConnection() {
-        setMessageDialogText(getString(R.string.no_internet_connection));
-        showMessageDialog();
+        mSwipeRefreshLayout.setRefreshing(false);
+        showNoInternetConnectionMessage();
     }
 
     @Override

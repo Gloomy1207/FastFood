@@ -70,4 +70,8 @@ public abstract class BaseFragment extends Fragment {
     public void setMessageDialogButtonText(String text) {
         mOnBaseActivityListener.setButtonMessageDialogText(text);
     }
+
+    public void showNoInternetConnectionMessage() {
+        mOnBaseActivityListener.showNoInternetConnection();
+    }
 }

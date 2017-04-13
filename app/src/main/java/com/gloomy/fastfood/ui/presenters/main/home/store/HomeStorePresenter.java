@@ -116,7 +116,9 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
     public void onRefresh() {
         mDisableView.setVisibility(View.VISIBLE);
         mIsRefresh = true;
-        mEndlessScrollListener.resetValue();
+        if (mEndlessScrollListener != null) {
+            mEndlessScrollListener.resetValue();
+        }
         getDataForStores();
     }
 
