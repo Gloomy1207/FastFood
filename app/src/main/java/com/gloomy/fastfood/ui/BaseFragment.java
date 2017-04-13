@@ -74,4 +74,8 @@ public abstract class BaseFragment extends Fragment {
     public void showNoInternetConnectionMessage() {
         mOnBaseActivityListener.showNoInternetConnection();
     }
+
+    public void showLoadDataFailure() {
+        mOnBaseActivityListener.showLoadDataFailure();
+    }
 }

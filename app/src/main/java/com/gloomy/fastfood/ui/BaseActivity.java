@@ -74,4 +74,11 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
         mCustomMessageDialog.setButtonText(getString(R.string.button_close));
         showMessageDialog();
     }
+
+    @Override
+    public void showLoadDataFailure() {
+        mCustomMessageDialog.setMessage(getString(R.string.load_data_error));
+        mCustomMessageDialog.setButtonText(getString(R.string.button_close));
+        showMessageDialog();
+    }
 }

@@ -15,7 +15,11 @@ public interface IHomePlaceView extends IBaseView {
 
     void onLoadDataFailure();
 
+    void onRefreshComplete();
+
     void onItemHomeCityClick(City city);
 
     void onItemProvinceClick(Province province);
+
+    void notifyDataSetChanged();
 }

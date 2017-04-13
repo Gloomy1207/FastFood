@@ -71,6 +71,7 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
     public void onLoadDataFailure() {
         mDisableView.setVisibility(View.GONE);
         mSwipeRefreshLayout.setRefreshing(false);
+        showLoadDataFailure();
     }
 
     @Override
@@ -82,6 +83,11 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
     public void onRefreshDataComplete() {
         mSwipeRefreshLayout.setRefreshing(false);
         mDisableView.setVisibility(View.GONE);
-        mPresenter.refreshData(mRecyclerView);
+        mPresenter.refreshData();
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 }

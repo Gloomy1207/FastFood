@@ -47,6 +47,7 @@ public abstract class Place {
     @Getter
     public static class PlaceProvince extends Place {
         private Province province;
+        private boolean isFirstItem;
 
         @Override
         public int getType() {

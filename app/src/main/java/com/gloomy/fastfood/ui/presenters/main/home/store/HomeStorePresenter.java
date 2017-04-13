@@ -128,12 +128,14 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
         mCurrentPage = mHomeStoreResponse.getCurrentPage();
         mIsLastPage = mHomeStoreResponse.isLast();
         mIsRefresh = false;
+        mView.notifyDataSetChanged();
     }
 
     private void loadMoreData() {
         if (mIsLastPage) {
             return;
         }
+        mCurrentPage++;
         ApiRequest.getInstance().getHomeStoreData(String.valueOf(mCurrentPage), null, new Callback<HomeStoreResponse>() {
             @Override
             public void onResponse(Call<HomeStoreResponse> call, Response<HomeStoreResponse> response) {
