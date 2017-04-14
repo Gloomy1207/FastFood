@@ -4,6 +4,7 @@ import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
+import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 
 import retrofit2.Call;
@@ -39,4 +40,8 @@ interface ApiService {
                                                @Query(ApiParameters.LNG) Double lng,
                                                @Query(ApiParameters.PAGE) String page,
                                                @Query(ApiParameters.SIZE) String size);
+
+    @GET("basic/user/search")
+    Call<SearchPeopleResponse> getSearchPeopleData(@Query(ApiParameters.PAGE) String page,
+                                                   @Query(ApiParameters.SIZE) String size);
 }

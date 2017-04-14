@@ -70,12 +70,14 @@ public class SearchFoodFragment extends BaseFragment implements ISearchFoodView 
     @Override
     public void onLoadDataFailure() {
         mSwipeRefreshLayout.setRefreshing(false);
+        mDisableView.setVisibility(View.GONE);
         showLoadDataFailure();
     }
 
     @Override
     public void onRefreshComplete() {
         mSwipeRefreshLayout.setRefreshing(false);
+        mDisableView.setVisibility(View.GONE);
         mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 
