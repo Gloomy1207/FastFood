@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.ui.views.BaseAdapter;
-import com.gloomy.fastfood.ui.views.main.search.store.SearchStoreAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,18 +22,18 @@ import java.util.List;
  */
 public class SearchFoodAdapter extends BaseAdapter<SearchFoodAdapter.ItemSearchFoodVH> {
     private List<Food> mFoods;
-    private SearchStoreAdapter.OnSearchStoreListener mOnSearchStoreListener;
+    private OnSearchFoodListener mOnSearchFoodListener;
 
-    public SearchFoodAdapter(@NonNull Context mContext, List<Food> foods, SearchStoreAdapter.OnSearchStoreListener onSearchStoreListener) {
+    public SearchFoodAdapter(@NonNull Context mContext, List<Food> foods, OnSearchFoodListener onSearchFoodListener) {
         super(mContext);
         mFoods = foods;
-        mOnSearchStoreListener = onSearchStoreListener;
+        mOnSearchFoodListener = onSearchFoodListener;
     }
 
     @Override
     public ItemSearchFoodVH onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.item_recycler_search_food, parent, false);
-        return new ItemSearchFoodVH(view, mOnSearchStoreListener);
+        return new ItemSearchFoodVH(view, mOnSearchFoodListener);
     }
 
     @Override
@@ -60,7 +59,7 @@ public class SearchFoodAdapter extends BaseAdapter<SearchFoodAdapter.ItemSearchF
         private TextView mTvFoodDescription;
         private ImageView mImgFood;
 
-        ItemSearchFoodVH(View itemView, final SearchStoreAdapter.OnSearchStoreListener onSearchStoreListener) {
+        ItemSearchFoodVH(View itemView, final OnSearchFoodListener onSearchFoodListener) {
             super(itemView);
             mTvFoodName = (TextView) itemView.findViewById(R.id.tvFoodName);
             mTvFoodDescription = (TextView) itemView.findViewById(R.id.tvFoodDescription);
@@ -69,8 +68,8 @@ public class SearchFoodAdapter extends BaseAdapter<SearchFoodAdapter.ItemSearchF
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (onSearchStoreListener != null) {
-                        onSearchStoreListener.onItemStoreClick(getLayoutPosition());
+                    if (onSearchFoodListener != null) {
+                        onSearchFoodListener.onItemSearchFoodClick(getLayoutPosition());
                     }
                 }
             });

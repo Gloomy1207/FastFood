@@ -6,4 +6,5 @@
     <string name="load_data_error">Oops! Something wrong. Try it later!</string>
     <string name="text_view_text_see_more">See More</string>
     <string name="nearly_store_text">Nearly stores</string>
+    <string name="text_point">%d points</string>
 </resources>
