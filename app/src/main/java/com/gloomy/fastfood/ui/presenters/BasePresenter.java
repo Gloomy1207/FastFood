@@ -17,4 +17,8 @@ public abstract class BasePresenter {
     protected String getString(int resId) {
         return mContext.getString(resId);
     }
+
+    protected Context getContext() {
+        return mContext;
+    }
 }
