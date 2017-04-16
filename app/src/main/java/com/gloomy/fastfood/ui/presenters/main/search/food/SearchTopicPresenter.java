@@ -63,7 +63,7 @@ public class SearchTopicPresenter extends BasePresenter implements SearchTopicAd
             return;
         }
         mCurrentPage++;
-        ApiRequest.getInstance().getSearchTopicData(String.valueOf(mCurrentPage), null, new Callback<SearchTopicResponse>() {
+        ApiRequest.getInstance().getSearchTopicData(mCurrentPage, null, new Callback<SearchTopicResponse>() {
             @Override
             public void onResponse(Call<SearchTopicResponse> call, Response<SearchTopicResponse> response) {
                 if (response == null || response.body() == null) {

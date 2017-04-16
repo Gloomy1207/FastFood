@@ -11,6 +11,8 @@ import org.androidannotations.annotations.RootContext;
  */
 @EBean
 public abstract class BasePresenter {
+    protected static final int LOAD_MORE_THRESHOLD = 15;
+
     @RootContext
     protected Context mContext;
 

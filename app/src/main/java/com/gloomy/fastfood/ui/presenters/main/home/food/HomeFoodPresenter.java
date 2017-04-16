@@ -35,7 +35,6 @@ import retrofit2.Response;
 @EBean
 public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoodResponse>, HomeFoodAdapter.OnHomeFoodListener, SwipeRefreshLayout.OnRefreshListener {
     private static final int RECYCLER_NUM_COLUMN = 2;
-    private static final int LOAD_MORE_THRESHOLD = 15;
 
     @Setter
     @Accessors(prefix = "m")
@@ -129,7 +128,7 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
             return;
         }
         mCurrentPage++;
-        ApiRequest.getInstance().getHomeFoodData(String.valueOf(mCurrentPage), null, new Callback<HomeFoodResponse>() {
+        ApiRequest.getInstance().getHomeFoodData(mCurrentPage, null, new Callback<HomeFoodResponse>() {
             @Override
             public void onResponse(Call<HomeFoodResponse> call, Response<HomeFoodResponse> response) {
                 if (response == null || response.body() == null) {

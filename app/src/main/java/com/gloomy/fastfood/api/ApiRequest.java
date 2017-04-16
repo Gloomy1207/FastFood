@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.RatingStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
@@ -45,19 +46,19 @@ public final class ApiRequest {
         return sInstance.mApplicationContext;
     }
 
-    public void getHomeStoreData(String page, String size, Callback<HomeStoreResponse> callback) {
+    public void getHomeStoreData(Integer page, Integer size, Callback<HomeStoreResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getHomeStoreData(page, size).enqueue(callback);
     }
 
-    public void getHomeFoodData(String page, String size, Callback<HomeFoodResponse> callback) {
+    public void getHomeFoodData(Integer page, Integer size, Callback<HomeFoodResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getHomeFoodData(page, size).enqueue(callback);
     }
 
-    public void getHomePlaceData(String page, String size, Callback<HomePlaceResponse> callback) {
+    public void getHomePlaceData(Integer page, Integer size, Callback<HomePlaceResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getHomePlaceData(page, size).enqueue(callback);
     }
 
-    public void getSearchStoreData(String page, String size, LatLng latLng, Callback<SearchStoreResponse> callback) {
+    public void getSearchStoreData(Integer page, Integer size, LatLng latLng, Callback<SearchStoreResponse> callback) {
         if (latLng != null) {
             ServiceHelper.createApiService(mApplicationContext).getSearchStoreData(latLng.getLat(), latLng.getLng(), page, size).enqueue(callback);
         } else {
@@ -65,7 +66,7 @@ public final class ApiRequest {
         }
     }
 
-    public void getSearchFoodData(String page, String size, LatLng latLng, Callback<SearchFoodResponse> callback) {
+    public void getSearchFoodData(Integer page, Integer size, LatLng latLng, Callback<SearchFoodResponse> callback) {
         if (latLng != null) {
             ServiceHelper.createApiService(mApplicationContext).getSearchFoodData(latLng.getLat(), latLng.getLng(), page, size).enqueue(callback);
         } else {
@@ -73,11 +74,15 @@ public final class ApiRequest {
         }
     }
 
-    public void getSearchPeopleData(String page, String size, Callback<SearchPeopleResponse> callback) {
+    public void getSearchPeopleData(Integer page, Integer size, Callback<SearchPeopleResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getSearchPeopleData(page, size).enqueue(callback);
     }
 
-    public void getSearchTopicData(String page, String size, Callback<SearchTopicResponse> callback) {
+    public void getSearchTopicData(Integer page, Integer size, Callback<SearchTopicResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getSearchTopicData(page, size).enqueue(callback);
+    }
+
+    public void getRatingStoreData(Integer page, Integer size, Callback<RatingStoreResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getRatingStoreData(page, size).enqueue(callback);
     }
 }

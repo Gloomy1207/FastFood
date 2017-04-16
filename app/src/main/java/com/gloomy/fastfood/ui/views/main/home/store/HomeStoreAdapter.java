@@ -51,7 +51,7 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
         if (store.getStoreAddress() != null) {
             holder.mTvPlaceAddress.setText(store.getStoreAddress().getAddressName());
         }
-        holder.mTvPlaceName.setText(store.getPlaceName());
+        holder.mTvPlaceName.setText(store.getStoreName());
         if (store.getOpenTime() != null && store.getCloseTime() != null) {
             holder.mTvPlaceTime.setText(String.format("%s - %s", mSimpleDateFormat.format(store.getOpenTime()), mSimpleDateFormat.format(store.getCloseTime())));
         }

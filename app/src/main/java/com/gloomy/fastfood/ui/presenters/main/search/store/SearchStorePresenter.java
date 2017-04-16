@@ -74,7 +74,7 @@ public class SearchStorePresenter extends BasePresenter implements SearchStoreAd
             return;
         }
         mCurrentPage++;
-        ApiRequest.getInstance().getSearchStoreData(String.valueOf(mCurrentPage), null, mCurrentLocation, new Callback<SearchStoreResponse>() {
+        ApiRequest.getInstance().getSearchStoreData(mCurrentPage, null, mCurrentLocation, new Callback<SearchStoreResponse>() {
             @Override
             public void onResponse(Call<SearchStoreResponse> call, Response<SearchStoreResponse> response) {
                 if (response == null || response.body() == null) {

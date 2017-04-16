@@ -32,7 +32,6 @@ import retrofit2.Response;
  */
 @EBean
 public class HomePlacePresenter extends BasePresenter implements Callback<HomePlaceResponse>, HomePlaceAdapter.OnHomePlaceListener, SwipeRefreshLayout.OnRefreshListener {
-    private static final int LOAD_MORE_THRESHOLD = 15;
 
     @Setter
     @Accessors(prefix = "m")
@@ -95,7 +94,7 @@ public class HomePlacePresenter extends BasePresenter implements Callback<HomePl
             return;
         }
         mCurrentPage++;
-        ApiRequest.getInstance().getHomePlaceData(String.valueOf(mCurrentPage), null, new Callback<HomePlaceResponse>() {
+        ApiRequest.getInstance().getHomePlaceData(mCurrentPage, null, new Callback<HomePlaceResponse>() {
             @Override
             public void onResponse(Call<HomePlaceResponse> call, Response<HomePlaceResponse> response) {
                 if (response == null || response.body() == null) {

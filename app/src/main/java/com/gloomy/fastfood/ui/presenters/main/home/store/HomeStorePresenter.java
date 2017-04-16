@@ -35,7 +35,6 @@ import retrofit2.Response;
 @EBean
 public class HomeStorePresenter extends BasePresenter implements Callback<HomeStoreResponse>, HomeStoreAdapter.OnHomeStoreListener, SwipeRefreshLayout.OnRefreshListener {
     private static final int LAYOUT_COLUMN_NUM = 2;
-    private static final int LOAD_MORE_THRESHOLD = 15;
 
     @DimensionPixelOffsetRes(R.dimen.space_item_decoration_recycler_view)
     int mRecyclerViewDecorationSpace;
@@ -141,7 +140,7 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
             return;
         }
         mCurrentPage++;
-        ApiRequest.getInstance().getHomeStoreData(String.valueOf(mCurrentPage), null, new Callback<HomeStoreResponse>() {
+        ApiRequest.getInstance().getHomeStoreData(mCurrentPage, null, new Callback<HomeStoreResponse>() {
             @Override
             public void onResponse(Call<HomeStoreResponse> call, Response<HomeStoreResponse> response) {
                 if (response == null || response.body() == null) {
