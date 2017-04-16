@@ -10,6 +10,7 @@ import com.gloomy.fastfood.api.responses.HomeStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
+import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.models.LatLng;
 
 import retrofit2.Callback;
@@ -74,5 +75,9 @@ public final class ApiRequest {
 
     public void getSearchPeopleData(String page, String size, Callback<SearchPeopleResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getSearchPeopleData(page, size).enqueue(callback);
+    }
+
+    public void getSearchTopicData(String page, String size, Callback<SearchTopicResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getSearchTopicData(page, size).enqueue(callback);
     }
 }

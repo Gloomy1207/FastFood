@@ -12,4 +12,6 @@
     <string name="load_data_error">Có lỗi xảy ra, vui lòng thử lại sau.</string>
     <string name="text_view_text_see_more">Xem thêm</string>
     <string name="nearly_store_text">Cửa hàng gần đây</string>
+    <string name="text_point">%d điểm</string>
+    <string name="number_of_like">%d người thích</string>
 </resources>
