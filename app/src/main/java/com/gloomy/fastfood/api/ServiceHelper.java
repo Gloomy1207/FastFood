@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -38,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Copyright © 2017 Gloomy
  * Created by HungTQB on 29-Mar-17.
  */
-public final class ServiceHelper {
+final class ServiceHelper {
     private static final String KEY_HEADER_AUTHORIZATION = "Authorization";
     private static final String API_TOKEN_PREFIX = "Bearer ";
     private static final int CONNECT_TIME_OUT = 120 * 1000;
@@ -52,6 +53,7 @@ public final class ServiceHelper {
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(Date.class, new DateDeserializer())
                 .registerTypeAdapter(Time.class, new TimeDeserializer())
+                .registerTypeAdapter(Timestamp.class, new TimestampDeserializer())
                 .create();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -127,6 +129,17 @@ public final class ServiceHelper {
             }
             throw new JsonParseException("Unparseable time: \"" + json.getAsString()
                     + "\". Supported formats: " + Arrays.toString(TIME_FORMATS));
+        }
+    }
+
+    /**
+     * TimestampDeserialize class
+     */
+    private static class TimestampDeserializer implements JsonDeserializer<Timestamp> {
+
+        @Override
+        public Timestamp deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            return new Timestamp(json.getAsLong());
         }
     }
 }

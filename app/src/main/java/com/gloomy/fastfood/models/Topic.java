@@ -19,4 +19,5 @@ public class Topic {
     private int countTopicComments;
     private TopicComment latestComment;
     private String mainImage;
+    private boolean isLike;
 }
