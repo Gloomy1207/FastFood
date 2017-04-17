@@ -135,17 +135,17 @@ public class SearchStorePresenter extends BasePresenter implements SearchStoreAd
         }
     }
 
+    @Override
+    public void onFailure(Call<SearchStoreResponse> call, Throwable t) {
+        mView.onDismissProgressDialog();
+    }
+
     private List<SearchStoreItem> parseToSearchStoreItem(List<Store> stores) {
         List<SearchStoreItem> searchStoreItems = new ArrayList<>();
         for (Store store : stores) {
             searchStoreItems.add(SearchStoreItem.StoreItem.builder().store(store).build());
         }
         return searchStoreItems;
-    }
-
-    @Override
-    public void onFailure(Call<SearchStoreResponse> call, Throwable t) {
-        mView.onDismissProgressDialog();
     }
 
     public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) {

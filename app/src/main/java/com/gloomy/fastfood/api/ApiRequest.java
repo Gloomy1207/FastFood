@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
@@ -106,5 +107,17 @@ public final class ApiRequest {
 
     public void getRandomTopicData(Integer page, Integer size, Callback<TopicResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getRandomTopicData(page, size).enqueue(callback);
+    }
+
+    public void getProfile(String username, Callback<ProfileResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getProfile(username).enqueue(callback);
+    }
+
+    public void loadMoreUserFavorite(Integer page, Integer size, Callback<ProfileResponse.ProfileFavorites> callback) {
+        ServiceHelper.createApiService(mApplicationContext).loadMoreUserFavorites(page, size).enqueue(callback);
+    }
+
+    public void loadMoreUserFeed(Integer page, Integer size, Callback<ProfileResponse.ProfileTopics> callback) {
+        ServiceHelper.createApiService(mApplicationContext).loadMoreUserFeed(page, size).enqueue(callback);
     }
 }

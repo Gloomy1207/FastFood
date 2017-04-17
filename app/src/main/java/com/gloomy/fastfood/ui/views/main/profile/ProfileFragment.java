@@ -68,9 +68,9 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     void afterViews() {
         mPresenter.setView(this);
         mPresenter.initHeaderBar(mHeaderBar);
-        mPresenter.getProfileData();
         mPresenter.initViewPager(mViewPager, mTabLayout, getChildFragmentManager());
         mNestedScrollView.setFillViewport(true);
+        mPresenter.getProfileData();
     }
 
     @Override
@@ -116,8 +116,33 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
                 .into(mImgBackground);
     }
 
+    @Override
+    public void onLoadDataFailure() {
+
+    }
+
+    @Override
+    public void onLoadDataSuccess() {
+
+    }
+
     @Click(R.id.btnFollow)
     void onFollowClick() {
         mPresenter.onFollowClick(mBtnFollow);
+    }
+
+    @Override
+    public void onShowProgressDialog() {
+
+    }
+
+    @Override
+    public void onDismissProgressDialog() {
+
+    }
+
+    @Override
+    public void onNoInternetConnection() {
+
     }
 }

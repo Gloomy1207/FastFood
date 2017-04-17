@@ -3,6 +3,7 @@ package com.gloomy.fastfood.api;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
@@ -76,4 +77,15 @@ interface ApiService {
     @GET("basic/topic/random")
     Call<TopicResponse> getRandomTopicData(@Query(ApiParameters.PAGE) Integer page,
                                            @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("auth/user/profile")
+    Call<ProfileResponse> getProfile(@Query(ApiParameters.USERNAME) String username);
+
+    @GET("auth/user/favorite")
+    Call<ProfileResponse.ProfileFavorites> loadMoreUserFavorites(@Query(ApiParameters.PAGE) Integer page,
+                                                                 @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("auth/user/feeds")
+    Call<ProfileResponse.ProfileTopics> loadMoreUserFeed(@Query(ApiParameters.PAGE) Integer page,
+                                                         @Query(ApiParameters.SIZE) Integer size);
 }

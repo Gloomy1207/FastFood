@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.ui.views.main.rating.store;
+package com.gloomy.fastfood.ui.views.main.profile.favorite;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -19,34 +19,36 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import me.grantland.widget.AutofitTextView;
+
 /**
  * Copyright © 2017 Gloomy
- * Created by HungTQB on 16-Apr-17.
+ * Created by HungTQB on 17-Apr-17.
  */
-public class RatingStoreAdapter extends BaseAdapter<RatingStoreAdapter.ItemRatingStoreVH> {
-
+public class ProfileFavoriteAdapter extends BaseAdapter<ProfileFavoriteAdapter.ItemFavoriteVH> {
     private final List<Store> mStores;
-    private final OnRatingStoreListener mOnRatingStoreListener;
+    private final OnItemFavoriteListener mOnItemFavoriteListener;
 
-    public RatingStoreAdapter(@NonNull Context mContext, List<Store> stores, OnRatingStoreListener onRatingStoreListener) {
+    public ProfileFavoriteAdapter(@NonNull Context mContext, List<Store> stores, OnItemFavoriteListener onItemFavoriteListener) {
         super(mContext);
         mStores = stores;
-        mOnRatingStoreListener = onRatingStoreListener;
+        mOnItemFavoriteListener = onItemFavoriteListener;
     }
 
     @Override
-    public ItemRatingStoreVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_recycler_rating_store, parent, false);
-        return new ItemRatingStoreVH(view, mOnRatingStoreListener);
+    public ItemFavoriteVH onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_recycler_profile_favorite, parent, false);
+        return new ItemFavoriteVH(view, mOnItemFavoriteListener);
     }
 
     @Override
-    public void onBindViewHolder(ItemRatingStoreVH holder, int position) {
+    public void onBindViewHolder(ItemFavoriteVH holder, int position) {
         Store store = mStores.get(position);
         Picasso.with(getContext())
                 .load(store.getMainImage())
                 .into(holder.mImgStore);
         holder.mTvNumberStar.setText(String.valueOf(store.getAverageRating()));
+        holder.mTvNumberRating.setText(store.getNumberRating());
         holder.mTvStoreName.setText(store.getStoreName());
         if (store.getStoreAddress() != null) {
             StoreAddress storeAddress = store.getStoreAddress();
@@ -74,28 +76,30 @@ public class RatingStoreAdapter extends BaseAdapter<RatingStoreAdapter.ItemRatin
     }
 
     /**
-     * ViewHolder for item rating store
+     * ViewHolder for item ProfileFavorites
      */
-    static class ItemRatingStoreVH extends RecyclerView.ViewHolder {
+    static class ItemFavoriteVH extends RecyclerView.ViewHolder {
         private final ImageView mImgStore;
         private final TextView mTvNumberStar;
+        private final TextView mTvNumberRating;
         private final TextView mTvStoreName;
-        private final TextView mTvStoreAddress;
+        private final AutofitTextView mTvStoreAddress;
         private final TextView mTvStoreDescription;
 
-        ItemRatingStoreVH(View itemView, final OnRatingStoreListener onRatingStoreListener) {
+        ItemFavoriteVH(View itemView, final OnItemFavoriteListener onItemFavoriteListener) {
             super(itemView);
             mImgStore = (ImageView) itemView.findViewById(R.id.imgStore);
             mTvNumberStar = (TextView) itemView.findViewById(R.id.tvNumberStar);
+            mTvNumberRating = (TextView) itemView.findViewById(R.id.tvNumberRating);
             mTvStoreName = (TextView) itemView.findViewById(R.id.tvStoreName);
-            mTvStoreAddress = (TextView) itemView.findViewById(R.id.tvStoreAddress);
+            mTvStoreAddress = (AutofitTextView) itemView.findViewById(R.id.tvStoreAddress);
             mTvStoreDescription = (TextView) itemView.findViewById(R.id.tvStoreDescription);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (onRatingStoreListener != null) {
-                        onRatingStoreListener.onItemStoreClick(getLayoutPosition());
+                    if (onItemFavoriteListener != null) {
+                        onItemFavoriteListener.onItemFavoriteClick(getLayoutPosition());
                     }
                 }
             });
@@ -103,9 +107,9 @@ public class RatingStoreAdapter extends BaseAdapter<RatingStoreAdapter.ItemRatin
     }
 
     /**
-     * OnRatingStoreListener interface
+     * OnItemFavoriteListener interface
      */
-    public interface OnRatingStoreListener {
-        void onItemStoreClick(int position);
+    public interface OnItemFavoriteListener {
+        void onItemFavoriteClick(int position);
     }
 }
