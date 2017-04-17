@@ -10,8 +10,9 @@ import com.gloomy.fastfood.api.responses.TopicResponse;
 import com.gloomy.fastfood.models.Topic;
 import com.gloomy.fastfood.ui.presenters.BasePresenter;
 import com.gloomy.fastfood.ui.presenters.EndlessScrollListener;
-import com.gloomy.fastfood.ui.views.main.topic.TopicAdapter;
-import com.gloomy.fastfood.ui.views.main.topic.hot.ITopicHotView;
+import com.gloomy.fastfood.ui.views.main.topic.content.TopicContentAdapter;
+import com.gloomy.fastfood.ui.views.main.topic.content.ITopicContentView;
+import com.gloomy.fastfood.ui.views.main.topic.content.TopicContentFragment;
 import com.gloomy.fastfood.utils.NetworkUtil;
 
 import org.androidannotations.annotations.EBean;
@@ -30,11 +31,15 @@ import retrofit2.Response;
  * Created by HungTQB on 17/04/2017.
  */
 @EBean
-public class TopicHotPresenter extends BasePresenter implements TopicAdapter.OnTopicListener, SwipeRefreshLayout.OnRefreshListener {
+public class TopicHotPresenter extends BasePresenter implements TopicContentAdapter.OnTopicListener, SwipeRefreshLayout.OnRefreshListener {
 
     @Setter
     @Accessors(prefix = "m")
-    private ITopicHotView mView;
+    private ITopicContentView mView;
+
+    @Setter
+    @Accessors(prefix = "m")
+    private int mTopicType;
 
     private List<Topic> mTopics = new ArrayList<>();
     private EndlessScrollListener mEndlessScrollListener;
@@ -46,7 +51,7 @@ public class TopicHotPresenter extends BasePresenter implements TopicAdapter.OnT
 
     public void initRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        TopicAdapter adapter = new TopicAdapter(getContext(), mTopics, this);
+        TopicContentAdapter adapter = new TopicContentAdapter(getContext(), mTopics, this);
         recyclerView.setAdapter(adapter);
         mEndlessScrollListener = new EndlessScrollListener(LOAD_MORE_THRESHOLD) {
             @Override
@@ -62,7 +67,7 @@ public class TopicHotPresenter extends BasePresenter implements TopicAdapter.OnT
             return;
         }
         mCurrentPage++;
-        ApiRequest.getInstance().getHotTopicData(mCurrentPage, null, new Callback<TopicResponse>() {
+        Callback<TopicResponse> callback = new Callback<TopicResponse>() {
             @Override
             public void onResponse(Call<TopicResponse> call, Response<TopicResponse> response) {
                 if (response == null || response.body() == null) {
@@ -79,7 +84,8 @@ public class TopicHotPresenter extends BasePresenter implements TopicAdapter.OnT
             public void onFailure(Call<TopicResponse> call, Throwable t) {
                 mView.onLoadDataFailure();
             }
-        });
+        };
+        getDataFromServer(mCurrentPage, callback);
     }
 
     @Override
@@ -98,17 +104,17 @@ public class TopicHotPresenter extends BasePresenter implements TopicAdapter.OnT
             mEndlessScrollListener.resetValue();
         }
         mDisableView.setVisibility(View.VISIBLE);
-        getTopicHotData(true);
+        getTopicContentData(true);
     }
 
-    public void getTopicHotData(boolean isRefresh) {
+    public void getTopicContentData(boolean isRefresh) {
         if (!NetworkUtil.isNetworkAvailable(getContext())) {
             return;
         }
         if (!isRefresh) {
             mView.onShowProgressDialog();
         }
-        ApiRequest.getInstance().getHotTopicData(null, null, new Callback<TopicResponse>() {
+        Callback<TopicResponse> callback = new Callback<TopicResponse>() {
             @Override
             public void onResponse(Call<TopicResponse> call, Response<TopicResponse> response) {
                 mView.onDismissProgressDialog();
@@ -132,6 +138,24 @@ public class TopicHotPresenter extends BasePresenter implements TopicAdapter.OnT
                 mView.onDismissProgressDialog();
                 mView.onLoadDataFailure();
             }
-        });
+        };
+        getDataFromServer(null, callback);
+    }
+
+    private void getDataFromServer(Integer currentPage, Callback<TopicResponse> callback) {
+        switch (mTopicType) {
+            case TopicContentFragment.TopicType.HOT:
+                ApiRequest.getInstance().getHotTopicData(currentPage, null, callback);
+                break;
+            case TopicContentFragment.TopicType.TRENDING:
+                ApiRequest.getInstance().getTrendingTopicData(currentPage, null, callback);
+                break;
+            case TopicContentFragment.TopicType.FRESH:
+                ApiRequest.getInstance().getFreshTopicData(currentPage, null, callback);
+                break;
+            case TopicContentFragment.TopicType.RANDOM:
+                ApiRequest.getInstance().getRandomTopicData(currentPage, null, callback);
+                break;
+        }
     }
 }

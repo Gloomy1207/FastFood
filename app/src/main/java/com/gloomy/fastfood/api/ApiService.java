@@ -64,4 +64,16 @@ interface ApiService {
     @GET("basic/topic/hot")
     Call<TopicResponse> getHotTopicData(@Query(ApiParameters.PAGE) Integer page,
                                         @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("basic/topic/trending")
+    Call<TopicResponse> getTrendingTopicData(@Query(ApiParameters.PAGE) Integer page,
+                                             @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("basic/topic/fresh")
+    Call<TopicResponse> getFreshTopicData(@Query(ApiParameters.PAGE) Integer page,
+                                          @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("basic/topic/random")
+    Call<TopicResponse> getRandomTopicData(@Query(ApiParameters.PAGE) Integer page,
+                                           @Query(ApiParameters.SIZE) Integer size);
 }

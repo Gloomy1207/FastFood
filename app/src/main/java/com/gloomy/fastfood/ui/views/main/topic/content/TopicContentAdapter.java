@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.ui.views.main.topic;
+package com.gloomy.fastfood.ui.views.main.topic.content;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -25,12 +25,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Copyright © 2017 AsianTech inc.
  * Created by HungTQB on 17/04/2017.
  */
-public class TopicAdapter extends BaseAdapter<TopicAdapter.ItemTopicVH> {
+public class TopicContentAdapter extends BaseAdapter<TopicContentAdapter.ItemTopicVH> {
     private final List<Topic> mTopics;
     private final OnTopicListener mOnTopicListener;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy", Locale.getDefault());
 
-    public TopicAdapter(@NonNull Context mContext, List<Topic> topics, OnTopicListener onTopicListener) {
+    public TopicContentAdapter(@NonNull Context mContext, List<Topic> topics, OnTopicListener onTopicListener) {
         super(mContext);
         mTopics = topics;
         mOnTopicListener = onTopicListener;
