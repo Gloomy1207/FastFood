@@ -8,4 +8,7 @@
     <string name="nearly_store_text">Nearly stores</string>
     <string name="text_point">%d points</string>
     <string name="number_of_like">%d likes</string>
+    <string name="text_view_dash">-</string>
+    <string name="number_of_comment">%d comments</string>
+    <string name="topic_empty_message">These is no topics in this section, please move to other! :)</string>
 </resources>
