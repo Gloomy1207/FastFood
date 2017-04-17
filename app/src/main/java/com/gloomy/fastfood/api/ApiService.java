@@ -9,6 +9,7 @@ import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
+import com.gloomy.fastfood.api.responses.TopicResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -59,4 +60,8 @@ interface ApiService {
     @GET("basic/user/rating")
     Call<RatingPeopleResponse> getRatingPeopleData(@Query(ApiParameters.PAGE) Integer page,
                                                    @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("basic/topic/hot")
+    Call<TopicResponse> getHotTopicData(@Query(ApiParameters.PAGE) Integer page,
+                                        @Query(ApiParameters.SIZE) Integer size);
 }

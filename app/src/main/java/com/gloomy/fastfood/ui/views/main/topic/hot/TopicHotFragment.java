@@ -1,14 +1,96 @@
 package com.gloomy.fastfood.ui.views.main.topic.hot;
 
-import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.ui.BaseFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
+import com.gloomy.fastfood.R;
+import com.gloomy.fastfood.models.Topic;
+import com.gloomy.fastfood.ui.BaseFragment;
+import com.gloomy.fastfood.ui.presenters.main.topic.hot.TopicHotPresenter;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
 /**
  * Copyright © 2017 Gloomy
  * Created by HungTQB on 31-Mar-17.
  */
 @EFragment(R.layout.fragment_topic_hot)
-public class TopicHotFragment extends BaseFragment {
+public class TopicHotFragment extends BaseFragment implements ITopicHotView {
+
+    @Bean
+    TopicHotPresenter mPresenter;
+
+    @ViewById(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
+    @ViewById(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @ViewById(R.id.disableView)
+    View mDisableView;
+
+    @ViewById(R.id.tvEmptyMessage)
+    TextView mTvEmptyMessage;
+
+    @AfterViews
+    void afterViews() {
+        mPresenter.setView(this);
+        mPresenter.initRecyclerView(mRecyclerView);
+        mPresenter.initSwipeRefresh(mSwipeRefreshLayout, mDisableView);
+        mPresenter.getTopicHotData(false);
+    }
+
+    @Override
+    public void onShowProgressDialog() {
+        showProgressDialog();
+    }
+
+    @Override
+    public void onDismissProgressDialog() {
+        dismissProgressDialog();
+    }
+
+    @Override
+    public void onNoInternetConnection() {
+        mDisableView.setVisibility(View.GONE);
+        mSwipeRefreshLayout.setRefreshing(false);
+        showNoInternetConnectionMessage();
+    }
+
+    @Override
+    public void onLoadDataComplete() {
+        mSwipeRefreshLayout.setRefreshing(false);
+        mDisableView.setVisibility(View.GONE);
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void onLoadMoreComplete() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void onLoadDataFailure() {
+        mSwipeRefreshLayout.setRefreshing(false);
+        mDisableView.setVisibility(View.GONE);
+        showLoadDataFailure();
+    }
+
+    @Override
+    public void onDataEmpty() {
+        mTvEmptyMessage.setText(getString(R.string.topic_empty_message));
+        mTvEmptyMessage.setVisibility(View.VISIBLE);
+        mSwipeRefreshLayout.setVisibility(View.GONE);
+        mDisableView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onItemTopicClick(Topic topic) {
+        // TODO: 17/04/2017 Handle when item topic click
+    }
 }

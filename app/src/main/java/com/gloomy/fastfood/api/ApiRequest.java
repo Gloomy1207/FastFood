@@ -13,6 +13,7 @@ import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
+import com.gloomy.fastfood.api.responses.TopicResponse;
 import com.gloomy.fastfood.models.LatLng;
 
 import retrofit2.Callback;
@@ -89,5 +90,9 @@ public final class ApiRequest {
 
     public void getRatingPeopleData(Integer page, Integer size, Callback<RatingPeopleResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getRatingPeopleData(page, size).enqueue(callback);
+    }
+
+    public void getHotTopicData(Integer page, Integer size, Callback<TopicResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getHotTopicData(page, size).enqueue(callback);
     }
 }

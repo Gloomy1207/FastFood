@@ -14,4 +14,7 @@
     <string name="nearly_store_text">Cửa hàng gần đây</string>
     <string name="text_point">%d điểm</string>
     <string name="number_of_like">%d người thích</string>
+    <string name="number_of_comment">%d nhận xét</string>
+    <string name="topic_empty_message">Không có bài đăng nào ở mục này, xin hảy chuyển qua mục khác! :)</string>
+    <string name="text_view_dash">-</string>
 </resources>
