@@ -63,7 +63,7 @@ public class SearchPeoplePresenter extends BasePresenter implements SearchPeople
             return;
         }
         mCurrentPage++;
-        ApiRequest.getInstance().getSearchPeopleData(String.valueOf(mCurrentPage), null, new Callback<SearchPeopleResponse>() {
+        ApiRequest.getInstance().getSearchPeopleData(mCurrentPage, null, new Callback<SearchPeopleResponse>() {
             @Override
             public void onResponse(Call<SearchPeopleResponse> call, Response<SearchPeopleResponse> response) {
                 if (response == null || response.body() == null) {

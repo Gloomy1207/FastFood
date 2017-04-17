@@ -66,7 +66,7 @@ public class SearchFoodPresenter extends BasePresenter implements SwipeRefreshLa
             return;
         }
         mCurrentPage++;
-        ApiRequest.getInstance().getSearchFoodData(String.valueOf(mCurrentPage), null, mCurrentPosition, new Callback<SearchFoodResponse>() {
+        ApiRequest.getInstance().getSearchFoodData(mCurrentPage, null, mCurrentPosition, new Callback<SearchFoodResponse>() {
             @Override
             public void onResponse(Call<SearchFoodResponse> call, Response<SearchFoodResponse> response) {
                 if (response == null || response.body() == null) {

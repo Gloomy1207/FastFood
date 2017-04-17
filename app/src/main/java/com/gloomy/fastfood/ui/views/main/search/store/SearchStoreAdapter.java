@@ -3,6 +3,7 @@ package com.gloomy.fastfood.ui.views.main.search.store;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,8 +70,13 @@ public class SearchStoreAdapter extends BaseAdapter {
         Picasso.with(getContext())
                 .load(store.getMainImage())
                 .into(holder.mImgStore);
-        holder.mTvPlaceName.setText(store.getPlaceName());
-        holder.mTvPlaceDescription.setText(store.getDescription());
+        holder.mTvPlaceName.setText(store.getStoreName());
+        if (!TextUtils.isEmpty(store.getDescription())) {
+            holder.mTvPlaceDescription.setText(store.getDescription());
+            holder.mTvPlaceDescription.setVisibility(View.VISIBLE);
+        } else {
+            holder.mTvPlaceDescription.setVisibility(View.GONE);
+        }
         if (store.getOpenTime() != null && store.getCloseTime() != null) {
             holder.mTvPlaceTime.setText(String.format("%s - %s", mSimpleDateFormat.format(store.getOpenTime()), mSimpleDateFormat.format(store.getCloseTime())));
         }

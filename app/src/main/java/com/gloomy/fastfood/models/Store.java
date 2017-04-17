@@ -16,7 +16,8 @@ import lombok.experimental.Builder;
 @Builder
 public class Store {
     private int placeId;
-    private String placeName;
+    @SerializedName("place_name")
+    private String storeName;
     private String description;
     private Time openTime;
     private Time closeTime;
