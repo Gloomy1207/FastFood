@@ -3,6 +3,7 @@ package com.gloomy.fastfood.api;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
@@ -54,4 +55,8 @@ interface ApiService {
     @GET("basic/place/rating")
     Call<RatingStoreResponse> getRatingStoreData(@Query(ApiParameters.PAGE) Integer page,
                                                  @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("basic/user/rating")
+    Call<RatingPeopleResponse> getRatingPeopleData(@Query(ApiParameters.PAGE) Integer page,
+                                                   @Query(ApiParameters.SIZE) Integer size);
 }

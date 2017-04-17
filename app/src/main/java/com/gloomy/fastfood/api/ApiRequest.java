@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
@@ -84,5 +85,9 @@ public final class ApiRequest {
 
     public void getRatingStoreData(Integer page, Integer size, Callback<RatingStoreResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getRatingStoreData(page, size).enqueue(callback);
+    }
+
+    public void getRatingPeopleData(Integer page, Integer size, Callback<RatingPeopleResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getRatingPeopleData(page, size).enqueue(callback);
     }
 }
