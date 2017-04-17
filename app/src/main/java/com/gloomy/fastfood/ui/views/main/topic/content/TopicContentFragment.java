@@ -1,5 +1,6 @@
-package com.gloomy.fastfood.ui.views.main.topic.hot;
+package com.gloomy.fastfood.ui.views.main.topic.content;
 
+import android.support.annotation.IntDef;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,14 +14,30 @@ import com.gloomy.fastfood.ui.presenters.main.topic.hot.TopicHotPresenter;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * Copyright © 2017 Gloomy
  * Created by HungTQB on 31-Mar-17.
  */
-@EFragment(R.layout.fragment_topic_hot)
-public class TopicHotFragment extends BaseFragment implements ITopicHotView {
+@EFragment(R.layout.fragment_topic_content)
+public class TopicContentFragment extends BaseFragment implements ITopicContentView {
+
+    /**
+     * TopicType denifition
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({TopicType.HOT, TopicType.TRENDING, TopicType.FRESH, TopicType.RANDOM})
+    public @interface TopicType {
+        int HOT = 1;
+        int TRENDING = 2;
+        int FRESH = 3;
+        int RANDOM = 4;
+    }
 
     @Bean
     TopicHotPresenter mPresenter;
@@ -37,12 +54,16 @@ public class TopicHotFragment extends BaseFragment implements ITopicHotView {
     @ViewById(R.id.tvEmptyMessage)
     TextView mTvEmptyMessage;
 
+    @FragmentArg
+    int mTopicType;
+
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
         mPresenter.initRecyclerView(mRecyclerView);
         mPresenter.initSwipeRefresh(mSwipeRefreshLayout, mDisableView);
-        mPresenter.getTopicHotData(false);
+        mPresenter.setTopicType(mTopicType);
+        mPresenter.getTopicContentData(false);
     }
 
     @Override

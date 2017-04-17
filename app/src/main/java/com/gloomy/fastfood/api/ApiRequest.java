@@ -95,4 +95,16 @@ public final class ApiRequest {
     public void getHotTopicData(Integer page, Integer size, Callback<TopicResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getHotTopicData(page, size).enqueue(callback);
     }
+
+    public void getTrendingTopicData(Integer page, Integer size, Callback<TopicResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getTrendingTopicData(page, size).enqueue(callback);
+    }
+
+    public void getFreshTopicData(Integer page, Integer size, Callback<TopicResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getFreshTopicData(page, size).enqueue(callback);
+    }
+
+    public void getRandomTopicData(Integer page, Integer size, Callback<TopicResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getRandomTopicData(page, size).enqueue(callback);
+    }
 }
