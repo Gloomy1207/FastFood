@@ -3,6 +3,7 @@ package com.gloomy.fastfood.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -47,7 +48,9 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
     }
 
     @Override
-    public void showMessageDialog() {
+    public void showMessageDialog(String message, String button) {
+        mCustomMessageDialog.setMessageText(message);
+        mCustomMessageDialog.setButtonText(button);
         mCustomMessageDialog.show(getFragmentManager(), CustomMessageDialog.class.getSimpleName());
     }
 
@@ -62,27 +65,13 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
     }
 
     @Override
-    public void setMessageDialogText(String text) {
-        mCustomMessageDialog.setMessage(text);
-    }
-
-    @Override
-    public void setButtonMessageDialogText(String text) {
-        mCustomMessageDialog.setButtonText(text);
-    }
-
-    @Override
     public void showNoInternetConnection() {
-        mCustomMessageDialog.setMessage(getString(R.string.no_internet_connection));
-        mCustomMessageDialog.setButtonText(getString(R.string.button_close));
-        showMessageDialog();
+        showMessageDialog(getString(R.string.no_internet_connection), getString(R.string.button_close));
     }
 
     @Override
     public void showLoadDataFailure() {
-        mCustomMessageDialog.setMessage(getString(R.string.load_data_error));
-        mCustomMessageDialog.setButtonText(getString(R.string.button_close));
-        showMessageDialog();
+        showMessageDialog(getString(R.string.load_data_error), getString(R.string.button_close));
     }
 
     @Override

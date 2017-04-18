@@ -29,4 +29,7 @@
     <string name="text_view_text_close">Đóng</string>
     <string name="text_view_text_join_with_us">Tham gia với chúng tôi</string>
     <string name="logout">Đăng xuất</string>
+    <string name="header_bar_setting">Cài Đặt</string>
+    <string name="username_is_required">Không được để trống tên đăng nhập</string>
+    <string name="password_is_required">Không được để trống mật khẩu</string>
 </resources>

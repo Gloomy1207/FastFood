@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.BaseFragment;
 import com.gloomy.fastfood.ui.presenters.main.profile.ProfilePresenter;
-import com.gloomy.fastfood.ui.views.main.setting.SettingActivity_;
+import com.gloomy.fastfood.ui.views.setting.SettingActivity_;
 import com.gloomy.fastfood.widgets.HeaderBar;
 import com.squareup.picasso.Picasso;
 

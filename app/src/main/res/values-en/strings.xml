@@ -2,11 +2,6 @@
 <resources>
     <string name="no_internet_connection">No network connect, Please check your connection.</string>
     <string name="button_close">Close</string>
-    <string name="footer_bar_home">Home</string>
-    <string name="footer_bar_my_page">My Page</string>
-    <string name="footer_bar_rating">Rating</string>
-    <string name="footer_bar_search">Search</string>
-    <string name="footer_bar_topic">Topic</string>
     <string name="fragment_search_search_view_hint">Search store, food, place…</string>
     <string name="app_name">FastFood</string>
     <string name="load_data_error">Oops! Something wrong. Try it later!</string>
@@ -29,4 +24,12 @@
     <string name="text_view_text_close">Close</string>
     <string name="text_view_text_join_with_us">Join with us</string>
     <string name="logout">Logout</string>
+    <string name="header_bar_setting">Setting</string>
+    <string name="footer_bar_home">Home</string>
+    <string name="footer_bar_my_page">My Page</string>
+    <string name="footer_bar_rating">Rating</string>
+    <string name="footer_bar_search">Search</string>
+    <string name="footer_bar_topic">Topic</string>
+    <string name="username_is_required">Username is required</string>
+    <string name="password_is_required">Password is required</string>
 </resources>

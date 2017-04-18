@@ -8,8 +8,9 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.auth.AuthSession;
 import com.gloomy.fastfood.models.ItemSetting;
 import com.gloomy.fastfood.ui.presenters.BasePresenter;
-import com.gloomy.fastfood.ui.views.main.setting.ISettingView;
-import com.gloomy.fastfood.ui.views.main.setting.SettingAdapter;
+import com.gloomy.fastfood.ui.views.setting.ISettingView;
+import com.gloomy.fastfood.ui.views.setting.SettingAdapter;
+import com.gloomy.fastfood.widgets.HeaderBar;
 
 import org.androidannotations.annotations.EBean;
 
@@ -51,5 +52,20 @@ public class SettingPresenter extends BasePresenter implements SettingAdapter.On
         AuthSession.getInstance().logout();
         LoginManager.getInstance().logOut();
         mView.onLogoutSuccess();
+    }
+
+    public void initHeaderBar(HeaderBar headerBar) {
+        headerBar.setTitle(getString(R.string.header_bar_setting));
+        headerBar.setOnHeaderBarListener(new HeaderBar.OnHeaderBarListener() {
+            @Override
+            public void onLeftButtonClick() {
+                mView.onBackClick();
+            }
+
+            @Override
+            public void onRightButtonClick() {
+                // No-op
+            }
+        });
     }
 }

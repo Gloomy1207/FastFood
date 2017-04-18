@@ -9,11 +9,13 @@ import com.gloomy.fastfood.ui.BaseActivity;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Fullscreen;
 
 /**
  * Copyright © 2017 AsianTech inc.
  * Created by HungTQB on 18/04/2017.
  */
+@Fullscreen
 @EActivity(R.layout.frame_container)
 public class LoginActivity extends BaseActivity {
 

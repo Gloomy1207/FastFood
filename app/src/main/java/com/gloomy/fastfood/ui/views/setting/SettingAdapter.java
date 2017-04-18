@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.ui.views.main.setting;
+package com.gloomy.fastfood.ui.views.setting;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -66,8 +66,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void onLoginFailure(String message) {
-        showMessageDialog();
-        setMessageDialogText(message);
+        showMessageDialog(message, getString(R.string.button_close));
     }
 
     @Override

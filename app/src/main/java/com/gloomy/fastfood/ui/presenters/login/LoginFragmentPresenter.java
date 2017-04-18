@@ -1,5 +1,8 @@
 package com.gloomy.fastfood.ui.presenters.login;
 
+import android.text.TextUtils;
+
+import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.LoginResponse;
 import com.gloomy.fastfood.auth.Auth;
@@ -32,6 +35,9 @@ public class LoginFragmentPresenter extends BasePresenter {
             mView.onNoInternetConnection();
             return;
         }
+        if (!checkValidInformation(username, password)) {
+            return;
+        }
         mView.onShowProgressDialog();
         ApiRequest.getInstance().login(username, password, new Callback<LoginResponse>() {
             @Override
@@ -57,5 +63,25 @@ public class LoginFragmentPresenter extends BasePresenter {
                 mView.onRequestFailure();
             }
         });
+    }
+
+    private boolean checkValidInformation(String username, String password) {
+        boolean result = true;
+        StringBuilder builder = new StringBuilder();
+        if (TextUtils.isEmpty(username)) {
+            result = false;
+            builder.append(getString(R.string.username_is_required));
+        }
+        if (TextUtils.isEmpty(password)) {
+            result = false;
+            if (!TextUtils.isEmpty(builder.toString())) {
+                builder.append("\n");
+            }
+            builder.append(getString(R.string.password_is_required));
+        }
+        if (!result) {
+            mView.onLoginFailure(builder.toString());
+        }
+        return result;
     }
 }

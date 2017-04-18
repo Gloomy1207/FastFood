@@ -45,7 +45,7 @@ public class ProfilePresenter extends BasePresenter {
 
     public void initHeaderBar(HeaderBar headerBar) {
         headerBar.setRightButtonVisibility(View.VISIBLE);
-        headerBar.setLeftButtonVisibility(View.GONE);
+        headerBar.setLeftButtonVisibility(View.INVISIBLE);
         headerBar.setImageResourceRightButton(R.drawable.ic_setting);
         headerBar.setTitle(getString(R.string.footer_bar_my_page));
         headerBar.setOnHeaderBarListener(new HeaderBar.OnHeaderBarListener() {

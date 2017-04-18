@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.ui.views.main.setting;
+package com.gloomy.fastfood.ui.views.setting;
 
 /**
  * Copyright © 2017 AsianTech inc.
@@ -6,4 +6,6 @@ package com.gloomy.fastfood.ui.views.main.setting;
  */
 public interface ISettingView {
     void onLogoutSuccess();
+
+    void onBackClick();
 }

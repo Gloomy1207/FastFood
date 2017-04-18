@@ -2,13 +2,12 @@ package com.gloomy.fastfood.widgets.dialog;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.view.Gravity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
-import android.view.WindowManager;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.views.login.LoginActivity_;
-import com.gloomy.fastfood.utils.ScreenUtil;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -27,6 +26,7 @@ public class RequestLoginDialog extends DialogFragment {
     void afterViews() {
         if (getDialog().getWindow() != null) {
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
     }
 
@@ -35,6 +35,7 @@ public class RequestLoginDialog extends DialogFragment {
         LoginActivity_.intent(getActivity())
                 .start();
         getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+        dismiss();
     }
 
     @Click(R.id.btnClose)
@@ -55,16 +56,5 @@ public class RequestLoginDialog extends DialogFragment {
     public void dismiss() {
         super.dismiss();
         mIsAdded = false;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Window window = getDialog().getWindow();
-        int width = ScreenUtil.getWidthScreen(getActivity());
-        if (window != null) {
-            window.setLayout(width, WindowManager.LayoutParams.WRAP_CONTENT);
-            window.setGravity(Gravity.CENTER);
-        }
     }
 }
