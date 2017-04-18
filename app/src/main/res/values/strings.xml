@@ -11,4 +11,16 @@
     <string name="text_view_dash">-</string>
     <string name="number_of_comment">%d comments</string>
     <string name="topic_empty_message">These is no topics in this section, please move to other! :)</string>
+    <string name="edit_text_hint_username">Username</string>
+    <string name="edit_text_hint_password">Password</string>
+    <string name="button_text_login">Sign In</string>
+    <string name="button_text_login_with_facebook">Sign in with Facebook</string>
+    <string name="text_view_text_or">OR</string>
+    <string name="text_view_text_no_account_yet">No account yet?</string>
+    <string name="text_view_text_create_new_one">Create new one</string>
+    <string name="text_view_text_login">Login</string>
+    <string name="text_view_text_login_description">Join with us to evaluate your favorite restaurant, to follow someone you like and post some topics to share anything you know about food, and even more…</string>
+    <string name="text_view_text_join_with_us">Join with us</string>
+    <string name="text_view_text_close">Close</string>
+    <string name="logout">Logout</string>
 </resources>

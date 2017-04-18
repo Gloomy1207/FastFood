@@ -22,7 +22,7 @@ import org.androidannotations.annotations.ViewById;
  */
 @Fullscreen
 @EActivity(R.layout.activity_splash)
-public class SplashView extends BaseActivity implements IViewSplash {
+public class SplashActivity extends BaseActivity implements IViewSplash {
     private static final int ANIMATION_DURATION = 700;
 
     @ViewById(R.id.imgSplash)
@@ -64,7 +64,7 @@ public class SplashView extends BaseActivity implements IViewSplash {
             public void onAnimationEnd(Animator animator) {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                MainActivity_.intent(SplashView.this).start();
+                MainActivity_.intent(SplashActivity.this).start();
             }
 
             @Override

@@ -11,6 +11,8 @@ import com.gloomy.fastfood.listener.OnBaseActivityListener;
 import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog;
 import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog_;
 import com.gloomy.fastfood.widgets.dialog.CustomProgressDialog;
+import com.gloomy.fastfood.widgets.dialog.RequestLoginDialog;
+import com.gloomy.fastfood.widgets.dialog.RequestLoginDialog_;
 
 /**
  * Copyright © 2017 Gloomy
@@ -21,6 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
 
     private CustomProgressDialog mCustomProgressDialog = new CustomProgressDialog();
     private CustomMessageDialog mCustomMessageDialog = CustomMessageDialog_.builder().build();
+    private RequestLoginDialog mRequestLoginDialog = RequestLoginDialog_.builder().build();
 
     @Override
     public void hideKeyboard() {
@@ -80,5 +83,10 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
         mCustomMessageDialog.setMessage(getString(R.string.load_data_error));
         mCustomMessageDialog.setButtonText(getString(R.string.button_close));
         showMessageDialog();
+    }
+
+    @Override
+    public void showLoginDialog() {
+        mRequestLoginDialog.show(getFragmentManager(), RequestLoginDialog.class.getSimpleName());
     }
 }

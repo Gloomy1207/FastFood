@@ -10,4 +10,5 @@ public final class ApiParameters {
     public static final String LAT = "lat";
     public static final String LNG = "lng";
     public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
 }

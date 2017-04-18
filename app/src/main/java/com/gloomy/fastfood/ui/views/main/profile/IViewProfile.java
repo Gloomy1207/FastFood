@@ -20,4 +20,6 @@ public interface IViewProfile extends IBaseView {
     void setImageBackground(int resId);
 
     void onLoadDataFailure();
+
+    void onSettingClick();
 }

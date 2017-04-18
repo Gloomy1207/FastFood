@@ -48,13 +48,17 @@ public class MainActivity extends BaseActivity implements IViewMain, BottomNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        mPresenter.onFooterBarItemSelect(item.getItemId());
-        return true;
+        return mPresenter.onFooterBarItemSelect(item.getItemId());
     }
 
     @Override
     public void onFooterBarItemClick(int position) {
         mViewPager.setCurrentItem(position, true);
+    }
+
+    @Override
+    public void onShowLoginDialog() {
+        showLoginDialog();
     }
 
     @Override

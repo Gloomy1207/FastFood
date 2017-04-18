@@ -26,4 +26,6 @@ public interface OnBaseActivityListener {
     void showNoInternetConnection();
 
     void showLoadDataFailure();
+
+    void showLoginDialog();
 }

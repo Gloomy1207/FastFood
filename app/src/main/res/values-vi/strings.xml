@@ -17,4 +17,16 @@
     <string name="number_of_comment">%d nhận xét</string>
     <string name="topic_empty_message">Không có bài đăng nào ở mục này, xin hảy chuyển qua mục khác! :)</string>
     <string name="text_view_dash">-</string>
+    <string name="edit_text_hint_password">Mật khẩu</string>
+    <string name="edit_text_hint_username">Tên đăng nhập</string>
+    <string name="button_text_login">Đăng nhập</string>
+    <string name="button_text_login_with_facebook">Đăng nhập bằng Facebook</string>
+    <string name="text_view_text_or">HOẶC</string>
+    <string name="text_view_text_create_new_one">Tạo tài khoản mới</string>
+    <string name="text_view_text_no_account_yet">Chưa có tài khoản?</string>
+    <string name="text_view_text_login">Đăng nhập</string>
+    <string name="text_view_text_login_description">Tham gia với chúng tôi để đánh giá những quán ăn ưa thích của bạn, để theo dõi những người bạn thích và đăng những bài viết để chia sẻ những kiến thức của bạn về thức ăn, và còn nhiều hơn nữa…</string>
+    <string name="text_view_text_close">Đóng</string>
+    <string name="text_view_text_join_with_us">Tham gia với chúng tôi</string>
+    <string name="logout">Đăng xuất</string>
 </resources>

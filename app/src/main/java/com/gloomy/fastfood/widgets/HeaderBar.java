@@ -9,8 +9,12 @@ import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
 
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
+
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Copyright © 2017 Gloomy
@@ -27,6 +31,10 @@ public class HeaderBar extends Toolbar {
 
     @ViewById(R.id.btnRight)
     ImageView mBtnRight;
+
+    @Setter
+    @Accessors(prefix = "m")
+    private OnHeaderBarListener mOnHeaderBarListener;
 
     public HeaderBar(Context context) {
         this(context, null);
@@ -55,5 +63,28 @@ public class HeaderBar extends Toolbar {
 
     public void setImageResourceRightButton(int resId) {
         mBtnRight.setImageResource(resId);
+    }
+
+    @Click(R.id.btnLeft)
+    void onLeftClick() {
+        if (mOnHeaderBarListener != null) {
+            mOnHeaderBarListener.onLeftButtonClick();
+        }
+    }
+
+    @Click(R.id.btnRight)
+    void onRightClick() {
+        if (mOnHeaderBarListener != null) {
+            mOnHeaderBarListener.onRightButtonClick();
+        }
+    }
+
+    /**
+     * OnHeaderBarListener interface
+     */
+    public interface OnHeaderBarListener {
+        void onLeftButtonClick();
+
+        void onRightButtonClick();
     }
 }
