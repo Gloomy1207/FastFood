@@ -4,7 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentStatePagerAdapter;
 
-import com.gloomy.fastfood.ui.views.main.profile.detail.ProfileDetailFragment_;
+import com.gloomy.fastfood.ui.views.main.profile.favorite.ProfileFavoriteFragment_;
 import com.gloomy.fastfood.ui.views.main.profile.feeds.ProfileFeedsFragment_;
 
 /**
@@ -23,7 +23,7 @@ public class ProfileViewPagerAdapter extends FragmentStatePagerAdapter {
         if (position == 0) {
             return ProfileFeedsFragment_.builder().build();
         } else if (position == 1) {
-            return ProfileDetailFragment_.builder().build();
+            return ProfileFavoriteFragment_.builder().build();
         }
         return null;
     }

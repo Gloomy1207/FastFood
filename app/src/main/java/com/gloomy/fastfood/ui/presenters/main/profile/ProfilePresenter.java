@@ -7,9 +7,14 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
+import com.gloomy.fastfood.api.ApiRequest;
+import com.gloomy.fastfood.api.responses.ProfileResponse;
+import com.gloomy.fastfood.models.User;
+import com.gloomy.fastfood.observer.ProfileObserver;
 import com.gloomy.fastfood.ui.presenters.BasePresenter;
 import com.gloomy.fastfood.ui.views.main.profile.IViewProfile;
 import com.gloomy.fastfood.ui.views.main.profile.ProfileViewPagerAdapter;
+import com.gloomy.fastfood.utils.NetworkUtil;
 import com.gloomy.fastfood.utils.TabLayoutUtil;
 import com.gloomy.fastfood.widgets.HeaderBar;
 
@@ -17,6 +22,9 @@ import org.androidannotations.annotations.EBean;
 
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Copyright © 2017 Gloomy
@@ -33,6 +41,8 @@ public class ProfilePresenter extends BasePresenter {
     @Accessors(prefix = "m")
     private IViewProfile mView;
 
+    private ProfileResponse mProfileResponse;
+
     public void initHeaderBar(HeaderBar headerBar) {
         headerBar.setRightButtonVisibility(View.VISIBLE);
         headerBar.setImageResourceRightButton(R.drawable.ic_setting);
@@ -40,10 +50,37 @@ public class ProfilePresenter extends BasePresenter {
     }
 
     public void getProfileData() {
-        mView.setUsername("@Gloomy");
-        mView.setFullName("Gloomy Sunday");
-        mView.setAvatar(R.drawable.dummy_img_demo);
-        mView.setImageBackground(R.drawable.dummy_img_demo);
+        if (!NetworkUtil.isNetworkAvailable(getContext())) {
+            mView.onNoInternetConnection();
+            return;
+        }
+        mView.onShowProgressDialog();
+        ApiRequest.getInstance().getProfile(null, new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                mView.onDismissProgressDialog();
+                if (response == null || response.body() == null) {
+                    return;
+                }
+                mProfileResponse = response.body();
+                if (mProfileResponse.isStatus()) {
+                    User user = mProfileResponse.getUser();
+                    if (user != null) {
+                        mView.setUsername(String.format("@%s", user.getUsername()));
+                        mView.setFullName(user.getFullname());
+                        mView.setAvatar(user.getAvatar());
+                        mView.setImageBackground(user.getAvatar());
+                    }
+                    ProfileObserver.post(mProfileResponse);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                mView.onDismissProgressDialog();
+                mView.onLoadDataFailure();
+            }
+        });
     }
 
     public void initViewPager(ViewPager viewPager, TabLayout tabLayout, FragmentManager fragmentManager) {

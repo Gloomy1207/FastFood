@@ -1,14 +1,14 @@
-package com.gloomy.fastfood.ui.views.main.profile.feeds;
+package com.gloomy.fastfood.ui.views.main.profile.favorite;
 
 import android.support.v7.widget.RecyclerView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
-import com.gloomy.fastfood.models.Topic;
+import com.gloomy.fastfood.models.Store;
 import com.gloomy.fastfood.observer.ProfileObserver;
 import com.gloomy.fastfood.observer.listener.OnReceiveObserverListener;
 import com.gloomy.fastfood.ui.BaseFragment;
-import com.gloomy.fastfood.ui.presenters.main.profile.feed.ProfileFeedPresenter;
+import com.gloomy.fastfood.ui.presenters.main.profile.favorite.ProfileFavoritePresenter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -19,11 +19,11 @@ import org.androidannotations.annotations.ViewById;
  * Copyright © 2017 Gloomy
  * Created by HungTQB on 01-Apr-17.
  */
-@EFragment(R.layout.fragment_profile_feeds)
-public class ProfileFeedsFragment extends BaseFragment implements IProfileFeedView, OnReceiveObserverListener {
+@EFragment(R.layout.fragment_profile_detail)
+public class ProfileFavoriteFragment extends BaseFragment implements IProfileFavoriteView, OnReceiveObserverListener {
 
     @Bean
-    ProfileFeedPresenter mPresenter;
+    ProfileFavoritePresenter mPresenter;
 
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -50,6 +50,21 @@ public class ProfileFeedsFragment extends BaseFragment implements IProfileFeedVi
     }
 
     @Override
+    public void onItemStoreClick(Store store) {
+        // TODO: 18-Apr-17 Handle when click item store
+    }
+
+    @Override
+    public void onLoadDataComplete() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void onLoadMoreComplete() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         ProfileObserver.register(this);
@@ -64,20 +79,5 @@ public class ProfileFeedsFragment extends BaseFragment implements IProfileFeedVi
     @Override
     public void onReceiveProfileData(ProfileResponse profileResponse) {
         mPresenter.onReceiveProfileData(profileResponse);
-    }
-
-    @Override
-    public void onItemTopicClick(Topic topic) {
-        // TODO: 18-Apr-17 Handle when click item topic
-    }
-
-    @Override
-    public void onLoadMoreComplete() {
-        mRecyclerView.getAdapter().notifyDataSetChanged();
-    }
-
-    @Override
-    public void onLoadDataComplete() {
-        mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 }

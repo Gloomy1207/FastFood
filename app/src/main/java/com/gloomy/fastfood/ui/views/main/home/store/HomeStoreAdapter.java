@@ -6,12 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Store;
 import com.gloomy.fastfood.ui.views.BaseAdapter;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -68,7 +68,7 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
      * ViewHolder for item HomeStore
      */
     static class ItemHomeStoreVH extends RecyclerView.ViewHolder {
-        private final RoundedImageView mImgStore;
+        private final ImageView mImgStore;
         private final TextView mTvPlaceName;
         private final TextView mTvPlaceTime;
         private final AutofitTextView mTvPlaceAddress;
@@ -77,7 +77,7 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
 
         ItemHomeStoreVH(View itemView, final OnHomeStoreListener onHomeStoreListener) {
             super(itemView);
-            mImgStore = (RoundedImageView) itemView.findViewById(R.id.imgStore);
+            mImgStore = (ImageView) itemView.findViewById(R.id.imgStore);
             mTvPlaceAddress = (AutofitTextView) itemView.findViewById(R.id.tvPlaceAddress);
             mTvPlaceTime = (TextView) itemView.findViewById(R.id.tvPlaceTime);
             mTvPlaceName = (TextView) itemView.findViewById(R.id.tvPlaceName);

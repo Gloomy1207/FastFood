@@ -6,12 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.ui.views.BaseAdapter;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
      * ViewHolder for item HomeStore
      */
     static class ItemHomeStoreVH extends RecyclerView.ViewHolder {
-        private final RoundedImageView mImgFood;
+        private final ImageView mImgFood;
         private final TextView mTvFoodName;
         private final TextView mTvFoodDescription;
         private final TextView mTvNumberStar;
@@ -66,7 +66,7 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
 
         ItemHomeStoreVH(View itemView, final OnHomeFoodListener onHomeFoodListener) {
             super(itemView);
-            mImgFood = (RoundedImageView) itemView.findViewById(R.id.imgFood);
+            mImgFood = (ImageView) itemView.findViewById(R.id.imgFood);
             mTvFoodName = (TextView) itemView.findViewById(R.id.tvFoodName);
             mTvFoodDescription = (TextView) itemView.findViewById(R.id.tvFoodDescription);
             mTvNumberStar = (TextView) itemView.findViewById(R.id.tvNumberStar);

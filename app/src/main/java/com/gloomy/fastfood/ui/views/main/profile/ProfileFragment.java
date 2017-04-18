@@ -18,7 +18,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DimensionPixelOffsetRes;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
@@ -52,9 +51,6 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     @ViewById(R.id.viewPager)
     ViewPager mViewPager;
 
-    @DimensionPixelOffsetRes(R.dimen.fragment_profile_avatar_size)
-    int mAvatarSize;
-
     @ViewById(R.id.btnFollow)
     FloatingActionButton mBtnFollow;
 
@@ -68,9 +64,9 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     void afterViews() {
         mPresenter.setView(this);
         mPresenter.initHeaderBar(mHeaderBar);
-        mPresenter.getProfileData();
         mPresenter.initViewPager(mViewPager, mTabLayout, getChildFragmentManager());
         mNestedScrollView.setFillViewport(true);
+        mPresenter.getProfileData();
     }
 
     @Override
@@ -88,7 +84,6 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
         Picasso.with(getActivity())
                 .load(avatar)
                 .transform(new CropCircleTransformation())
-                .resize(mAvatarSize, mAvatarSize)
                 .into(mImgAvatar);
     }
 
@@ -96,7 +91,6 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     public void setAvatar(int resId) {
         Picasso.with(getActivity())
                 .load(resId)
-                .resize(mAvatarSize, mAvatarSize)
                 .transform(new CropCircleTransformation())
                 .into(mImgAvatar);
     }
@@ -116,8 +110,28 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
                 .into(mImgBackground);
     }
 
+    @Override
+    public void onLoadDataFailure() {
+        showLoadDataFailure();
+    }
+
     @Click(R.id.btnFollow)
     void onFollowClick() {
         mPresenter.onFollowClick(mBtnFollow);
+    }
+
+    @Override
+    public void onShowProgressDialog() {
+        showProgressDialog();
+    }
+
+    @Override
+    public void onDismissProgressDialog() {
+        dismissProgressDialog();
+    }
+
+    @Override
+    public void onNoInternetConnection() {
+        showNoInternetConnectionMessage();
     }
 }
