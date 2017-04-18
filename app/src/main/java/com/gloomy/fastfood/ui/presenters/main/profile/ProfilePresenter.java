@@ -4,7 +4,6 @@ import android.app.FragmentManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
@@ -55,9 +54,11 @@ public class ProfilePresenter extends BasePresenter {
             mView.onNoInternetConnection();
             return;
         }
+        mView.onShowProgressDialog();
         ApiRequest.getInstance().getProfile(null, new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                mView.onDismissProgressDialog();
                 if (response == null || response.body() == null) {
                     return;
                 }
@@ -76,7 +77,7 @@ public class ProfilePresenter extends BasePresenter {
 
             @Override
             public void onFailure(Call<ProfileResponse> call, Throwable t) {
-                Log.d("TAG", "onFailure: " + t.getMessage());
+                mView.onDismissProgressDialog();
                 mView.onLoadDataFailure();
             }
         });
