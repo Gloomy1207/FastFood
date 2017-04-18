@@ -6,4 +6,6 @@ package com.gloomy.fastfood.ui.views.main;
  */
 public interface IViewMain {
     void onFooterBarItemClick(int position);
+
+    void onShowLoginDialog();
 }

@@ -1,6 +1,7 @@
 package com.gloomy.fastfood.ui.views.main.profile;
 
 import com.gloomy.fastfood.R;
+import com.gloomy.fastfood.auth.AuthSession;
 import com.gloomy.fastfood.ui.BaseContainerFragment;
 
 import org.androidannotations.annotations.AfterViews;
@@ -15,6 +16,8 @@ public class ProfileContainerFragment extends BaseContainerFragment {
 
     @AfterViews
     void afterViews() {
-        replaceFragment(ProfileFragment_.builder().build(), false);
+        if (AuthSession.isLogIn()) {
+            replaceFragment(ProfileFragment_.builder().build(), false);
+        }
     }
 }

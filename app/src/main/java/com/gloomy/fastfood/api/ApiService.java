@@ -3,6 +3,7 @@ package com.gloomy.fastfood.api;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.LoginResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
@@ -13,7 +14,10 @@ import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -88,4 +92,9 @@ interface ApiService {
     @GET("auth/user/feeds")
     Call<ProfileResponse.ProfileTopics> loadMoreUserFeed(@Query(ApiParameters.PAGE) Integer page,
                                                          @Query(ApiParameters.SIZE) Integer size);
+
+    @POST("oauth/login")
+    @FormUrlEncoded
+    Call<LoginResponse> login(@Field(ApiParameters.USERNAME) String username,
+                              @Field(ApiParameters.PASSWORD) String password);
 }

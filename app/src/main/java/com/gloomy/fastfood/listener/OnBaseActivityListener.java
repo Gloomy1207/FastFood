@@ -13,17 +13,15 @@ public interface OnBaseActivityListener {
 
     void dismissProgressDialog();
 
-    void showMessageDialog();
+    void showMessageDialog(String message, String button);
 
     void showMessageDialog(CustomMessageDialog.OnCustomMessageDialogListener listener);
 
     void dismissMessageDialog();
 
-    void setMessageDialogText(String text);
-
-    void setButtonMessageDialogText(String text);
-
     void showNoInternetConnection();
 
     void showLoadDataFailure();
+
+    void showLoginDialog();
 }

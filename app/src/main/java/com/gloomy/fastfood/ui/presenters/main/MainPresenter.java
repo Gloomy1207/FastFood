@@ -4,6 +4,7 @@ import android.support.annotation.IntDef;
 import android.support.v4.view.ViewPager;
 
 import com.gloomy.fastfood.R;
+import com.gloomy.fastfood.auth.AuthSession;
 import com.gloomy.fastfood.ui.BaseContainerFragment;
 import com.gloomy.fastfood.ui.presenters.BasePresenter;
 import com.gloomy.fastfood.ui.views.main.IViewMain;
@@ -53,7 +54,7 @@ public class MainPresenter extends BasePresenter {
         }
     }
 
-    public void onFooterBarItemSelect(int id) {
+    public boolean onFooterBarItemSelect(int id) {
         switch (id) {
             case R.id.tabHome:
                 mView.onFooterBarItemClick(TabPosition.HOME);
@@ -62,6 +63,10 @@ public class MainPresenter extends BasePresenter {
                 mView.onFooterBarItemClick(TabPosition.POST);
                 break;
             case R.id.tabProfile:
+                if (!AuthSession.isLogIn()) {
+                    mView.onShowLoginDialog();
+                    return false;
+                }
                 mView.onFooterBarItemClick(TabPosition.PROFILE);
                 break;
             case R.id.tabRating:
@@ -71,6 +76,7 @@ public class MainPresenter extends BasePresenter {
                 mView.onFooterBarItemClick(TabPosition.SEARCH);
                 break;
         }
+        return true;
     }
 
     public BaseContainerFragment getCurrentBaseFragment() {

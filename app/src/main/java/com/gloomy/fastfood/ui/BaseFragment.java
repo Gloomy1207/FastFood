@@ -51,8 +51,8 @@ public abstract class BaseFragment extends Fragment {
         mOnBaseActivityListener.dismissProgressDialog();
     }
 
-    public void showMessageDialog() {
-        mOnBaseActivityListener.showMessageDialog();
+    public void showMessageDialog(String message, String button) {
+        mOnBaseActivityListener.showMessageDialog(message, button);
     }
 
     public void showMessageDialog(CustomMessageDialog.OnCustomMessageDialogListener listener) {
@@ -63,19 +63,15 @@ public abstract class BaseFragment extends Fragment {
         mOnBaseActivityListener.dismissMessageDialog();
     }
 
-    public void setMessageDialogText(String text) {
-        mOnBaseActivityListener.setMessageDialogText(text);
-    }
-
-    public void setMessageDialogButtonText(String text) {
-        mOnBaseActivityListener.setButtonMessageDialogText(text);
-    }
-
     public void showNoInternetConnectionMessage() {
         mOnBaseActivityListener.showNoInternetConnection();
     }
 
     public void showLoadDataFailure() {
         mOnBaseActivityListener.showLoadDataFailure();
+    }
+
+    public void showLoginDialog() {
+        mOnBaseActivityListener.showLoginDialog();
     }
 }

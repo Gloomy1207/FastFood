@@ -45,8 +45,20 @@ public class ProfilePresenter extends BasePresenter {
 
     public void initHeaderBar(HeaderBar headerBar) {
         headerBar.setRightButtonVisibility(View.VISIBLE);
+        headerBar.setLeftButtonVisibility(View.INVISIBLE);
         headerBar.setImageResourceRightButton(R.drawable.ic_setting);
         headerBar.setTitle(getString(R.string.footer_bar_my_page));
+        headerBar.setOnHeaderBarListener(new HeaderBar.OnHeaderBarListener() {
+            @Override
+            public void onLeftButtonClick() {
+                // No-op
+            }
+
+            @Override
+            public void onRightButtonClick() {
+                mView.onSettingClick();
+            }
+        });
     }
 
     public void getProfileData() {

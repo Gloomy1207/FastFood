@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.BaseFragment;
 import com.gloomy.fastfood.ui.presenters.main.profile.ProfilePresenter;
+import com.gloomy.fastfood.ui.views.setting.SettingActivity_;
 import com.gloomy.fastfood.widgets.HeaderBar;
 import com.squareup.picasso.Picasso;
 
@@ -113,6 +114,12 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     @Override
     public void onLoadDataFailure() {
         showLoadDataFailure();
+    }
+
+    @Override
+    public void onSettingClick() {
+        SettingActivity_.intent(getActivity()).start();
+        getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
     }
 
     @Click(R.id.btnFollow)

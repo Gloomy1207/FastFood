@@ -2,6 +2,9 @@ package com.gloomy.fastfood.widgets.dialog;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -30,9 +33,10 @@ public class CustomMessageDialog extends DialogFragment {
 
     private boolean mIsAdded;
     private OnCustomMessageDialogListener mOnCustomMessageDialogListener;
+
     @Setter
     @Accessors(prefix = "m")
-    private String mMessage;
+    private String mMessageText;
 
     @Setter
     @Accessors(prefix = "m")
@@ -42,8 +46,9 @@ public class CustomMessageDialog extends DialogFragment {
     void afterViews() {
         if (getDialog().getWindow() != null) {
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
-        mTvMessage.setText(mMessage);
+        mTvMessage.setText(mMessageText);
         mBtnClose.setText(mButtonText);
     }
 

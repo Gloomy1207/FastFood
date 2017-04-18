@@ -2,11 +2,6 @@
 <resources>
     <string name="no_internet_connection">No network connect, Please check your connection.</string>
     <string name="button_close">Close</string>
-    <string name="footer_bar_home">Home</string>
-    <string name="footer_bar_my_page">My Page</string>
-    <string name="footer_bar_rating">Rating</string>
-    <string name="footer_bar_search">Search</string>
-    <string name="footer_bar_topic">Topic</string>
     <string name="fragment_search_search_view_hint">Search store, food, place…</string>
     <string name="app_name">FastFood</string>
     <string name="load_data_error">Oops! Something wrong. Try it later!</string>
@@ -17,4 +12,24 @@
     <string name="number_of_comment">%d comments</string>
     <string name="topic_empty_message">These is no topics in this section, please move to other! :)</string>
     <string name="text_view_dash">-</string>
+    <string name="edit_text_hint_username">Username</string>
+    <string name="edit_text_hint_password">Password</string>
+    <string name="button_text_login">Sign In</string>
+    <string name="button_text_login_with_facebook">Sign in with Facebook</string>
+    <string name="text_view_text_or">OR</string>
+    <string name="text_view_text_create_new_one">Create new one</string>
+    <string name="text_view_text_no_account_yet">No account yet?</string>
+    <string name="text_view_text_login">Login</string>
+    <string name="text_view_text_login_description">Join with us to evaluate your favorite restaurant, to follow someone you like and post some topics to share anything you know about food, and even more…</string>
+    <string name="text_view_text_close">Close</string>
+    <string name="text_view_text_join_with_us">Join with us</string>
+    <string name="logout">Logout</string>
+    <string name="header_bar_setting">Setting</string>
+    <string name="footer_bar_home">Home</string>
+    <string name="footer_bar_my_page">My Page</string>
+    <string name="footer_bar_rating">Rating</string>
+    <string name="footer_bar_search">Search</string>
+    <string name="footer_bar_topic">Topic</string>
+    <string name="username_is_required">Username is required</string>
+    <string name="password_is_required">Password is required</string>
 </resources>
