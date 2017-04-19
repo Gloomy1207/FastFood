@@ -125,4 +125,8 @@ public final class ApiRequest {
     public void login(String username, String password, Callback<LoginResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).login(username, password).enqueue(callback);
     }
+
+    public void loginWithFacebook(String token, String id, String name, String email, String avatar, Callback<LoginResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).loginWithFacebook(token, id, name, email, avatar).enqueue(callback);
+    }
 }

@@ -11,4 +11,9 @@ public final class ApiParameters {
     public static final String LNG = "lng";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
+    public static final String FACEBOOK_TOKEN = "facebook_token";
+    public static final String FULL_NAME = "full_name";
+    public static final String EMAIL = "email";
+    public static final String AVATAR = "avatar";
+    public static final String FACEBOOK_ID = "facebook_id";
 }

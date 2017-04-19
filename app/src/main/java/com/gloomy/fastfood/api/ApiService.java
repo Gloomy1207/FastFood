@@ -97,4 +97,12 @@ interface ApiService {
     @FormUrlEncoded
     Call<LoginResponse> login(@Field(ApiParameters.USERNAME) String username,
                               @Field(ApiParameters.PASSWORD) String password);
+
+    @POST("oauth/facebook")
+    @FormUrlEncoded
+    Call<LoginResponse> loginWithFacebook(@Field(ApiParameters.FACEBOOK_TOKEN) String token,
+                                          @Field(ApiParameters.FACEBOOK_ID) String id,
+                                          @Field(ApiParameters.FULL_NAME) String name,
+                                          @Field(ApiParameters.EMAIL) String email,
+                                          @Field(ApiParameters.AVATAR) String avatar);
 }
