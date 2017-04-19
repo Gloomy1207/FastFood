@@ -21,7 +21,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by HungTQB on 18/04/2017.
  */
 @EFragment(R.layout.fragment_login)
-public class LoginFragmentFragment extends BaseFragment implements ILoginFragmentView {
+public class LoginFragment extends BaseFragment implements ILoginFragmentView {
 
     @ViewById(R.id.edtUsername)
     EditText mEdtUsername;

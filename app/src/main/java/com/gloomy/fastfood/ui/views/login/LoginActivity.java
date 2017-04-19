@@ -23,7 +23,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
-        mPresenter.replaceFragment(LoginFragmentFragment_.builder().build(), false);
+        mPresenter.replaceFragment(LoginFragment_.builder().build(), false);
     }
 
     @Override
