@@ -1,13 +1,11 @@
 package com.gloomy.fastfood.ui.views.login;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.BaseActivity;
+import com.gloomy.fastfood.ui.presenters.login.LoginActivityPresenter;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Fullscreen;
 
@@ -17,30 +15,22 @@ import org.androidannotations.annotations.Fullscreen;
  */
 @Fullscreen
 @EActivity(R.layout.frame_container)
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements ILoginActivityView {
+
+    @Bean
+    LoginActivityPresenter mPresenter;
 
     @AfterViews
     void afterViews() {
-        replaceFragment(LoginFragment_.builder().build(), false);
+        mPresenter.setView(this);
+        mPresenter.replaceFragment(LoginFragmentFragment_.builder().build(), false);
     }
 
-    public void replaceFragment(Fragment fragment, boolean addToBackStack) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        if (addToBackStack) {
-            transaction.addToBackStack(fragment.getTag());
+    @Override
+    public void onBackPressed() {
+        boolean isPopFragment = mPresenter.popFragment();
+        if (!isPopFragment) {
+            super.onBackPressed();
         }
-        transaction.replace(R.id.frameLayoutContainer, fragment);
-        transaction.commitAllowingStateLoss();
-        getFragmentManager().executePendingTransactions();
-    }
-
-    public boolean popFragment() {
-        boolean isPop = false;
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager.getBackStackEntryCount() > 1) {
-            isPop = true;
-            getFragmentManager().popBackStack();
-        }
-        return isPop;
     }
 }

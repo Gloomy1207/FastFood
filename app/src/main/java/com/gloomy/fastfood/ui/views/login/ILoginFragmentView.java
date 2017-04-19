@@ -6,7 +6,7 @@ import com.gloomy.fastfood.ui.IBaseView;
  * Copyright © 2017 AsianTech inc.
  * Created by HungTQB on 18/04/2017.
  */
-public interface ILoginView extends IBaseView {
+public interface ILoginFragmentView extends IBaseView {
     void onLoginFailure(String message);
 
     void onRequestFailure();

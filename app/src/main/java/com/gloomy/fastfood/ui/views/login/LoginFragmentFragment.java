@@ -3,6 +3,7 @@ package com.gloomy.fastfood.ui.views.login;
 import android.content.Intent;
 import android.widget.EditText;
 
+import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.BaseFragment;
@@ -20,7 +21,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by HungTQB on 18/04/2017.
  */
 @EFragment(R.layout.fragment_login)
-public class LoginFragment extends BaseFragment implements ILoginView {
+public class LoginFragmentFragment extends BaseFragment implements ILoginFragmentView {
 
     @ViewById(R.id.edtUsername)
     EditText mEdtUsername;
@@ -34,9 +35,14 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Bean
     LoginFragmentPresenter mPresenter;
 
+    private CallbackManager mFacebookCallbackManager;
+
     @AfterViews
     void afterViews() {
+        mFacebookCallbackManager = CallbackManager.Factory.create();
         mPresenter.setView(this);
+        mBtnFacebookLogin.setFragment(this);
+        mPresenter.initButtonLoginFacebook(mBtnFacebookLogin, mFacebookCallbackManager);
     }
 
     @Override
@@ -79,5 +85,11 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         MainActivity_.intent(getActivity())
                 .flags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .start();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
