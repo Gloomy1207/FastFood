@@ -8,6 +8,7 @@ import com.facebook.login.widget.LoginButton;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.BaseFragment;
 import com.gloomy.fastfood.ui.presenters.login.LoginFragmentPresenter;
+import com.gloomy.fastfood.ui.views.login.register.RegisterFragment_;
 import com.gloomy.fastfood.ui.views.main.MainActivity_;
 
 import org.androidannotations.annotations.AfterViews;
@@ -21,7 +22,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by HungTQB on 18/04/2017.
  */
 @EFragment(R.layout.fragment_login)
-public class LoginFragmentFragment extends BaseFragment implements ILoginFragmentView {
+public class LoginFragment extends BaseFragment implements ILoginFragmentView {
 
     @ViewById(R.id.edtUsername)
     EditText mEdtUsername;
@@ -91,5 +92,12 @@ public class LoginFragmentFragment extends BaseFragment implements ILoginFragmen
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Click(R.id.tvCreateNewAccount)
+    void onCreateNewAccountClick() {
+        if (getActivity() instanceof LoginActivity) {
+            ((LoginActivity) getActivity()).replaceFragment(RegisterFragment_.builder().build(), true);
+        }
     }
 }

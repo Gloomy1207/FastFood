@@ -1,5 +1,7 @@
 package com.gloomy.fastfood.ui.views.login;
 
+import android.app.Fragment;
+
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.ui.BaseActivity;
 import com.gloomy.fastfood.ui.presenters.login.LoginActivityPresenter;
@@ -23,7 +25,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
-        mPresenter.replaceFragment(LoginFragmentFragment_.builder().build(), false);
+        mPresenter.replaceFragment(LoginFragment_.builder().build(), false);
     }
 
     @Override
@@ -32,5 +34,9 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
         if (!isPopFragment) {
             super.onBackPressed();
         }
+    }
+
+    public void replaceFragment(Fragment fragment, boolean isAddToBackStack) {
+        mPresenter.replaceFragment(fragment, isAddToBackStack);
     }
 }

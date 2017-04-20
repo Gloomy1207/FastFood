@@ -15,7 +15,7 @@ public interface OnBaseActivityListener {
 
     void showMessageDialog(String message, String button);
 
-    void showMessageDialog(CustomMessageDialog.OnCustomMessageDialogListener listener);
+    void showMessageDialog(String message, String button, CustomMessageDialog.OnCustomMessageDialogListener listener);
 
     void dismissMessageDialog();
 

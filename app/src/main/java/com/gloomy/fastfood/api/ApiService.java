@@ -7,6 +7,7 @@ import com.gloomy.fastfood.api.responses.LoginResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
+import com.gloomy.fastfood.api.responses.RegistrationResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
@@ -105,4 +106,10 @@ interface ApiService {
                                           @Field(ApiParameters.FULL_NAME) String name,
                                           @Field(ApiParameters.EMAIL) String email,
                                           @Field(ApiParameters.AVATAR) String avatar);
+
+    @POST("oauth/register")
+    @FormUrlEncoded
+    Call<RegistrationResponse> register(@Field((ApiParameters.USERNAME)) String username,
+                                        @Field((ApiParameters.PASSWORD)) String password,
+                                        @Field(ApiParameters.EMAIL) String email);
 }

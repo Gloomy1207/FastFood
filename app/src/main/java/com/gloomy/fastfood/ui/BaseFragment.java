@@ -55,8 +55,8 @@ public abstract class BaseFragment extends Fragment {
         mOnBaseActivityListener.showMessageDialog(message, button);
     }
 
-    public void showMessageDialog(CustomMessageDialog.OnCustomMessageDialogListener listener) {
-        mOnBaseActivityListener.showMessageDialog(listener);
+    public void showMessageDialog(String message, String button, CustomMessageDialog.OnCustomMessageDialogListener listener) {
+        mOnBaseActivityListener.showMessageDialog(message, button, listener);
     }
 
     public void dismissMessageDialog() {
