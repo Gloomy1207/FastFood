@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
@@ -61,6 +62,10 @@ public final class ApiRequest {
 
     public void getHomePlaceData(Integer page, Integer size, Callback<HomePlaceResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getHomePlaceData(page, size).enqueue(callback);
+    }
+
+    public void getHomeFavoriteData(Integer page, Integer size, Callback<HomeFavoriteResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getHomeFavoriteData(page, size).enqueue(callback);
     }
 
     public void getSearchStoreData(Integer page, Integer size, LatLng latLng, Callback<SearchStoreResponse> callback) {

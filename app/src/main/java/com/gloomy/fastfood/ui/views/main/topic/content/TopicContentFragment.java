@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Topic;
 import com.gloomy.fastfood.ui.BaseFragment;
-import com.gloomy.fastfood.ui.presenters.main.topic.hot.TopicHotPresenter;
+import com.gloomy.fastfood.ui.presenters.main.topic.content.TopicContentPresenter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -40,7 +40,7 @@ public class TopicContentFragment extends BaseFragment implements ITopicContentV
     }
 
     @Bean
-    TopicHotPresenter mPresenter;
+    TopicContentPresenter mPresenter;
 
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
