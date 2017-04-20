@@ -1,5 +1,8 @@
 package com.gloomy.fastfood.models;
 
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+
 import java.util.List;
 
 import lombok.Getter;
@@ -11,14 +14,28 @@ import lombok.experimental.Builder;
  */
 @Getter
 @Builder
+@Parcel
 public class Food {
-    private int foodId;
-    private String foodName;
-    private String description;
-    private String recipe;
-    private List<FoodImage> foodImages;
-    private float rating;
-    private String mainImage;
-    private int numberOfRating;
-    private String numberOfRatingText;
+    int foodId;
+    String foodName;
+    String description;
+    String recipe;
+    List<FoodImage> foodImages;
+    float rating;
+    String mainImage;
+    int numberOfRating;
+    String numberOfRatingText;
+
+    @ParcelConstructor
+    public Food(int foodId, String foodName, String description, String recipe, List<FoodImage> foodImages, float rating, String mainImage, int numberOfRating, String numberOfRatingText) {
+        this.foodId = foodId;
+        this.foodName = foodName;
+        this.description = description;
+        this.recipe = recipe;
+        this.foodImages = foodImages;
+        this.rating = rating;
+        this.mainImage = mainImage;
+        this.numberOfRating = numberOfRating;
+        this.numberOfRatingText = numberOfRatingText;
+    }
 }

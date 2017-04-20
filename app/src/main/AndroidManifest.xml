@@ -41,6 +41,14 @@
         <activity
             android:name=".ui.views.setting.SettingActivity_"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.views.detail.food.FoodDetailActivity_"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.views.gallery.GalleryActivity_"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

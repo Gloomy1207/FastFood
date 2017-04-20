@@ -1,5 +1,8 @@
 package com.gloomy.fastfood.models;
 
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+
 import lombok.Getter;
 import lombok.experimental.Builder;
 
@@ -9,7 +12,14 @@ import lombok.experimental.Builder;
  */
 @Getter
 @Builder
+@Parcel
 public class FoodImage {
-    private int id;
-    private String imagePath;
+    int id;
+    String imagePath;
+
+    @ParcelConstructor
+    public FoodImage(int id, String imagePath) {
+        this.id = id;
+        this.imagePath = imagePath;
+    }
 }

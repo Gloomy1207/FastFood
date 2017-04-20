@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.gloomy.fastfood.api.responses.FoodImageResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
@@ -138,5 +139,9 @@ public final class ApiRequest {
 
     public void register(String username, String password, String email, Callback<RegistrationResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).register(username, password, email).enqueue(callback);
+    }
+
+    public void getFoodImages(Integer page, Integer size, int foodId, Callback<FoodImageResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getFoodImages(foodId, page, size).enqueue(callback);
     }
 }

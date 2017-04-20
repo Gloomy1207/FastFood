@@ -16,4 +16,5 @@ public final class ApiParameters {
     public static final String EMAIL = "email";
     public static final String AVATAR = "avatar";
     public static final String FACEBOOK_ID = "facebook_id";
+    public static final String FOOD_ID = "food_id";
 }

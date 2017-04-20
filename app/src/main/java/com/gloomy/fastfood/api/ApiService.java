@@ -1,5 +1,6 @@
 package com.gloomy.fastfood.api;
 
+import com.gloomy.fastfood.api.responses.FoodImageResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
@@ -117,4 +118,9 @@ interface ApiService {
     Call<RegistrationResponse> register(@Field((ApiParameters.USERNAME)) String username,
                                         @Field((ApiParameters.PASSWORD)) String password,
                                         @Field(ApiParameters.EMAIL) String email);
+
+    @GET("basic/image/food")
+    Call<FoodImageResponse> getFoodImages(@Query(ApiParameters.FOOD_ID) int foodId,
+                                          @Query(ApiParameters.PAGE) Integer page,
+                                          @Query(ApiParameters.SIZE) Integer size);
 }
