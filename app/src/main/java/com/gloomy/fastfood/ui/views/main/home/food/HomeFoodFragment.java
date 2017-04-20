@@ -8,11 +8,14 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.ui.BaseFragment;
 import com.gloomy.fastfood.ui.presenters.main.home.food.HomeFoodPresenter;
+import com.gloomy.fastfood.ui.views.detail.food.FoodDetailFragment_;
+import com.gloomy.fastfood.ui.views.main.home.HomeFragment;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -76,7 +79,9 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
 
     @Override
     public void onItemFoodClick(Food food) {
-
+        if (getParentFragment() instanceof HomeFragment) {
+            ((HomeFragment) getParentFragment()).replaceFragment(FoodDetailFragment_.builder().mFoodParcelable(Parcels.wrap(food)).build(), true);
+        }
     }
 
     @Override

@@ -7,4 +7,6 @@
     <dimen name="space_item_decoration_recycler_view">5dp</dimen>
     <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="card_elevation_radius">3dp</dimen>
+    <dimen name="detail_food_margin_left_right">10dp</dimen>
+    <dimen name="detail_food_margin_top">180dp</dimen>
 </resources>
