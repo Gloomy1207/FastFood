@@ -4,9 +4,10 @@
     <dimen name="floating_action_button_size">40dp</dimen>
     <dimen name="fragment_profile_avatar_size">75dp</dimen>
     <dimen name="item_recycler_home_store_image_max_height">200dp</dimen>
-    <dimen name="space_item_decoration_recycler_view">5dp</dimen>
+    <dimen name="space_item_decoration_recycler_view">3dp</dimen>
     <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="card_elevation_radius">3dp</dimen>
     <dimen name="detail_food_margin_left_right">10dp</dimen>
     <dimen name="detail_food_margin_top">180dp</dimen>
+    <dimen name="detail_food_img_height">250dp</dimen>
 </resources>

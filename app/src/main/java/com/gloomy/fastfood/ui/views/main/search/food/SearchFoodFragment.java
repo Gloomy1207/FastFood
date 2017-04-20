@@ -8,11 +8,13 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.ui.BaseFragment;
 import com.gloomy.fastfood.ui.presenters.main.search.food.SearchFoodPresenter;
+import com.gloomy.fastfood.ui.views.detail.food.FoodDetailActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -83,7 +85,8 @@ public class SearchFoodFragment extends BaseFragment implements ISearchFoodView 
 
     @Override
     public void onItemSearchFoodClick(Food food) {
-        // TODO: 14/04/2017 handle when click item search food
+        FoodDetailActivity_.intent(getActivity()).mFoodParcelable(Parcels.wrap(food)).start();
+        getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
     }
 
     @Override

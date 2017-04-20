@@ -8,8 +8,7 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.ui.BaseFragment;
 import com.gloomy.fastfood.ui.presenters.main.home.food.HomeFoodPresenter;
-import com.gloomy.fastfood.ui.views.detail.food.FoodDetailFragment_;
-import com.gloomy.fastfood.ui.views.main.home.HomeFragment;
+import com.gloomy.fastfood.ui.views.detail.food.FoodDetailActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -79,9 +78,8 @@ public class HomeFoodFragment extends BaseFragment implements IHomeFoodView {
 
     @Override
     public void onItemFoodClick(Food food) {
-        if (getParentFragment() instanceof HomeFragment) {
-            ((HomeFragment) getParentFragment()).replaceFragment(FoodDetailFragment_.builder().mFoodParcelable(Parcels.wrap(food)).build(), true);
-        }
+        FoodDetailActivity_.intent(getActivity()).mFoodParcelable(Parcels.wrap(food)).start();
+        getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
     }
 
     @Override

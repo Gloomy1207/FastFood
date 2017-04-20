@@ -23,13 +23,13 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:background="@android:color/white">
 
                 <ImageView
                     android:id="@+id/imgFood"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/detail_food_img_height"
                     android:contentDescription="@null"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
@@ -62,23 +62,40 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvFoodName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="@style/CustomRatingBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:clickable="false" />
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/btnViewImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/ic_gallery"
+                        app:fabSize="mini" />
+
+                    <TextView
+                        android:id="@+id/tvFoodName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_toStartOf="@id/btnViewImage"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="@style/CustomRatingBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvFoodName"
+                        android:layout_marginStart="10dp"
+                        android:clickable="false" />
+                </RelativeLayout>
 
                 <View
                     style="@style/ViewLine"

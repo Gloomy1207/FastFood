@@ -9,23 +9,24 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.ui.BaseFragment;
+import com.gloomy.fastfood.ui.BaseActivity;
 import com.gloomy.fastfood.ui.presenters.detail.food.FoodDetailPresenter;
 import com.gloomy.fastfood.widgets.HeaderBar;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.FragmentArg;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 /**
  * Copyright © 2017 AsianTech inc.
  * Created by HungTQB on 20/04/2017.
  */
-@EFragment(R.layout.fragment_detail_food)
-public class FoodDetailFragment extends BaseFragment implements IFoodDetailView {
+@EActivity(R.layout.fragment_detail_food)
+public class FoodDetailActivity extends BaseActivity implements IFoodDetailView {
 
     @ViewById(R.id.headerBar)
     HeaderBar mHeaderBar;
@@ -54,7 +55,7 @@ public class FoodDetailFragment extends BaseFragment implements IFoodDetailView 
     @ViewById(R.id.appBarLayout)
     AppBarLayout mAppBarLayout;
 
-    @FragmentArg
+    @Extra
     Parcelable mFoodParcelable;
 
     @Bean
@@ -81,22 +82,24 @@ public class FoodDetailFragment extends BaseFragment implements IFoodDetailView 
 
     @Override
     public void onNoInternetConnection() {
-        showNoInternetConnectionMessage();
+        showNoInternetConnection();
     }
 
     @Override
     public void onNoFoodData() {
-        getActivity().onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
     }
 
     @Override
     public void onBackPressed() {
-        getActivity().onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
     }
 
     @Override
     public void setImageFood(String mainImage) {
-        Picasso.with(getActivity())
+        Picasso.with(this)
                 .load(mainImage)
                 .into(mImgFood);
     }
@@ -119,5 +122,10 @@ public class FoodDetailFragment extends BaseFragment implements IFoodDetailView 
     @Override
     public void setRecipe(String recipe) {
         mTvRecipe.setText(recipe);
+    }
+
+    @Click(R.id.btnViewImage)
+    void onViewImageClick() {
+        mPresenter.viewImages();
     }
 }
