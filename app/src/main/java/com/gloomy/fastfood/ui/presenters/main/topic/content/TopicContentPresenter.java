@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.ui.presenters.main.topic.hot;
+package com.gloomy.fastfood.ui.presenters.main.topic.content;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +31,7 @@ import retrofit2.Response;
  * Created by HungTQB on 17/04/2017.
  */
 @EBean
-public class TopicHotPresenter extends BasePresenter implements TopicContentAdapter.OnTopicListener, SwipeRefreshLayout.OnRefreshListener {
+public class TopicContentPresenter extends BasePresenter implements TopicContentAdapter.OnTopicListener, SwipeRefreshLayout.OnRefreshListener {
 
     @Setter
     @Accessors(prefix = "m")

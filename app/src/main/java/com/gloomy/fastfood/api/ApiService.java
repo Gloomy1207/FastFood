@@ -1,5 +1,6 @@
 package com.gloomy.fastfood.api;
 
+import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
@@ -38,6 +39,10 @@ interface ApiService {
     @GET("basic/location/home")
     Call<HomePlaceResponse> getHomePlaceData(@Query(ApiParameters.PAGE) Integer page,
                                              @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("auth/user/favorite")
+    Call<HomeFavoriteResponse> getHomeFavoriteData(@Query(ApiParameters.PAGE) Integer page,
+                                                   @Query(ApiParameters.SIZE) Integer size);
 
     @GET("basic/place/search")
     Call<SearchStoreResponse> getSearchStoreData(@Query(ApiParameters.LAT) Double lat,

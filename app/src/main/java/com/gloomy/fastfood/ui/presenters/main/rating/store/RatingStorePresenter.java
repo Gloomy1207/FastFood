@@ -125,9 +125,7 @@ public class RatingStorePresenter extends BasePresenter implements RatingStoreAd
                 mStores.addAll(mRatingStoreResponse.getStores());
                 mIsLastPage = mRatingStoreResponse.isLast();
                 mCurrentPage = mRatingStoreResponse.getCurrentPage();
-                if (mIsRefresh) {
-                    mIsRefresh = false;
-                }
+                mIsRefresh = false;
                 mView.onLoadDataComplete();
             }
 
