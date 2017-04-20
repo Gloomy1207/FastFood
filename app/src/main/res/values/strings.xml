@@ -27,4 +27,8 @@
     <string name="username_is_required">Username is required</string>
     <string name="password_is_required">Password is required</string>
     <string name="button_text_register">Register</string>
+    <string name="edit_text_hint_email">Email</string>
+    <string name="button_text_back">Back</string>
+    <string name="email_is_required">Email is required</string>
+    <string name="not_an_email">Email address is invalid</string>
 </resources>

@@ -11,6 +11,7 @@ import com.gloomy.fastfood.api.responses.LoginResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
+import com.gloomy.fastfood.api.responses.RegistrationResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
@@ -128,5 +129,9 @@ public final class ApiRequest {
 
     public void loginWithFacebook(String token, String id, String name, String email, String avatar, Callback<LoginResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).loginWithFacebook(token, id, name, email, avatar).enqueue(callback);
+    }
+
+    public void register(String username, String password, String email, Callback<RegistrationResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).register(username, password, email).enqueue(callback);
     }
 }

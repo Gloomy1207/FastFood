@@ -7,4 +7,11 @@ import com.gloomy.fastfood.ui.IBaseView;
  * Created by HungTQB on 19/04/2017.
  */
 public interface IRegisterView extends IBaseView {
+    void onShowInvalidMessage(String message);
+
+    void onRequestFailure();
+
+    void onRegistrationFailure(String message);
+
+    void onRegisterSuccess(String message);
 }

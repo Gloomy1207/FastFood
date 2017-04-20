@@ -3,7 +3,6 @@ package com.gloomy.fastfood.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -55,7 +54,9 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
     }
 
     @Override
-    public void showMessageDialog(CustomMessageDialog.OnCustomMessageDialogListener listener) {
+    public void showMessageDialog(String message, String button, CustomMessageDialog.OnCustomMessageDialogListener listener) {
+        mCustomMessageDialog.setMessageText(message);
+        mCustomMessageDialog.setButtonText(button);
         mCustomMessageDialog.showWithCallback(getFragmentManager(), CustomMessageDialog.class.getSimpleName(), listener);
     }
 
