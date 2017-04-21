@@ -50,6 +50,10 @@
         <activity
             android:name=".ui.views.gallery.GalleryActivity_"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.views.detail.topic.TopicDetailActivity_"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

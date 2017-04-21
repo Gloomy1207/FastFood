@@ -25,7 +25,7 @@ import org.androidannotations.annotations.ViewById;
  * Copyright © 2017 AsianTech inc.
  * Created by HungTQB on 20/04/2017.
  */
-@EActivity(R.layout.fragment_detail_food)
+@EActivity(R.layout.activity_detail_food)
 public class FoodDetailActivity extends BaseActivity implements IFoodDetailView {
 
     @ViewById(R.id.headerBar)

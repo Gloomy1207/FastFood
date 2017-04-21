@@ -10,10 +10,10 @@ import lombok.Getter;
  * Created by HungTQB on 14/04/2017.
  */
 @Getter
-public class TopicComment {
+public class Comment {
     private int commentId;
     private User user;
     private String content;
     private Timestamp postTime;
-    private List<TopicComment> postReplies;
+    private List<Comment> postReplies;
 }

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Topic;
-import com.gloomy.fastfood.models.TopicComment;
+import com.gloomy.fastfood.models.Comment;
 import com.gloomy.fastfood.models.User;
 import com.gloomy.fastfood.ui.views.BaseAdapter;
 import com.squareup.picasso.Picasso;
@@ -60,7 +60,7 @@ public class SearchTopicAdapter extends BaseAdapter<SearchTopicAdapter.ItemSearc
         holder.mBtnLike.setSelected(topic.isLike());
         holder.mTvPostTime.setText(mSimpleDateFormat.format(topic.getPostTime()));
         if (topic.getLatestComment() != null) {
-            TopicComment comment = topic.getLatestComment();
+            Comment comment = topic.getLatestComment();
             if (comment.getUser() != null) {
                 Picasso.with(getContext())
                         .load(comment.getUser().getAvatar())
