@@ -15,4 +15,6 @@ public interface IGalleryView extends IBaseView {
     void onLoadDataFailure();
 
     void onLoadDataComplete();
+
+    void onBackButtonPressed();
 }

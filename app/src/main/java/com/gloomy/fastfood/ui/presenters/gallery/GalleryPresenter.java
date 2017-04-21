@@ -3,6 +3,7 @@ package com.gloomy.fastfood.ui.presenters.gallery;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
+import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.FoodImageResponse;
 import com.gloomy.fastfood.models.FoodImage;
@@ -11,6 +12,7 @@ import com.gloomy.fastfood.ui.presenters.BasePresenter;
 import com.gloomy.fastfood.ui.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.ui.views.gallery.GalleryRecyclerAdapter;
 import com.gloomy.fastfood.ui.views.gallery.IGalleryView;
+import com.gloomy.fastfood.widgets.HeaderBar;
 
 import org.androidannotations.annotations.EBean;
 
@@ -113,5 +115,20 @@ public class GalleryPresenter extends BasePresenter implements GalleryRecyclerAd
     @Override
     public void onItemGalleryClick(int position) {
         mView.onItemGalleryClick(mGalleryImages.get(position));
+    }
+
+    public void initHeaderBar(HeaderBar headerBar, String foodName) {
+        headerBar.setTitle(getContext().getString(R.string.title_image_gallery, foodName));
+        headerBar.setOnHeaderBarListener(new HeaderBar.OnHeaderBarListener() {
+            @Override
+            public void onLeftButtonClick() {
+                mView.onBackButtonPressed();
+            }
+
+            @Override
+            public void onRightButtonClick() {
+                // No-op
+            }
+        });
     }
 }

@@ -89,6 +89,6 @@ public class FoodDetailPresenter extends BasePresenter {
     }
 
     public void viewImages() {
-        GalleryActivity_.intent(getContext()).mFoodId(mFood.getFoodId()).start();
+        GalleryActivity_.intent(getContext()).mFoodId(mFood.getFoodId()).mFoodName(mFood.getFoodName()).start();
     }
 }

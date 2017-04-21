@@ -6,8 +6,8 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.GalleryImage;
 import com.gloomy.fastfood.ui.BaseActivity;
 import com.gloomy.fastfood.ui.presenters.gallery.GalleryPresenter;
+import com.gloomy.fastfood.widgets.HeaderBar;
 import com.gloomy.fastfood.widgets.dialog.GalleryDialog;
-import com.gloomy.fastfood.widgets.dialog.GalleryDialog_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -25,8 +25,14 @@ public class GalleryActivity extends BaseActivity implements IGalleryView {
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
+    @ViewById(R.id.headerBar)
+    HeaderBar mHeaderBar;
+
     @Extra
     int mFoodId;
+
+    @Extra
+    String mFoodName;
 
     @Bean
     GalleryPresenter mPresenter;
@@ -36,6 +42,7 @@ public class GalleryActivity extends BaseActivity implements IGalleryView {
         mPresenter.setView(this);
         mPresenter.setFoodId(mFoodId);
         mPresenter.initRecyclerView(mRecyclerView);
+        mPresenter.initHeaderBar(mHeaderBar, mFoodName);
         mPresenter.getGalleryData();
     }
 
@@ -61,7 +68,9 @@ public class GalleryActivity extends BaseActivity implements IGalleryView {
 
     @Override
     public void onItemGalleryClick(GalleryImage galleryImage) {
-        GalleryDialog_.builder().mImagePath(galleryImage.getImagePath()).build().show(getFragmentManager(), GalleryDialog.class.getSimpleName());
+        GalleryDialog dialog = new GalleryDialog();
+        dialog.setImagePath(galleryImage.getImagePath());
+        dialog.show(getFragmentManager(), GalleryDialog.class.getSimpleName());
     }
 
     @Override
@@ -72,5 +81,10 @@ public class GalleryActivity extends BaseActivity implements IGalleryView {
     @Override
     public void onLoadDataComplete() {
         mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBackButtonPressed() {
+        finish();
     }
 }
