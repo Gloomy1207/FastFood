@@ -13,12 +13,12 @@ import lombok.experimental.Builder;
 @Getter
 @Builder
 @Parcel
-public class FoodImage {
+public class Image {
     int id;
     String imagePath;
 
     @ParcelConstructor
-    public FoodImage(int id, String imagePath) {
+    public Image(int id, String imagePath) {
         this.id = id;
         this.imagePath = imagePath;
     }

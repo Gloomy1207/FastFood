@@ -1,5 +1,7 @@
 package com.gloomy.fastfood.auth;
 
+import com.gloomy.fastfood.models.User;
+
 import lombok.Getter;
 import lombok.experimental.Builder;
 
@@ -11,4 +13,5 @@ import lombok.experimental.Builder;
 @Builder
 public class Auth {
     private String apiToken;
+    private User user;
 }

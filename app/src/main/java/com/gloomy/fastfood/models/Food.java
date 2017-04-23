@@ -20,19 +20,19 @@ public class Food {
     String foodName;
     String description;
     String recipe;
-    List<FoodImage> foodImages;
+    List<Image> images;
     float rating;
     String mainImage;
     int numberOfRating;
     String numberOfRatingText;
 
     @ParcelConstructor
-    public Food(int foodId, String foodName, String description, String recipe, List<FoodImage> foodImages, float rating, String mainImage, int numberOfRating, String numberOfRatingText) {
+    public Food(int foodId, String foodName, String description, String recipe, List<Image> images, float rating, String mainImage, int numberOfRating, String numberOfRatingText) {
         this.foodId = foodId;
         this.foodName = foodName;
         this.description = description;
         this.recipe = recipe;
-        this.foodImages = foodImages;
+        this.images = images;
         this.rating = rating;
         this.mainImage = mainImage;
         this.numberOfRating = numberOfRating;

@@ -1,6 +1,6 @@
 package com.gloomy.fastfood.api.responses;
 
-import com.gloomy.fastfood.models.FoodImage;
+import com.gloomy.fastfood.models.Comment;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,12 +9,12 @@ import lombok.Getter;
 
 /**
  * Copyright © 2017 Gloomy
- * Created by HungTQB on 21-Apr-17.
+ * Created by HungTQB on 23-Apr-17.
  */
 @Getter
-public class FoodImageResponse {
+public class TopicCommentResponse {
     @SerializedName("content")
-    private List<FoodImage> images;
+    private List<Comment> comments;
     @SerializedName("number")
     private int currentPage;
     @SerializedName("last")

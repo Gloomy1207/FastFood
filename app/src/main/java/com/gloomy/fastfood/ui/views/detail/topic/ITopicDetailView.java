@@ -1,6 +1,8 @@
 package com.gloomy.fastfood.ui.views.detail.topic;
 
+import com.gloomy.fastfood.models.User;
 import com.gloomy.fastfood.ui.IBaseView;
+import com.gloomy.fastfood.widgets.CustomConfirmDialog;
 
 /**
  * Copyright © 2017 AsianTech inc.
@@ -8,4 +10,34 @@ import com.gloomy.fastfood.ui.IBaseView;
  */
 public interface ITopicDetailView extends IBaseView {
     void onBackClick();
+
+    void onLoadCommentComplete();
+
+    void onLoadDataFailure();
+
+    void onUserClick(User user);
+
+    void onEmptyComment();
+
+    void onSendingComment();
+
+    void onNotLogin();
+
+    void onFakeAddComment();
+
+    void onUpdateUploadedComment();
+
+    void onCommentComplete();
+
+    void onLikeComplete();
+
+    void onDeleteCommentSuccess();
+
+    void onDeleteCommentError(String message);
+
+    void onShowRequestDeleteComment(String message, String deleteButton, String cancelButton, CustomConfirmDialog.OnConfirmDialogListener onConfirmDialogListener);
+
+    void onCancelClick();
+
+    void onConfirmClick();
 }

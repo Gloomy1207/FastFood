@@ -14,6 +14,13 @@
         <item name="android:background">#cccccc</item>
     </style>
 
+    <style name="ViewDashLine">
+        <item name="android:layout_height">5dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/bg_dash_line</item>
+        <item name="android:layerType">software</item>
+    </style>
+
     <style name="CustomRatingBarStyle" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/star_rating_bar</item>
         <item name="android:minHeight">20dp</item>

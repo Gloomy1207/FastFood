@@ -10,12 +10,14 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Topic;
 import com.gloomy.fastfood.ui.BaseFragment;
 import com.gloomy.fastfood.ui.presenters.main.topic.content.TopicContentPresenter;
+import com.gloomy.fastfood.ui.views.detail.topic.TopicDetailActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -112,6 +114,7 @@ public class TopicContentFragment extends BaseFragment implements ITopicContentV
 
     @Override
     public void onItemTopicClick(Topic topic) {
-        // TODO: 17/04/2017 Handle when item topic click
+        TopicDetailActivity_.intent(getActivity()).mTopicParcel(Parcels.wrap(topic)).start();
+        getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
     }
 }

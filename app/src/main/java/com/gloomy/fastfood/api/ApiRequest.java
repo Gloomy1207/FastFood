@@ -4,11 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.gloomy.fastfood.api.responses.FoodImageResponse;
+import com.gloomy.fastfood.api.responses.CommentResponse;
+import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
+import com.gloomy.fastfood.api.responses.ImageResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.LikeResponse;
 import com.gloomy.fastfood.api.responses.LoginResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
@@ -18,6 +21,7 @@ import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
+import com.gloomy.fastfood.api.responses.TopicCommentResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 import com.gloomy.fastfood.models.LatLng;
 
@@ -141,7 +145,27 @@ public final class ApiRequest {
         ServiceHelper.createApiService(mApplicationContext).register(username, password, email).enqueue(callback);
     }
 
-    public void getFoodImages(Integer page, Integer size, int foodId, Callback<FoodImageResponse> callback) {
+    public void getFoodImages(Integer page, Integer size, int foodId, Callback<ImageResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getFoodImages(foodId, page, size).enqueue(callback);
+    }
+
+    public void getTopicComment(Integer page, Integer size, int topicId, Callback<TopicCommentResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getTopicComment(topicId, page, size).enqueue(callback);
+    }
+
+    public void likeTopic(int topicId, Callback<LikeResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).likeTopic(topicId).enqueue(callback);
+    }
+
+    public void commentTopic(int topicId, String content, Callback<CommentResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).commentTopic(topicId, content).enqueue(callback);
+    }
+
+    public void deleteComment(int commentId, Callback<DeleteCommentResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).deleteTopicComment(commentId).enqueue(callback);
+    }
+
+    public void getTopicImages(Integer page, Integer size, int topicId, Callback<ImageResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getTopicImage(page, size, topicId).enqueue(callback);
     }
 }

@@ -8,6 +8,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.listener.OnBaseActivityListener;
+import com.gloomy.fastfood.widgets.CustomConfirmDialog;
+import com.gloomy.fastfood.widgets.CustomConfirmDialog_;
 import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog;
 import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog_;
 import com.gloomy.fastfood.widgets.dialog.CustomProgressDialog;
@@ -24,6 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
     private CustomProgressDialog mCustomProgressDialog = new CustomProgressDialog();
     private CustomMessageDialog mCustomMessageDialog = CustomMessageDialog_.builder().build();
     private RequestLoginDialog mRequestLoginDialog = RequestLoginDialog_.builder().build();
+    private CustomConfirmDialog mConfirmDialog = CustomConfirmDialog_.builder().build();
 
     @Override
     public void hideKeyboard() {
@@ -78,5 +81,19 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAc
     @Override
     public void showLoginDialog() {
         mRequestLoginDialog.show(getFragmentManager(), RequestLoginDialog.class.getSimpleName());
+    }
+
+    @Override
+    public void showConfirmDialog(String message, String buttonLeft, String buttonRight, CustomConfirmDialog.OnConfirmDialogListener listener) {
+        mConfirmDialog.setContent(message);
+        mConfirmDialog.setLeftButton(buttonLeft);
+        mConfirmDialog.setRightButton(buttonRight);
+        mConfirmDialog.setOnConfirmDialogListener(listener);
+        mConfirmDialog.show(getFragmentManager(), CustomConfirmDialog.class.getSimpleName());
+    }
+
+    @Override
+    public void dismissConfirmDialog() {
+        mConfirmDialog.dismiss();
     }
 }

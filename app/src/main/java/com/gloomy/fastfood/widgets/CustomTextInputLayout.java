@@ -11,6 +11,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -21,6 +22,8 @@ import lombok.experimental.Accessors;
 @EViewGroup(R.layout.layout_text_input)
 public class CustomTextInputLayout extends RelativeLayout {
 
+    @Getter
+    @Accessors(prefix = "m")
     @ViewById(R.id.edtContent)
     EditText mEdtContent;
 
@@ -40,6 +43,7 @@ public class CustomTextInputLayout extends RelativeLayout {
     void onSendClick() {
         if (mOnTextInputLayoutListener != null) {
             mOnTextInputLayoutListener.onSendClick(mEdtContent.getText().toString());
+            mEdtContent.setText("");
         }
     }
 

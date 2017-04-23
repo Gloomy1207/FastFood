@@ -1,5 +1,6 @@
 package com.gloomy.fastfood.listener;
 
+import com.gloomy.fastfood.widgets.CustomConfirmDialog;
 import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog;
 
 /**
@@ -24,4 +25,8 @@ public interface OnBaseActivityListener {
     void showLoadDataFailure();
 
     void showLoginDialog();
+
+    void showConfirmDialog(String message, String buttonLeft, String buttonRight, CustomConfirmDialog.OnConfirmDialogListener listener);
+
+    void dismissConfirmDialog();
 }

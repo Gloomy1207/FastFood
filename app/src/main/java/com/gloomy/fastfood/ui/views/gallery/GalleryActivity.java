@@ -29,10 +29,13 @@ public class GalleryActivity extends BaseActivity implements IGalleryView {
     HeaderBar mHeaderBar;
 
     @Extra
-    int mFoodId;
+    int mGalleryId;
 
     @Extra
-    String mFoodName;
+    String mGalleryName;
+
+    @Extra
+    int mGalleryType;
 
     @Bean
     GalleryPresenter mPresenter;
@@ -40,9 +43,10 @@ public class GalleryActivity extends BaseActivity implements IGalleryView {
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
-        mPresenter.setFoodId(mFoodId);
+        mPresenter.setGalleryId(mGalleryId);
         mPresenter.initRecyclerView(mRecyclerView);
-        mPresenter.initHeaderBar(mHeaderBar, mFoodName);
+        mPresenter.initHeaderBar(mHeaderBar, mGalleryName);
+        mPresenter.setGalleryType(mGalleryType);
         mPresenter.getGalleryData();
     }
 

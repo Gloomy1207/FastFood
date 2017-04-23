@@ -3,6 +3,7 @@ package com.gloomy.fastfood.ui.views.detail.topic;
 import android.content.Context;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,12 +54,14 @@ public class TopicDetailAdapter extends BaseAdapter {
     private List<Comment> mComments;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy", Locale.getDefault());
     private final OnTopicDetailListener mOnTopicDetailListener;
+    private final ItemCommentVH.OnCommentListener mOnCommentListener;
 
-    public TopicDetailAdapter(@NonNull Context mContext, List<Comment> comments, Topic topic, OnTopicDetailListener onTopicDetailListener) {
+    public TopicDetailAdapter(@NonNull Context mContext, List<Comment> comments, Topic topic, OnTopicDetailListener onTopicDetailListener, ItemCommentVH.OnCommentListener onCommentListener) {
         super(mContext);
         mTopic = topic;
         mComments = comments;
         mOnTopicDetailListener = onTopicDetailListener;
+        mOnCommentListener = onCommentListener;
     }
 
     @Override
@@ -81,11 +84,11 @@ public class TopicDetailAdapter extends BaseAdapter {
             case TopicItemType.TOPIC_IMAGE:
                 return new ItemTopicImageVH(getViewFromResId(R.layout.item_recycler_topic_image, parent));
             case TopicItemType.USER_INFORMATION:
-                return new ItemUserInformationVH(getViewFromResId(R.layout.item_recycler_topic_user, parent));
+                return new ItemUserInformationVH(getViewFromResId(R.layout.item_recycler_topic_user, parent), mOnTopicDetailListener);
             case TopicItemType.NUMBER_LIKE_COMMENT:
                 return new ItemNumberLikeVH(getViewFromResId(R.layout.item_recycler_topic_number, parent));
             case TopicItemType.COMMENT:
-                return new ItemCommentVH(getContext(), parent);
+                return new ItemCommentVH(getContext(), parent, mOnCommentListener);
         }
         return null;
     }
@@ -136,7 +139,7 @@ public class TopicDetailAdapter extends BaseAdapter {
     }
 
     private void onBindItemComment(ItemCommentVH holder, int position) {
-        holder.setCommentData(mComments.get(position - COMMENT_OFFSET));
+        holder.setCommentData(mComments.get(position - COMMENT_OFFSET), position - COMMENT_OFFSET);
     }
 
     @Override
@@ -167,12 +170,22 @@ public class TopicDetailAdapter extends BaseAdapter {
         private final CircleImageView mImgAvatar;
         private final TextView mTvUsername;
         private final TextView mTvPostTime;
+        private final FloatingActionButton mBtnViewImage;
 
-        ItemUserInformationVH(View itemView) {
+        ItemUserInformationVH(View itemView, final OnTopicDetailListener listener) {
             super(itemView);
             mImgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
             mTvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             mTvPostTime = (TextView) itemView.findViewById(R.id.tvPostTime);
+            mBtnViewImage = (FloatingActionButton) itemView.findViewById(R.id.btnViewImage);
+            mBtnViewImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onViewImageClick();
+                    }
+                }
+            });
         }
     }
 
@@ -195,5 +208,7 @@ public class TopicDetailAdapter extends BaseAdapter {
      */
     public interface OnTopicDetailListener {
         void onUserClick(User user);
+
+        void onViewImageClick();
     }
 }

@@ -1,10 +1,13 @@
 package com.gloomy.fastfood.api;
 
-import com.gloomy.fastfood.api.responses.FoodImageResponse;
+import com.gloomy.fastfood.api.responses.CommentResponse;
+import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
+import com.gloomy.fastfood.api.responses.ImageResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.LikeResponse;
 import com.gloomy.fastfood.api.responses.LoginResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
@@ -14,6 +17,7 @@ import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
+import com.gloomy.fastfood.api.responses.TopicCommentResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 
 import retrofit2.Call;
@@ -120,7 +124,27 @@ interface ApiService {
                                         @Field(ApiParameters.EMAIL) String email);
 
     @GET("basic/image/food")
-    Call<FoodImageResponse> getFoodImages(@Query(ApiParameters.FOOD_ID) int foodId,
-                                          @Query(ApiParameters.PAGE) Integer page,
-                                          @Query(ApiParameters.SIZE) Integer size);
+    Call<ImageResponse> getFoodImages(@Query(ApiParameters.FOOD_ID) int foodId,
+                                      @Query(ApiParameters.PAGE) Integer page,
+                                      @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("basic/topic/comment")
+    Call<TopicCommentResponse> getTopicComment(@Query(ApiParameters.TOPIC_ID) int topicId,
+                                               @Query(ApiParameters.PAGE) Integer page,
+                                               @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("auth/topic/like")
+    Call<LikeResponse> likeTopic(@Query(ApiParameters.TOPIC_ID) int topicId);
+
+    @POST("auth/topic/comment")
+    Call<CommentResponse> commentTopic(@Query(ApiParameters.TOPIC_ID) int topicId,
+                                       @Query(ApiParameters.CONTENT) String content);
+
+    @GET("auth/topic/delete-comment")
+    Call<DeleteCommentResponse> deleteTopicComment(@Query(ApiParameters.COMMENT_ID) int commentId);
+
+    @GET("basic/image/topic")
+    Call<ImageResponse> getTopicImage(@Query(ApiParameters.PAGE) Integer page,
+                                      @Query(ApiParameters.SIZE) Integer size,
+                                      @Query(ApiParameters.TOPIC_ID) int topicId);
 }
