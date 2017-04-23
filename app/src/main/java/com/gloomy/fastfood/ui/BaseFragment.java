@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 
 import com.gloomy.fastfood.listener.OnBaseActivityListener;
+import com.gloomy.fastfood.widgets.CustomConfirmDialog;
 import com.gloomy.fastfood.widgets.dialog.CustomMessageDialog;
 
 /**
@@ -73,5 +74,13 @@ public abstract class BaseFragment extends Fragment {
 
     public void showLoginDialog() {
         mOnBaseActivityListener.showLoginDialog();
+    }
+
+    public void showConfirmDialog(String message, String leftButton, String rightButton, CustomConfirmDialog.OnConfirmDialogListener listener) {
+        mOnBaseActivityListener.showConfirmDialog(message, leftButton, rightButton, listener);
+    }
+
+    public void dismissConfirmDialog() {
+        mOnBaseActivityListener.dismissConfirmDialog();
     }
 }

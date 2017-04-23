@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.ui.presenters.BasePresenter;
+import com.gloomy.fastfood.ui.presenters.gallery.GalleryPresenter;
 import com.gloomy.fastfood.ui.views.detail.food.IFoodDetailView;
 import com.gloomy.fastfood.ui.views.gallery.GalleryActivity_;
 import com.gloomy.fastfood.widgets.HeaderBar;
@@ -89,6 +90,10 @@ public class FoodDetailPresenter extends BasePresenter {
     }
 
     public void viewImages() {
-        GalleryActivity_.intent(getContext()).mFoodId(mFood.getFoodId()).start();
+        GalleryActivity_.intent(getContext())
+                .mGalleryId(mFood.getFoodId())
+                .mGalleryType(GalleryPresenter.GalleryType.FOOD_TYPE)
+                .mGalleryName(mFood.getFoodName())
+                .start();
     }
 }

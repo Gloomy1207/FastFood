@@ -17,4 +17,8 @@ public final class ApiParameters {
     public static final String AVATAR = "avatar";
     public static final String FACEBOOK_ID = "facebook_id";
     public static final String FOOD_ID = "food_id";
+    public static final String TOPIC_ID = "topic_id";
+    public static final String COMMENT = "comment";
+    public static final String CONTENT = "content";
+    public static final String COMMENT_ID = "comment_id";
 }

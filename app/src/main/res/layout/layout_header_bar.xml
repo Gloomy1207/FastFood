@@ -31,7 +31,9 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/btnLeft"
         android:layout_toStartOf="@id/btnRight"
+        android:ellipsize="end"
         android:gravity="center"
+        android:lines="1"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold" />

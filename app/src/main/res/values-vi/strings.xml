@@ -37,4 +37,14 @@
     <string name="button_text_back">Quay lại</string>
     <string name="email_is_required">Không được để trống email</string>
     <string name="not_an_email">Email không hợp lệ</string>
+    <string name="title_image_gallery">Ảnh %s</string>
+    <string name="item_comment_text_view_delete">Xóa</string>
+    <string name="item_comment_text_view_reply">Trả lời</string>
+    <string name="sending_comment">Đang gửi…</string>
+    <string name="comment_error">Lỗi</string>
+    <string name="comment_is_required">Không được để trống comment</string>
+    <string name="comment_topic">Thêm nhận xét</string>
+    <string name="confirm_delete_comment">Bạn có muốn xóa nhận xét này không?</string>
+    <string name="delete_button">Xóa</string>
+    <string name="button_cancel">Hủy</string>
 </resources>
