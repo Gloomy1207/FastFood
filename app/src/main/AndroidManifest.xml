@@ -22,7 +22,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".ui.views.splash.SplashActivity_"
+            android:name=".mvp.views.splash.SplashActivity_"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,27 +32,30 @@
         </activity>
 
         <activity
-            android:name=".ui.views.main.MainActivity_"
+            android:name=".mvp.views.main.MainActivity_"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.views.login.LoginActivity_"
+            android:name=".mvp.views.login.LoginActivity_"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.views.setting.SettingActivity_"
+            android:name=".mvp.views.setting.SettingActivity_"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.views.detail.food.FoodDetailActivity_"
+            android:name=".mvp.views.detail.food.FoodDetailActivity_"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.views.gallery.GalleryActivity_"
+            android:name=".mvp.views.gallery.GalleryActivity_"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.views.detail.topic.TopicDetailActivity_"
+            android:name=".mvp.views.detail.topic.TopicDetailActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.views.detail.store.StoreDetailActivity_"
             android:screenOrientation="portrait" />
     </application>
 
