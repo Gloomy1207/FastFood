@@ -7,7 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.ui.views.login.LoginActivity_;
+import com.gloomy.fastfood.mvp.views.login.LoginActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
