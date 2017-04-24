@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
 
 import android.support.annotation.IntDef;
 
@@ -33,12 +33,12 @@ public class Comment {
         int SUCCESS = 0;
     }
 
-    private int commentId;
-    private User user;
-    private String content;
-    private Timestamp postTime;
-    private boolean isAllowDelete;
-    private int status;
+    int commentId;
+    User user;
+    String content;
+    Timestamp postTime;
+    boolean isAllowDelete;
+    int status;
 
     @ParcelConstructor
     public Comment(int commentId, User user, String content, Timestamp postTime, boolean isAllowDelete, int status) {

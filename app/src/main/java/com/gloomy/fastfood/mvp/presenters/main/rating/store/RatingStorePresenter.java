@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
-import com.gloomy.fastfood.models.Store;
+import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.views.main.rating.store.IRatingStoreView;

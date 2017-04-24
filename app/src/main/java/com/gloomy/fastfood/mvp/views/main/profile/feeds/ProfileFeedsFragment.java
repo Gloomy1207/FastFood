@@ -4,16 +4,18 @@ import android.support.v7.widget.RecyclerView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
-import com.gloomy.fastfood.models.Topic;
+import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.Topic;
+import com.gloomy.fastfood.mvp.presenters.main.profile.feed.ProfileFeedPresenter;
+import com.gloomy.fastfood.mvp.views.detail.topic.TopicDetailActivity_;
 import com.gloomy.fastfood.observer.ProfileObserver;
 import com.gloomy.fastfood.observer.listener.OnReceiveObserverListener;
-import com.gloomy.fastfood.mvp.BaseFragment;
-import com.gloomy.fastfood.mvp.presenters.main.profile.feed.ProfileFeedPresenter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -68,7 +70,7 @@ public class ProfileFeedsFragment extends BaseFragment implements IProfileFeedVi
 
     @Override
     public void onItemTopicClick(Topic topic) {
-        // TODO: 18-Apr-17 Handle when click item topic
+        TopicDetailActivity_.intent(getActivity()).mTopicParcel(Parcels.wrap(topic)).start();
     }
 
     @Override

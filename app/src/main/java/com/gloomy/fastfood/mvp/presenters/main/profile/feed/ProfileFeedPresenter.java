@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
-import com.gloomy.fastfood.models.Topic;
+import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.views.main.profile.feeds.IProfileFeedView;

@@ -1,6 +1,9 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
 
 import com.google.gson.annotations.SerializedName;
+
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import java.sql.Time;
 import java.util.List;
@@ -14,19 +17,35 @@ import lombok.experimental.Builder;
  */
 @Getter
 @Builder
+@Parcel
 public class Store {
-    private int placeId;
+    int placeId;
     @SerializedName("place_name")
-    private String storeName;
-    private String description;
-    private Time openTime;
-    private Time closeTime;
+    String storeName;
+    String description;
+    Time openTime;
+    Time closeTime;
     @SerializedName("place_address")
-    private StoreAddress storeAddress;
-    private List<StoreImage> storeImages;
+    StoreAddress storeAddress;
+    List<StoreImage> storeImages;
     @SerializedName("place_type")
-    private StoreType storeType;
-    private String mainImage;
-    private float averageRating;
-    private String numberRating;
+    StoreType storeType;
+    String mainImage;
+    float averageRating;
+    String numberRating;
+
+    @ParcelConstructor
+    public Store(int placeId, String storeName, String description, Time openTime, Time closeTime, StoreAddress storeAddress, List<StoreImage> storeImages, StoreType storeType, String mainImage, float averageRating, String numberRating) {
+        this.placeId = placeId;
+        this.storeName = storeName;
+        this.description = description;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
+        this.storeAddress = storeAddress;
+        this.storeImages = storeImages;
+        this.storeType = storeType;
+        this.mainImage = mainImage;
+        this.averageRating = averageRating;
+        this.numberRating = numberRating;
+    }
 }

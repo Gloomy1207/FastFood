@@ -1,4 +1,7 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
+
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import java.util.List;
 
@@ -11,8 +14,16 @@ import lombok.experimental.Builder;
  */
 @Getter
 @Builder
+@Parcel
 public class StoreType {
-    private int storeTypeId;
-    private String typeName;
-    private List<RatingType> ratingTypes;
+    int storeTypeId;
+    String typeName;
+    List<RatingType> ratingTypes;
+
+    @ParcelConstructor
+    public StoreType(int storeTypeId, String typeName, List<RatingType> ratingTypes) {
+        this.storeTypeId = storeTypeId;
+        this.typeName = typeName;
+        this.ratingTypes = ratingTypes;
+    }
 }

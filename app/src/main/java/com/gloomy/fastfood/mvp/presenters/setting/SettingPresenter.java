@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.facebook.login.LoginManager;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.auth.AuthSession;
-import com.gloomy.fastfood.models.ItemSetting;
+import com.gloomy.fastfood.mvp.models.ItemSetting;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.views.setting.ISettingView;
 import com.gloomy.fastfood.mvp.views.setting.SettingAdapter;

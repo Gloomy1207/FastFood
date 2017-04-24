@@ -1,4 +1,7 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
+
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import lombok.Getter;
 
@@ -7,7 +10,14 @@ import lombok.Getter;
  * Created by HungTQB on 11/04/2017.
  */
 @Getter
+@Parcel
 public class RatingType {
-    private int ratingTypeId;
-    private int ratingTypeName;
+    int ratingTypeId;
+    int ratingTypeName;
+
+    @ParcelConstructor
+    public RatingType(int ratingTypeId, int ratingTypeName) {
+        this.ratingTypeId = ratingTypeId;
+        this.ratingTypeName = ratingTypeName;
+    }
 }

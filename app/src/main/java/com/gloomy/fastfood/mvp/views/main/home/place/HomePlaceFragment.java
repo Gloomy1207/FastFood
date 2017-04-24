@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.City;
-import com.gloomy.fastfood.models.Province;
 import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.City;
+import com.gloomy.fastfood.mvp.models.Province;
 import com.gloomy.fastfood.mvp.presenters.main.home.place.HomePlacePresenter;
 
 import org.androidannotations.annotations.AfterViews;

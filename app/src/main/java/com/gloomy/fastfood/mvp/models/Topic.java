@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
 
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
@@ -16,16 +16,16 @@ import lombok.Setter;
 @Setter
 @Parcel
 public class Topic {
-    private int topicId;
-    private User user;
-    private String content;
-    private Timestamp postTime;
-    private String title;
-    private int countTopicLikes;
-    private int countTopicComments;
-    private Comment latestComment;
-    private String mainImage;
-    private boolean isLike;
+    int topicId;
+    User user;
+    String content;
+    Timestamp postTime;
+    String title;
+    int countTopicLikes;
+    int countTopicComments;
+    Comment latestComment;
+    String mainImage;
+    boolean isLike;
 
     @ParcelConstructor
     public Topic(int topicId, User user, String content, Timestamp postTime, String title, int countTopicLikes, int countTopicComments, Comment latestComment, String mainImage, boolean isLike) {

@@ -1,21 +1,24 @@
 package com.gloomy.fastfood.mvp.presenters.detail.store;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Store;
+import com.gloomy.fastfood.mvp.models.Store;
+import com.gloomy.fastfood.mvp.models.StoreAddress;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.views.detail.store.IStoreDetailView;
 import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity;
 import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailPagerAdapter;
 import com.gloomy.fastfood.utils.TabLayoutUtil;
-import com.gloomy.fastfood.widgets.CustomFloatingButton;
 import com.gloomy.fastfood.widgets.CustomTextInputLayout;
 import com.gloomy.fastfood.widgets.HeaderBar;
 
 import org.androidannotations.annotations.EBean;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -40,10 +43,7 @@ public class StoreDetailPresenter extends BasePresenter {
     @Accessors(prefix = "m")
     private Store mStore;
 
-
-    public void initRecyclerView(RecyclerView recyclerView) {
-
-    }
+    private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
 
     public void initHeaderBar(HeaderBar headerBar) {
         headerBar.setTitle(mStore.getStoreName());
@@ -60,7 +60,7 @@ public class StoreDetailPresenter extends BasePresenter {
         });
     }
 
-    public void initButtonLike(CustomFloatingButton btnLike) {
+    public void initButtonLike(FloatingActionButton btnLike) {
 
     }
 
@@ -75,5 +75,27 @@ public class StoreDetailPresenter extends BasePresenter {
             tabLayout.setupWithViewPager(viewPager);
             TabLayoutUtil.setCustomViewsTabLayout(tabLayout, TAB_ICONS, mContext);
         }
+    }
+
+    public void setDataForViews() {
+        mView.onSetStoreName(mStore.getStoreName());
+        mView.onSetStoreTime(String.format("%s - %s", mSimpleDateFormat.format(mStore.getOpenTime()), mSimpleDateFormat.format(mStore.getCloseTime())));
+        StringBuilder builder = new StringBuilder();
+        if (mStore.getStoreAddress() != null) {
+            StoreAddress address = mStore.getStoreAddress();
+            builder.append(address.getAddressName()).append(", ");
+            if (address.getProvince() != null) {
+                builder.append(address.getProvince().getProvinceName()).append(", ");
+                if (address.getProvince().getCity() != null) {
+                    builder.append(address.getProvince().getCity().getCityName());
+                }
+            }
+        }
+        int lastIndexOfSplitAddress = builder.lastIndexOf(" ,");
+        if (lastIndexOfSplitAddress != -1) {
+            builder.delete(lastIndexOfSplitAddress, lastIndexOfSplitAddress + 2);
+        }
+        mView.onSetStoreAddress(builder.toString());
+        mView.onSetStoreImage(mStore.getMainImage());
     }
 }

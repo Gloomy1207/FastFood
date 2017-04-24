@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -23,18 +24,78 @@
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white">
+                android:background="@android:color/white"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imgPlace"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:contentDescription="@null"
-                    android:scaleType="centerCrop" />
-            </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white">
+
+                    <ImageView
+                        android:id="@+id/imgPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvStoreName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvStoreName"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvStoreAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:padding="10dp"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:id="@+id/btnMap"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@null"
+                            android:padding="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_map" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvStoreTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/layoutAddress"
+                        android:padding="10dp"
+                        android:textSize="12sp" />
+
+                    <View
+                        style="@style/ViewLine"
+                        android:layout_alignParentBottom="true" />
+                </RelativeLayout>
+            </LinearLayout>
 
             <com.gloomy.fastfood.widgets.HeaderBar_
                 android:id="@+id/headerBar"
@@ -58,75 +119,21 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:id="@+id/tvStoreName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:lines="1"
-                        android:padding="10dp"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/tvStoreTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvStoreName"
-                        android:padding="10dp"
-                        android:textSize="12sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvStoreTime"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tvStoreAddress"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ellipsize="end"
-                            android:lines="1"
-                            android:padding="10dp"
-                            android:textSize="12sp" />
-
-                        <ImageView
-                            android:id="@+id/btnMap"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:padding="10dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_map" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <LinearLayout
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <android.support.design.widget.TabLayout
-                        android:id="@+id/tabLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/viewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </RelativeLayout>
 
-    <com.gloomy.fastfood.widgets.CustomFloatingButton_
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

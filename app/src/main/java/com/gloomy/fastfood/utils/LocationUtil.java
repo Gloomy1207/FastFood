@@ -3,7 +3,8 @@ package com.gloomy.fastfood.utils;
 import android.content.Context;
 import android.location.Location;
 
-import com.gloomy.fastfood.models.LatLng;
+import com.gloomy.fastfood.mvp.models.LatLng;
+
 
 /**
  * Copyright © 2017 AsianTech inc.

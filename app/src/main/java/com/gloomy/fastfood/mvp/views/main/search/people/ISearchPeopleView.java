@@ -1,7 +1,7 @@
 package com.gloomy.fastfood.mvp.views.main.search.people;
 
-import com.gloomy.fastfood.models.User;
 import com.gloomy.fastfood.mvp.IBaseView;
+import com.gloomy.fastfood.mvp.models.User;
 
 /**
  * Copyright © 2017 AsianTech inc.

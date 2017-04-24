@@ -6,11 +6,11 @@ import android.support.annotation.NonNull;
 
 import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
-import com.gloomy.fastfood.api.responses.ImageResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.ImageResponse;
 import com.gloomy.fastfood.api.responses.LikeResponse;
 import com.gloomy.fastfood.api.responses.LoginResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
@@ -23,7 +23,7 @@ import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.api.responses.TopicCommentResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
-import com.gloomy.fastfood.models.LatLng;
+import com.gloomy.fastfood.mvp.models.LatLng;
 
 import retrofit2.Callback;
 

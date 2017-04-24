@@ -1,8 +1,8 @@
 package com.gloomy.fastfood.api.responses;
 
-import com.gloomy.fastfood.models.Store;
-import com.gloomy.fastfood.models.Topic;
-import com.gloomy.fastfood.models.User;
+import com.gloomy.fastfood.mvp.models.Store;
+import com.gloomy.fastfood.mvp.models.Topic;
+import com.gloomy.fastfood.mvp.models.User;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

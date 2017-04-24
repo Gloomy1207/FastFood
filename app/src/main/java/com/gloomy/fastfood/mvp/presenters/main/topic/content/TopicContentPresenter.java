@@ -7,11 +7,11 @@ import android.view.View;
 
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.TopicResponse;
-import com.gloomy.fastfood.models.Topic;
+import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
-import com.gloomy.fastfood.mvp.views.main.topic.content.TopicContentAdapter;
 import com.gloomy.fastfood.mvp.views.main.topic.content.ITopicContentView;
+import com.gloomy.fastfood.mvp.views.main.topic.content.TopicContentAdapter;
 import com.gloomy.fastfood.mvp.views.main.topic.content.TopicContentFragment;
 import com.gloomy.fastfood.utils.NetworkUtil;
 

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Food;
+import com.gloomy.fastfood.mvp.models.Food;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
 import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;

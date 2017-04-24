@@ -4,16 +4,18 @@ import android.support.v7.widget.RecyclerView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
-import com.gloomy.fastfood.models.Store;
+import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.Store;
+import com.gloomy.fastfood.mvp.presenters.main.profile.favorite.ProfileFavoritePresenter;
+import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity_;
 import com.gloomy.fastfood.observer.ProfileObserver;
 import com.gloomy.fastfood.observer.listener.OnReceiveObserverListener;
-import com.gloomy.fastfood.mvp.BaseFragment;
-import com.gloomy.fastfood.mvp.presenters.main.profile.favorite.ProfileFavoritePresenter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -51,7 +53,7 @@ public class ProfileFavoriteFragment extends BaseFragment implements IProfileFav
 
     @Override
     public void onItemStoreClick(Store store) {
-        // TODO: 18-Apr-17 Handle when click item store
+        StoreDetailActivity_.intent(getActivity()).mStoreParcel(Parcels.wrap(store)).start();
     }
 
     @Override

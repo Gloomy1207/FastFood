@@ -9,8 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Comment;
-import com.gloomy.fastfood.models.User;
+import com.gloomy.fastfood.mvp.models.Comment;
+import com.gloomy.fastfood.mvp.models.User;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;

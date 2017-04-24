@@ -1,6 +1,6 @@
 package com.gloomy.fastfood.api.responses;
 
-import com.gloomy.fastfood.models.Comment;
+import com.gloomy.fastfood.mvp.models.Comment;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

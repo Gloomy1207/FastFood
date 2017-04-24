@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Store;
 import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.main.rating.store.RatingStorePresenter;
 
 import org.androidannotations.annotations.AfterViews;

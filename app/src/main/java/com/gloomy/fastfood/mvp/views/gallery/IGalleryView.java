@@ -1,7 +1,7 @@
 package com.gloomy.fastfood.mvp.views.gallery;
 
-import com.gloomy.fastfood.models.GalleryImage;
 import com.gloomy.fastfood.mvp.IBaseView;
+import com.gloomy.fastfood.mvp.models.GalleryImage;
 
 /**
  * Copyright © 2017 Gloomy

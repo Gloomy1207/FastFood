@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Place;
+import com.gloomy.fastfood.mvp.models.Place;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
 
 import java.util.List;
