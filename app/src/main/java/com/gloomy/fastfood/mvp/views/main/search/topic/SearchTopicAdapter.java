@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Topic;
 import com.gloomy.fastfood.models.Comment;
+import com.gloomy.fastfood.models.Topic;
 import com.gloomy.fastfood.models.User;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
 import com.squareup.picasso.Picasso;
@@ -58,7 +58,9 @@ public class SearchTopicAdapter extends BaseAdapter<SearchTopicAdapter.ItemSearc
         }
         holder.mTvNumberLike.setText(getContext().getString(R.string.number_of_like, topic.getCountTopicLikes()));
         holder.mBtnLike.setSelected(topic.isLike());
-        holder.mTvPostTime.setText(mSimpleDateFormat.format(topic.getPostTime()));
+        if (topic.getPostTime() != null) {
+            holder.mTvPostTime.setText(mSimpleDateFormat.format(topic.getPostTime()));
+        }
         if (topic.getLatestComment() != null) {
             Comment comment = topic.getLatestComment();
             if (comment.getUser() != null) {

@@ -7,4 +7,5 @@
     <color name="color_footer_bar_text_off">#60000000</color>
     <color name="food_name_color">#795548</color>
     <color name="colorBorder">#FFE0B2</color>
+    <color name="label_bg_color">#B3EF6C00</color>
 </resources>
