@@ -52,7 +52,9 @@ public class TopicContentAdapter extends BaseAdapter<TopicContentAdapter.ItemTop
         holder.mTvTopicTitle.setText(topic.getTitle());
         holder.mTvNumberLike.setText(getContext().getString(R.string.number_of_like, topic.getCountTopicLikes()));
         holder.mTvNumberComment.setText(getContext().getString(R.string.number_of_comment, topic.getCountTopicComments()));
-        holder.mTvPostTime.setText(mSimpleDateFormat.format(topic.getPostTime()));
+        if (topic.getPostTime() != null) {
+            holder.mTvPostTime.setText(mSimpleDateFormat.format(topic.getPostTime()));
+        }
         User user = topic.getUser();
         if (user != null) {
             Picasso.with(getContext())

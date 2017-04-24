@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -24,11 +25,13 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
 
     private final List<Food> mFoods;
     private OnHomeFoodListener mOnHomeFoodListener;
+    private final int mImageWidth;
 
-    public HomeFoodAdapter(@NonNull Context mContext, List<Food> foods, OnHomeFoodListener onHomeFoodListener) {
-        super(mContext);
+    public HomeFoodAdapter(@NonNull Context context, List<Food> foods, OnHomeFoodListener onHomeFoodListener) {
+        super(context);
         mFoods = foods;
         mOnHomeFoodListener = onHomeFoodListener;
+        mImageWidth = (int) ((ScreenUtil.getWidthScreen(context) - ScreenUtil.convertDpiToPixel(context, 20)) / 2);
     }
 
     @Override
@@ -42,6 +45,7 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
         Food food = mFoods.get(position);
         Picasso.with(getContext())
                 .load(food.getMainImage())
+                .resize(mImageWidth, 0)
                 .into(holder.mImgFood);
         holder.mTvFoodName.setText(food.getFoodName());
         holder.mTvFoodDescription.setText(food.getDescription());
