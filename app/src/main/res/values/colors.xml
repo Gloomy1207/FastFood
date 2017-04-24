@@ -2,7 +2,9 @@
 <resources>
     <color name="colorPrimary">#FFCA28</color>
     <color name="colorPrimaryDark">#EF6C00</color>
-    <color name="colorAccent">#EF6C00</color>
+    <color name="colorAccent">#6D4C41</color>
     <color name="color_footer_bar_text_on">@android:color/white</color>
     <color name="color_footer_bar_text_off">#60000000</color>
+    <color name="food_name_color">#795548</color>
+    <color name="colorBorder">#FFE0B2</color>
 </resources>

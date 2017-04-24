@@ -3,17 +3,33 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp">
 
-    <TextView
-        android:id="@+id/tvNumberStar"
+    <LinearLayout
+        android:id="@+id/lnNumberStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:background="@drawable/bg_star_rating"
-        android:drawablePadding="5dp"
-        android:drawableStart="@drawable/ic_star_text_view"
-        android:padding="5dp"
-        android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:gravity="center_vertical"
+        android:paddingBottom="2dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="2dp">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_star_text_view" />
+
+        <TextView
+            android:id="@+id/tvNumberStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:drawablePadding="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvNumberRating"
@@ -21,8 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@id/tvNumberStar"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/lnNumberStart"
         android:textColor="@android:color/black"
-        android:textSize="12sp" />
+        android:textSize="10sp" />
 </RelativeLayout>
