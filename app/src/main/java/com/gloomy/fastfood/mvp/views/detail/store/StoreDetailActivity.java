@@ -1,7 +1,8 @@
 package com.gloomy.fastfood.mvp.views.detail.store;
 
 import android.os.Parcelable;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.widget.RelativeLayout;
 
 import com.gloomy.fastfood.R;
@@ -29,9 +30,6 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
     @Bean
     StoreDetailPresenter mPresenter;
 
-    @ViewById(R.id.recyclerView)
-    RecyclerView mRecyclerView;
-
     @ViewById(R.id.headerBar)
     HeaderBar mHeaderBar;
 
@@ -44,6 +42,12 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
     @ViewById(R.id.layoutParent)
     RelativeLayout mLayoutParent;
 
+    @ViewById(R.id.tabLayout)
+    TabLayout mTabLayout;
+
+    @ViewById(R.id.viewPager)
+    ViewPager mViewPager;
+
     @Extra
     Parcelable mStoreParcel;
 
@@ -53,9 +57,8 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
         Store store = Parcels.unwrap(mStoreParcel);
         mPresenter.setView(this);
         mPresenter.setStore(store);
-        mPresenter.initRecyclerView(mRecyclerView);
+        mPresenter.initViewPager(mViewPager, mTabLayout);
         mPresenter.initHeaderBar(mHeaderBar);
-        mPresenter.getTopicComment(false);
         mPresenter.initButtonLike(mBtnLike);
         mPresenter.initCommentLayout(mCommentLayout);
     }

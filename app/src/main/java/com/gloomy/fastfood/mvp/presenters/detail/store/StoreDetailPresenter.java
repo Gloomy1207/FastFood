@@ -1,10 +1,16 @@
 package com.gloomy.fastfood.mvp.presenters.detail.store;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 
+import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Store;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.views.detail.store.IStoreDetailView;
+import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity;
+import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailPagerAdapter;
+import com.gloomy.fastfood.utils.TabLayoutUtil;
 import com.gloomy.fastfood.widgets.CustomFloatingButton;
 import com.gloomy.fastfood.widgets.CustomTextInputLayout;
 import com.gloomy.fastfood.widgets.HeaderBar;
@@ -20,6 +26,11 @@ import lombok.experimental.Accessors;
  */
 @EBean
 public class StoreDetailPresenter extends BasePresenter {
+
+    private static final int[] TAB_ICONS = {
+            R.drawable.ic_restaurant_menu,
+            R.drawable.ic_mode_comment
+    };
 
     @Setter
     @Accessors(prefix = "m")
@@ -49,15 +60,20 @@ public class StoreDetailPresenter extends BasePresenter {
         });
     }
 
-    public void getTopicComment(boolean isLoadMore) {
-
-    }
-
     public void initButtonLike(CustomFloatingButton btnLike) {
 
     }
 
     public void initCommentLayout(CustomTextInputLayout commentLayout) {
 
+    }
+
+    public void initViewPager(ViewPager viewPager, TabLayout tabLayout) {
+        if (getContext() instanceof StoreDetailActivity) {
+            viewPager.setAdapter(new StoreDetailPagerAdapter(((StoreDetailActivity) getContext()).getFragmentManager()));
+            viewPager.setOffscreenPageLimit(StoreDetailPagerAdapter.NUM_PAGE);
+            tabLayout.setupWithViewPager(viewPager);
+            TabLayoutUtil.setCustomViewsTabLayout(tabLayout, TAB_ICONS, mContext);
+        }
     }
 }
