@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.models.Store;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -29,11 +30,13 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
     private List<Store> mStores;
     private OnHomeStoreListener mOnHomeStoreListener;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+    private final int mImageWidth;
 
-    public HomeStoreAdapter(@NonNull Context mContext, List<Store> stores, OnHomeStoreListener onHomeStoreListener) {
-        super(mContext);
+    public HomeStoreAdapter(@NonNull Context context, List<Store> stores, OnHomeStoreListener onHomeStoreListener) {
+        super(context);
         mStores = stores;
         mOnHomeStoreListener = onHomeStoreListener;
+        mImageWidth = (int) ((ScreenUtil.getWidthScreen(context) - ScreenUtil.convertDpiToPixel(context, 20)) / 2);
     }
 
     @Override
@@ -47,6 +50,7 @@ public class HomeStoreAdapter extends BaseAdapter<HomeStoreAdapter.ItemHomeStore
         Store store = mStores.get(position);
         Picasso.with(getContext())
                 .load(store.getMainImage())
+                .resize(mImageWidth, 0)
                 .into(holder.mImgStore);
         if (store.getStoreAddress() != null) {
             holder.mTvPlaceAddress.setText(store.getStoreAddress().getAddressName());
