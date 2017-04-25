@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Builder;
 
 /**
@@ -21,6 +22,7 @@ import lombok.experimental.Builder;
 @Builder
 @Parcel
 @Setter
+@ToString
 public class Comment {
     /**
      * CommentStatus definition

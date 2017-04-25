@@ -53,12 +53,22 @@ public class ItemCommentVH extends RecyclerView.ViewHolder {
     }
 
     public void setCommentData(final Comment comment, final int position) {
-        User user = comment.getUser();
+        final User user = comment.getUser();
         if (user != null) {
             Picasso.with(mContext)
                     .load(user.getAvatar())
                     .into(mImgAvatar);
             mTvUsername.setText(user.getUsername());
+            View.OnClickListener onUserClick = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mOnCommentListener != null) {
+                        mOnCommentListener.onUserClick(user);
+                    }
+                }
+            };
+            mTvUsername.setOnClickListener(onUserClick);
+            mImgAvatar.setOnClickListener(onUserClick);
         }
         mTvCommentTime.setText(mSimpleDateFormat.format(comment.getPostTime()));
         if (comment.getStatus() == Comment.CommentStatus.SUCCESS) {
@@ -94,5 +104,7 @@ public class ItemCommentVH extends RecyclerView.ViewHolder {
      */
     public interface OnCommentListener {
         void onDeleteClick(int commentId, int position);
+
+        void onUserClick(User user);
     }
 }

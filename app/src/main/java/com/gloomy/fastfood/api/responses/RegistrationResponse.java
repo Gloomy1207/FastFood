@@ -1,5 +1,7 @@
 package com.gloomy.fastfood.api.responses;
 
+import com.gloomy.fastfood.mvp.models.User;
+
 import lombok.Getter;
 
 /**
@@ -11,4 +13,5 @@ public class RegistrationResponse {
     private boolean status;
     private String message;
     private String accessToken;
+    private User user;
 }

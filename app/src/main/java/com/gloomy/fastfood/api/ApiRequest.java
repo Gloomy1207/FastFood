@@ -2,9 +2,10 @@ package com.gloomy.fastfood.api;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 
-import com.gloomy.fastfood.api.responses.CommentResponse;
+import com.gloomy.fastfood.api.responses.PostCommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
@@ -21,9 +22,12 @@ import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
-import com.gloomy.fastfood.api.responses.TopicCommentResponse;
+import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 import com.gloomy.fastfood.mvp.models.LatLng;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import retrofit2.Callback;
 
@@ -32,6 +36,16 @@ import retrofit2.Callback;
  * Created by HungTQB on 29-Mar-17.
  */
 public final class ApiRequest {
+    /**
+     * DeleteCommentType denifition
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({DeleteCommentType.TOPIC, DeleteCommentType.STORE})
+    public @interface DeleteCommentType {
+        int TOPIC = 1;
+        int STORE = 2;
+    }
+
     @SuppressLint("StaticFieldLeak")
     private static ApiRequest sInstance;
     private Context mApplicationContext;
@@ -149,7 +163,7 @@ public final class ApiRequest {
         ServiceHelper.createApiService(mApplicationContext).getFoodImages(foodId, page, size).enqueue(callback);
     }
 
-    public void getTopicComment(Integer page, Integer size, int topicId, Callback<TopicCommentResponse> callback) {
+    public void getTopicComment(Integer page, Integer size, int topicId, Callback<CommentResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getTopicComment(topicId, page, size).enqueue(callback);
     }
 
@@ -157,15 +171,34 @@ public final class ApiRequest {
         ServiceHelper.createApiService(mApplicationContext).likeTopic(topicId).enqueue(callback);
     }
 
-    public void commentTopic(int topicId, String content, Callback<CommentResponse> callback) {
+    public void commentTopic(int topicId, String content, Callback<PostCommentResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).commentTopic(topicId, content).enqueue(callback);
     }
 
-    public void deleteComment(int commentId, Callback<DeleteCommentResponse> callback) {
-        ServiceHelper.createApiService(mApplicationContext).deleteTopicComment(commentId).enqueue(callback);
+    public void deleteComment(int commentId, int deleteType, Callback<DeleteCommentResponse> callback) {
+        switch (deleteType) {
+            case DeleteCommentType.TOPIC:
+                ServiceHelper.createApiService(mApplicationContext).deleteTopicComment(commentId).enqueue(callback);
+                break;
+            case DeleteCommentType.STORE:
+                ServiceHelper.createApiService(mApplicationContext).deleteStoreComment(commentId).enqueue(callback);
+                break;
+        }
     }
 
     public void getTopicImages(Integer page, Integer size, int topicId, Callback<ImageResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getTopicImage(page, size, topicId).enqueue(callback);
+    }
+
+    public void getStoreComment(int placeId, Integer page, Integer size, Callback<CommentResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getStoreComment(placeId, page, size).enqueue(callback);
+    }
+
+    public void favoriteStore(int storeId, Callback<LikeResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).favoriteStore(storeId).enqueue(callback);
+    }
+
+    public void commentStore(int storeId, String content, Callback<PostCommentResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).commentStore(storeId, content).enqueue(callback);
     }
 }

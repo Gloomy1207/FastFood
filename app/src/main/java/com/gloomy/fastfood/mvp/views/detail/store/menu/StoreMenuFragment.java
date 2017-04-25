@@ -2,8 +2,10 @@ package com.gloomy.fastfood.mvp.views.detail.store.menu;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.Store;
 
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 
 /**
  * Copyright © 2017 AsianTech inc.
@@ -11,4 +13,7 @@ import org.androidannotations.annotations.EFragment;
  */
 @EFragment(R.layout.fragment_store_menu)
 public class StoreMenuFragment extends BaseFragment {
+
+    @FragmentArg
+    Store mStore;
 }

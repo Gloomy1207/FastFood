@@ -49,7 +49,7 @@ public class RegisterPresenter extends BasePresenter {
                     if (!registrationResponse.isStatus()) {
                         mView.onRegistrationFailure(registrationResponse.getMessage());
                     } else {
-                        AuthSession.getInstance().setAuth(Auth.builder().apiToken(registrationResponse.getAccessToken()).build());
+                        AuthSession.getInstance().setAuth(Auth.builder().apiToken(registrationResponse.getAccessToken()).user(registrationResponse.getUser()).build());
                         mView.onRegisterSuccess(registrationResponse.getMessage());
                     }
                 }

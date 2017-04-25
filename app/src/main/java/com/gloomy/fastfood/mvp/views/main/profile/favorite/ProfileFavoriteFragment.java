@@ -9,7 +9,7 @@ import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.main.profile.favorite.ProfileFavoritePresenter;
 import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity_;
 import com.gloomy.fastfood.observer.ProfileObserver;
-import com.gloomy.fastfood.observer.listener.OnReceiveObserverListener;
+import com.gloomy.fastfood.observer.listener.OnReceiveProfileObserverListener;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -22,7 +22,7 @@ import org.parceler.Parcels;
  * Created by HungTQB on 01-Apr-17.
  */
 @EFragment(R.layout.fragment_profile_detail)
-public class ProfileFavoriteFragment extends BaseFragment implements IProfileFavoriteView, OnReceiveObserverListener {
+public class ProfileFavoriteFragment extends BaseFragment implements IProfileFavoriteView, OnReceiveProfileObserverListener {
 
     @Bean
     ProfileFavoritePresenter mPresenter;

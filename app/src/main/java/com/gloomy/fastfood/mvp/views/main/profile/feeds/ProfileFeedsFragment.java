@@ -9,7 +9,7 @@ import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.presenters.main.profile.feed.ProfileFeedPresenter;
 import com.gloomy.fastfood.mvp.views.detail.topic.TopicDetailActivity_;
 import com.gloomy.fastfood.observer.ProfileObserver;
-import com.gloomy.fastfood.observer.listener.OnReceiveObserverListener;
+import com.gloomy.fastfood.observer.listener.OnReceiveProfileObserverListener;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -22,7 +22,7 @@ import org.parceler.Parcels;
  * Created by HungTQB on 01-Apr-17.
  */
 @EFragment(R.layout.fragment_profile_feeds)
-public class ProfileFeedsFragment extends BaseFragment implements IProfileFeedView, OnReceiveObserverListener {
+public class ProfileFeedsFragment extends BaseFragment implements IProfileFeedView, OnReceiveProfileObserverListener {
 
     @Bean
     ProfileFeedPresenter mPresenter;

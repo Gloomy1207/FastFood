@@ -70,6 +70,7 @@ public class LoginFragmentPresenter extends BasePresenter {
                 }
                 AuthSession.getInstance().setAuth(Auth.builder()
                         .apiToken(loginResponse.getAccessToken())
+                        .user(loginResponse.getUser())
                         .build());
                 mView.onLoginSuccessful();
             }
@@ -159,7 +160,7 @@ public class LoginFragmentPresenter extends BasePresenter {
                     return;
                 }
                 LoginResponse loginResponse = response.body();
-                AuthSession.getInstance().setAuth(Auth.builder().apiToken(loginResponse.getAccessToken()).build());
+                AuthSession.getInstance().setAuth(Auth.builder().apiToken(loginResponse.getAccessToken()).user(loginResponse.getUser()).build());
                 mView.onLoginSuccessful();
             }
 

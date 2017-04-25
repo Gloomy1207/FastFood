@@ -60,11 +60,7 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
         if (!mIsRefresh) {
             mView.onShowProgressDialog();
         }
-        if (mHomeFoodResponse == null) {
-            ApiRequest.getInstance().getHomeFoodData(null, null, this);
-        } else {
-            initValueAfterLoad();
-        }
+        ApiRequest.getInstance().getHomeFoodData(null, null, this);
     }
 
     @Override
@@ -125,10 +121,10 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
     public void onRefresh() {
         mIsRefresh = true;
         mDisableView.setVisibility(View.VISIBLE);
-        getHomeFoodData();
         if (mEndlessScrollListener != null) {
             mEndlessScrollListener.resetValue();
         }
+        getHomeFoodData();
     }
 
     private void loadMoreData() {

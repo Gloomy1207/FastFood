@@ -19,7 +19,8 @@ import lombok.experimental.Builder;
 @Builder
 @Parcel
 public class Store {
-    int placeId;
+    @SerializedName("place_id")
+    int storeId;
     @SerializedName("place_name")
     String storeName;
     String description;
@@ -33,10 +34,11 @@ public class Store {
     String mainImage;
     float averageRating;
     String numberRating;
+    boolean isFavorite;
 
     @ParcelConstructor
-    public Store(int placeId, String storeName, String description, Time openTime, Time closeTime, StoreAddress storeAddress, List<StoreImage> storeImages, StoreType storeType, String mainImage, float averageRating, String numberRating) {
-        this.placeId = placeId;
+    public Store(int storeId, String storeName, String description, Time openTime, Time closeTime, StoreAddress storeAddress, List<StoreImage> storeImages, StoreType storeType, String mainImage, float averageRating, String numberRating, boolean isFavorite) {
+        this.storeId = storeId;
         this.storeName = storeName;
         this.description = description;
         this.openTime = openTime;
@@ -47,5 +49,6 @@ public class Store {
         this.mainImage = mainImage;
         this.averageRating = averageRating;
         this.numberRating = numberRating;
+        this.isFavorite = isFavorite;
     }
 }
