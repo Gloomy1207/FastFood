@@ -18,6 +18,7 @@ import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
+import com.gloomy.fastfood.api.responses.StoreFoodResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 
 import retrofit2.Call;
@@ -162,4 +163,9 @@ interface ApiService {
     @POST("auth/place/comment")
     Call<PostCommentResponse> commentStore(@Query(ApiParameters.PLACE_ID) int topicId,
                                            @Query(ApiParameters.CONTENT) String content);
+
+    @GET("basic/place/food")
+    Call<StoreFoodResponse> getStoreFood(@Query(ApiParameters.PLACE_ID) int placeId,
+                                         @Query(ApiParameters.PAGE) Integer page,
+                                         @Query(ApiParameters.SIZE) Integer size);
 }

@@ -23,6 +23,7 @@ import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.api.responses.CommentResponse;
+import com.gloomy.fastfood.api.responses.StoreFoodResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 import com.gloomy.fastfood.mvp.models.LatLng;
 
@@ -37,7 +38,7 @@ import retrofit2.Callback;
  */
 public final class ApiRequest {
     /**
-     * DeleteCommentType denifition
+     * DeleteCommentType definition
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({DeleteCommentType.TOPIC, DeleteCommentType.STORE})
@@ -200,5 +201,9 @@ public final class ApiRequest {
 
     public void commentStore(int storeId, String content, Callback<PostCommentResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).commentStore(storeId, content).enqueue(callback);
+    }
+
+    public void getStoreFood(int storeId, Integer page, Integer size, Callback<StoreFoodResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getStoreFood(storeId, page, size).enqueue(callback);
     }
 }

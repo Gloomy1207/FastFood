@@ -2,7 +2,6 @@ package com.gloomy.fastfood.mvp.views.detail.store.comment;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.ViewGroup;
 
 import com.gloomy.fastfood.mvp.models.Comment;

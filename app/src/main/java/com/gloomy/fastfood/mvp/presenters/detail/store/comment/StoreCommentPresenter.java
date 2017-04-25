@@ -3,7 +3,6 @@ package com.gloomy.fastfood.mvp.presenters.detail.store.comment;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
@@ -199,7 +198,6 @@ public class StoreCommentPresenter extends BasePresenter implements ItemCommentV
 
     public void announceCommentComplete(Activity activity) {
         if (activity instanceof StoreDetailActivity) {
-            Log.d("TAG", "announceCommentComplete: " + activity);
             ((StoreDetailActivity) activity).onSendCommentComplete();
         }
     }

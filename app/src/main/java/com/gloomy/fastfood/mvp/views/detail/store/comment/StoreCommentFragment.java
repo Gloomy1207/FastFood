@@ -88,7 +88,7 @@ public class StoreCommentFragment extends BaseFragment implements IStoreCommentV
 
     @Override
     public void onAddFakeComment() {
-        mRecyclerView.getAdapter().notifyDataSetChanged();
+        mRecyclerView.getAdapter().notifyItemChanged(0);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class StoreCommentFragment extends BaseFragment implements IStoreCommentV
 
     @Override
     public void onUpdateUploadedComment() {
-        mRecyclerView.getAdapter().notifyDataSetChanged();
+        mRecyclerView.getAdapter().notifyItemChanged(0);
     }
 
     @Override
