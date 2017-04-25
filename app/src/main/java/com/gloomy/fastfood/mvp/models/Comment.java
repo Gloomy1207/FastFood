@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
 
 import android.support.annotation.IntDef;
 
@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Builder;
 
 /**
@@ -21,6 +22,7 @@ import lombok.experimental.Builder;
 @Builder
 @Parcel
 @Setter
+@ToString
 public class Comment {
     /**
      * CommentStatus definition
@@ -33,12 +35,12 @@ public class Comment {
         int SUCCESS = 0;
     }
 
-    private int commentId;
-    private User user;
-    private String content;
-    private Timestamp postTime;
-    private boolean isAllowDelete;
-    private int status;
+    int commentId;
+    User user;
+    String content;
+    Timestamp postTime;
+    boolean isAllowDelete;
+    int status;
 
     @ParcelConstructor
     public Comment(int commentId, User user, String content, Timestamp postTime, boolean isAllowDelete, int status) {

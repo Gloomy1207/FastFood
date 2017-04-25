@@ -11,9 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Province;
-import com.gloomy.fastfood.models.Store;
-import com.gloomy.fastfood.models.StoreAddress;
+import com.gloomy.fastfood.mvp.models.Province;
+import com.gloomy.fastfood.mvp.models.Store;
+import com.gloomy.fastfood.mvp.models.StoreAddress;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
 import com.squareup.picasso.Picasso;
 

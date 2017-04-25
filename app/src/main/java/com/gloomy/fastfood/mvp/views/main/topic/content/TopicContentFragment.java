@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Topic;
 import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.presenters.main.topic.content.TopicContentPresenter;
 import com.gloomy.fastfood.mvp.views.detail.topic.TopicDetailActivity_;
 

@@ -6,7 +6,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.CardView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Food;
+import com.gloomy.fastfood.mvp.models.Food;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.gallery.GalleryPresenter;
 import com.gloomy.fastfood.mvp.views.detail.food.IFoodDetailView;

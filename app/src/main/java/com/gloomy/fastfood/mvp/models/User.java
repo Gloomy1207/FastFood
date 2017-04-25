@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
 
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
@@ -12,13 +12,13 @@ import lombok.Getter;
 @Getter
 @Parcel
 public class User {
-    private Long userId;
-    private String username;
-    private String fullname;
-    private String email;
-    private String description;
-    private int point;
-    private String avatar;
+    Long userId;
+    String username;
+    String fullname;
+    String email;
+    String description;
+    int point;
+    String avatar;
 
     @ParcelConstructor
     public User(Long userId, String username, String fullname, String email, String description, int point, String avatar) {

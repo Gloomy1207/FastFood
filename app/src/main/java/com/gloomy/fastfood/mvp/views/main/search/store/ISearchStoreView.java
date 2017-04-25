@@ -1,7 +1,7 @@
 package com.gloomy.fastfood.mvp.views.main.search.store;
 
-import com.gloomy.fastfood.models.Store;
 import com.gloomy.fastfood.mvp.IBaseView;
+import com.gloomy.fastfood.mvp.models.Store;
 
 /**
  * Copyright © 2017 AsianTech inc.

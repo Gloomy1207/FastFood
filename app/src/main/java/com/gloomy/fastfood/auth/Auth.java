@@ -1,6 +1,7 @@
 package com.gloomy.fastfood.auth;
 
-import com.gloomy.fastfood.models.User;
+
+import com.gloomy.fastfood.mvp.models.User;
 
 import lombok.Getter;
 import lombok.experimental.Builder;

@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.SearchStoreItem;
-import com.gloomy.fastfood.models.Store;
+import com.gloomy.fastfood.mvp.models.SearchStoreItem;
+import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
 import com.gloomy.fastfood.viewholders.ItemTitleVH;
 import com.squareup.picasso.Picasso;

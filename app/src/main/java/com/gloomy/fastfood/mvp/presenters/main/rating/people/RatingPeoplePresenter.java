@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
-import com.gloomy.fastfood.models.User;
+import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.views.main.rating.people.IRatingPeopleView;

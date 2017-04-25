@@ -2,13 +2,14 @@ package com.gloomy.fastfood.api;
 
 import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
-import com.gloomy.fastfood.api.responses.ImageResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
 import com.gloomy.fastfood.api.responses.HomeStoreResponse;
+import com.gloomy.fastfood.api.responses.ImageResponse;
 import com.gloomy.fastfood.api.responses.LikeResponse;
 import com.gloomy.fastfood.api.responses.LoginResponse;
+import com.gloomy.fastfood.api.responses.PostCommentResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
@@ -17,7 +18,7 @@ import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
-import com.gloomy.fastfood.api.responses.TopicCommentResponse;
+import com.gloomy.fastfood.api.responses.StoreFoodResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 
 import retrofit2.Call;
@@ -129,16 +130,16 @@ interface ApiService {
                                       @Query(ApiParameters.SIZE) Integer size);
 
     @GET("basic/topic/comment")
-    Call<TopicCommentResponse> getTopicComment(@Query(ApiParameters.TOPIC_ID) int topicId,
-                                               @Query(ApiParameters.PAGE) Integer page,
-                                               @Query(ApiParameters.SIZE) Integer size);
+    Call<CommentResponse> getTopicComment(@Query(ApiParameters.TOPIC_ID) int topicId,
+                                          @Query(ApiParameters.PAGE) Integer page,
+                                          @Query(ApiParameters.SIZE) Integer size);
 
     @GET("auth/topic/like")
     Call<LikeResponse> likeTopic(@Query(ApiParameters.TOPIC_ID) int topicId);
 
     @POST("auth/topic/comment")
-    Call<CommentResponse> commentTopic(@Query(ApiParameters.TOPIC_ID) int topicId,
-                                       @Query(ApiParameters.CONTENT) String content);
+    Call<PostCommentResponse> commentTopic(@Query(ApiParameters.TOPIC_ID) int topicId,
+                                           @Query(ApiParameters.CONTENT) String content);
 
     @GET("auth/topic/delete-comment")
     Call<DeleteCommentResponse> deleteTopicComment(@Query(ApiParameters.COMMENT_ID) int commentId);
@@ -147,4 +148,24 @@ interface ApiService {
     Call<ImageResponse> getTopicImage(@Query(ApiParameters.PAGE) Integer page,
                                       @Query(ApiParameters.SIZE) Integer size,
                                       @Query(ApiParameters.TOPIC_ID) int topicId);
+
+    @GET("basic/place/comment")
+    Call<CommentResponse> getStoreComment(@Query(ApiParameters.PLACE_ID) int placeId,
+                                          @Query(ApiParameters.PAGE) Integer page,
+                                          @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("auth/place/delete-comment")
+    Call<DeleteCommentResponse> deleteStoreComment(@Query(ApiParameters.COMMENT_ID) int commentId);
+
+    @GET("auth/place/like")
+    Call<LikeResponse> favoriteStore(@Query(ApiParameters.PLACE_ID) int placeId);
+
+    @POST("auth/place/comment")
+    Call<PostCommentResponse> commentStore(@Query(ApiParameters.PLACE_ID) int topicId,
+                                           @Query(ApiParameters.CONTENT) String content);
+
+    @GET("basic/place/food")
+    Call<StoreFoodResponse> getStoreFood(@Query(ApiParameters.PLACE_ID) int placeId,
+                                         @Query(ApiParameters.PAGE) Integer page,
+                                         @Query(ApiParameters.SIZE) Integer size);
 }

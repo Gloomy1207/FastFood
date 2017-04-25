@@ -1,4 +1,7 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
+
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import lombok.Getter;
 import lombok.experimental.Builder;
@@ -9,9 +12,18 @@ import lombok.experimental.Builder;
  */
 @Getter
 @Builder
+@Parcel
 public class StoreAddress {
-    private double lat;
-    private double lng;
-    private String addressName;
-    private Province province;
+    double lat;
+    double lng;
+    String addressName;
+    Province province;
+
+    @ParcelConstructor
+    public StoreAddress(double lat, double lng, String addressName, Province province) {
+        this.lat = lat;
+        this.lng = lng;
+        this.addressName = addressName;
+        this.province = province;
+    }
 }

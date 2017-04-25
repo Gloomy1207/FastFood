@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
-import com.gloomy.fastfood.models.City;
-import com.gloomy.fastfood.models.Place;
-import com.gloomy.fastfood.models.Province;
+import com.gloomy.fastfood.mvp.models.City;
+import com.gloomy.fastfood.mvp.models.Place;
+import com.gloomy.fastfood.mvp.models.Province;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.views.main.home.place.HomePlaceAdapter;

@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
 
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;

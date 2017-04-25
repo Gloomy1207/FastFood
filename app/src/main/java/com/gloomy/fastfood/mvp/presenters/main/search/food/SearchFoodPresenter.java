@@ -7,8 +7,8 @@ import android.view.View;
 
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
-import com.gloomy.fastfood.models.Food;
-import com.gloomy.fastfood.models.LatLng;
+import com.gloomy.fastfood.mvp.models.Food;
+import com.gloomy.fastfood.mvp.models.LatLng;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.views.main.search.food.ISearchFoodView;

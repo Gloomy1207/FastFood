@@ -5,14 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Store;
 import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.main.home.store.HomeStorePresenter;
+import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -72,7 +74,7 @@ public class HomeStoreFragment extends BaseFragment implements IHomeStoreView {
 
     @Override
     public void onItemHomeStoreClick(Store store) {
-
+        StoreDetailActivity_.intent(getActivity()).mStoreParcel(Parcels.wrap(store)).start();
     }
 
     @Override

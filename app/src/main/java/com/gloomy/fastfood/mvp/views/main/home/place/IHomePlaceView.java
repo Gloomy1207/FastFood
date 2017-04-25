@@ -1,8 +1,8 @@
 package com.gloomy.fastfood.mvp.views.main.home.place;
 
-import com.gloomy.fastfood.models.City;
-import com.gloomy.fastfood.models.Province;
 import com.gloomy.fastfood.mvp.IBaseView;
+import com.gloomy.fastfood.mvp.models.City;
+import com.gloomy.fastfood.mvp.models.Province;
 
 /**
  * Copyright © 2017 AsianTech inc.

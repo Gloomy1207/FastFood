@@ -7,14 +7,14 @@ import android.view.View;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
-import com.gloomy.fastfood.api.responses.CommentResponse;
+import com.gloomy.fastfood.api.responses.PostCommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
 import com.gloomy.fastfood.api.responses.LikeResponse;
-import com.gloomy.fastfood.api.responses.TopicCommentResponse;
+import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.auth.AuthSession;
-import com.gloomy.fastfood.models.Comment;
-import com.gloomy.fastfood.models.Topic;
-import com.gloomy.fastfood.models.User;
+import com.gloomy.fastfood.mvp.models.Comment;
+import com.gloomy.fastfood.mvp.models.Topic;
+import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.presenters.gallery.GalleryPresenter;
@@ -117,14 +117,14 @@ public class TopicDetailPresenter extends BasePresenter implements TopicDetailAd
         if (!isLoadMore) {
             mView.onShowProgressDialog();
         }
-        ApiRequest.getInstance().getTopicComment(mCurrentPage, null, mTopic.getTopicId(), new Callback<TopicCommentResponse>() {
+        ApiRequest.getInstance().getTopicComment(mCurrentPage, null, mTopic.getTopicId(), new Callback<CommentResponse>() {
             @Override
-            public void onResponse(Call<TopicCommentResponse> call, Response<TopicCommentResponse> response) {
+            public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
                 mView.onDismissProgressDialog();
                 if (response == null || response.body() == null) {
                     return;
                 }
-                TopicCommentResponse commentResponse = response.body();
+                CommentResponse commentResponse = response.body();
                 mComments.addAll(commentResponse.getComments());
                 mCurrentPage = commentResponse.getCurrentPage();
                 mIsLast = commentResponse.isLast();
@@ -132,7 +132,7 @@ public class TopicDetailPresenter extends BasePresenter implements TopicDetailAd
             }
 
             @Override
-            public void onFailure(Call<TopicCommentResponse> call, Throwable t) {
+            public void onFailure(Call<CommentResponse> call, Throwable t) {
                 mView.onDismissProgressDialog();
                 mView.onLoadDataFailure();
             }
@@ -160,7 +160,7 @@ public class TopicDetailPresenter extends BasePresenter implements TopicDetailAd
     }
 
     private void deleteComment(int commentId, final int position) {
-        ApiRequest.getInstance().deleteComment(commentId, new Callback<DeleteCommentResponse>() {
+        ApiRequest.getInstance().deleteComment(commentId, ApiRequest.DeleteCommentType.TOPIC, new Callback<DeleteCommentResponse>() {
             @Override
             public void onResponse(Call<DeleteCommentResponse> call, Response<DeleteCommentResponse> response) {
                 if (response == null || response.body() == null) {
@@ -250,9 +250,9 @@ public class TopicDetailPresenter extends BasePresenter implements TopicDetailAd
                 .status(Comment.CommentStatus.LOADING)
                 .build());
         mView.onFakeAddComment();
-        ApiRequest.getInstance().commentTopic(mTopic.getTopicId(), message, new Callback<CommentResponse>() {
+        ApiRequest.getInstance().commentTopic(mTopic.getTopicId(), message, new Callback<PostCommentResponse>() {
             @Override
-            public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
+            public void onResponse(Call<PostCommentResponse> call, Response<PostCommentResponse> response) {
                 mIsSendingComment = false;
                 if (response == null || response.body() == null) {
                     updateFirstCommentStatus(Comment.CommentStatus.ERROR);
@@ -268,7 +268,7 @@ public class TopicDetailPresenter extends BasePresenter implements TopicDetailAd
             }
 
             @Override
-            public void onFailure(Call<CommentResponse> call, Throwable t) {
+            public void onFailure(Call<PostCommentResponse> call, Throwable t) {
                 mIsSendingComment = false;
                 updateFirstCommentStatus(Comment.CommentStatus.ERROR);
                 mView.onCommentComplete();

@@ -8,4 +8,24 @@ import com.gloomy.fastfood.mvp.IBaseView;
  */
 public interface IStoreDetailView extends IBaseView {
     void onBackClick();
+
+    void onSetStoreName(String storeName);
+
+    void onSetStoreTime(String storeTime);
+
+    void onSetStoreAddress(String storeAddress);
+
+    void onSetStoreImage(String imagePath);
+
+    void onSetNumberStars(String stars);
+
+    void onSetNumberRating(String numberRating);
+
+    void onNotLogin();
+
+    void onEmptyComment();
+
+    void onSendingComment();
+
+    void onSendComment();
 }

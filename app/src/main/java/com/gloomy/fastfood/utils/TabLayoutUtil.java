@@ -55,6 +55,15 @@ public final class TabLayoutUtil {
         return view;
     }
 
+    public static View getCustomHeader(String title, Context context) {
+        View view = View.inflate(context, R.layout.layout_home_tab_layout, null);
+        TextView tvTabTitle = (TextView) view.findViewById(R.id.tvTabTitle);
+        ImageView imgIcon = (ImageView) view.findViewById(R.id.imgIcon);
+        tvTabTitle.setVisibility(View.VISIBLE);
+        imgIcon.setVisibility(View.GONE);
+        tvTabTitle.setText(title);
+        return view;
+    }
 
     public static void setCustomViewsTabLayout(TabLayout tabLayout, List<View> views) {
         for (int i = 0, n = tabLayout.getTabCount(); i < n; i++) {
@@ -79,6 +88,15 @@ public final class TabLayoutUtil {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {
                 tab.setCustomView(getCustomHeader(resIds[i], context));
+            }
+        }
+    }
+
+    public static void setCustomViewsTabLayout(TabLayout tabLayout, String[] titles, Context context) {
+        for (int i = 0, n = tabLayout.getTabCount(); i < n; i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            if (tab != null) {
+                tab.setCustomView(getCustomHeader(titles[i], context));
             }
         }
     }

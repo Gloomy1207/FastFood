@@ -8,7 +8,7 @@ import android.view.View;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
-import com.gloomy.fastfood.models.Food;
+import com.gloomy.fastfood.mvp.models.Food;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.views.main.home.food.HomeFoodAdapter;
@@ -60,11 +60,7 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
         if (!mIsRefresh) {
             mView.onShowProgressDialog();
         }
-        if (mHomeFoodResponse == null) {
-            ApiRequest.getInstance().getHomeFoodData(null, null, this);
-        } else {
-            initValueAfterLoad();
-        }
+        ApiRequest.getInstance().getHomeFoodData(null, null, this);
     }
 
     @Override
@@ -125,10 +121,10 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
     public void onRefresh() {
         mIsRefresh = true;
         mDisableView.setVisibility(View.VISIBLE);
-        getHomeFoodData();
         if (mEndlessScrollListener != null) {
             mEndlessScrollListener.resetValue();
         }
+        getHomeFoodData();
     }
 
     private void loadMoreData() {

@@ -1,6 +1,6 @@
 package com.gloomy.fastfood.api.responses;
 
-import com.gloomy.fastfood.models.City;
+import com.gloomy.fastfood.mvp.models.City;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

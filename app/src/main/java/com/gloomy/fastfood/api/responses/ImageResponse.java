@@ -1,6 +1,6 @@
 package com.gloomy.fastfood.api.responses;
 
-import com.gloomy.fastfood.models.Image;
+import com.gloomy.fastfood.mvp.models.Image;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

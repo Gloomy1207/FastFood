@@ -6,7 +6,6 @@
     android:background="@drawable/bg_border_item_list"
     android:paddingBottom="5dp">
 
-
     <ImageView
         android:id="@+id/imgFood"
         android:layout_width="match_parent"
@@ -51,9 +50,9 @@
         android:id="@+id/text"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="center"
-        android:layout_marginRight="1dp"
+        android:layout_marginEnd="1dp"
         android:layout_marginTop="1dp"
         android:gravity="center"
         android:padding="16dp"

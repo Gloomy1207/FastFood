@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.GalleryImage;
+import com.gloomy.fastfood.mvp.models.GalleryImage;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
 import com.gloomy.fastfood.widgets.DynamicHeightImageView;
 import com.squareup.picasso.Picasso;

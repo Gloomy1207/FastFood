@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Topic;
-import com.gloomy.fastfood.models.User;
+import com.gloomy.fastfood.mvp.models.Topic;
+import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
 import com.squareup.picasso.Picasso;
 

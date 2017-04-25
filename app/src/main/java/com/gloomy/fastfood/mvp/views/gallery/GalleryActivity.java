@@ -3,8 +3,8 @@ package com.gloomy.fastfood.mvp.views.gallery;
 import android.support.v7.widget.RecyclerView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.GalleryImage;
 import com.gloomy.fastfood.mvp.BaseActivity;
+import com.gloomy.fastfood.mvp.models.GalleryImage;
 import com.gloomy.fastfood.mvp.presenters.gallery.GalleryPresenter;
 import com.gloomy.fastfood.widgets.HeaderBar;
 import com.gloomy.fastfood.widgets.dialog.GalleryDialog;

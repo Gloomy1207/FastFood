@@ -6,14 +6,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Store;
 import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.main.home.favorite.HomeFavoritePresenter;
+import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -64,7 +66,7 @@ public class HomeFavoriteFragment extends BaseFragment implements IHomeFavoriteV
 
     @Override
     public void onStoreClick(Store store) {
-        // TODO: 20/04/2017 Handle when click store
+        StoreDetailActivity_.intent(getActivity()).mStoreParcel(Parcels.wrap(store)).start();
     }
 
     @Override

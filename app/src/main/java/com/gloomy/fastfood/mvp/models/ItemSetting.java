@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
 
 import android.support.annotation.IntDef;
 

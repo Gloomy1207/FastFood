@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Food;
 import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.Food;
 import com.gloomy.fastfood.mvp.presenters.main.search.food.SearchFoodPresenter;
 import com.gloomy.fastfood.mvp.views.detail.food.FoodDetailActivity_;
 

@@ -1,6 +1,6 @@
 package com.gloomy.fastfood.mvp.views.detail.topic;
 
-import com.gloomy.fastfood.models.User;
+import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.IBaseView;
 import com.gloomy.fastfood.widgets.CustomConfirmDialog;
 

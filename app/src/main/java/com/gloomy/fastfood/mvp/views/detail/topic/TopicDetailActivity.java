@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.RelativeLayout;
 
 import com.gloomy.fastfood.R;
-import com.gloomy.fastfood.models.Topic;
-import com.gloomy.fastfood.models.User;
 import com.gloomy.fastfood.mvp.BaseActivity;
+import com.gloomy.fastfood.mvp.models.Topic;
+import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.presenters.detail.topic.TopicDetailPresenter;
 import com.gloomy.fastfood.widgets.CustomConfirmDialog;
 import com.gloomy.fastfood.widgets.CustomFloatingButton;

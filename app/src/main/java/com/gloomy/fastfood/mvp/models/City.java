@@ -1,6 +1,9 @@
-package com.gloomy.fastfood.models;
+package com.gloomy.fastfood.mvp.models;
 
 import com.google.gson.annotations.SerializedName;
+
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import java.util.List;
 
@@ -13,11 +16,21 @@ import lombok.experimental.Builder;
  */
 @Getter
 @Builder
+@Parcel
 public class City {
-    private int cityId;
-    private String cityName;
-    private double lat;
-    private double lng;
+    int cityId;
+    String cityName;
+    double lat;
+    double lng;
     @SerializedName("first_five_provinces")
-    private List<Province> provinces;
+    List<Province> provinces;
+
+    @ParcelConstructor
+    public City(int cityId, String cityName, double lat, double lng, List<Province> provinces) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+        this.lat = lat;
+        this.lng = lng;
+        this.provinces = provinces;
+    }
 }
