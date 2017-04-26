@@ -4,7 +4,6 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -68,8 +67,10 @@ public class CustomMessageDialog extends DialogFragment {
 
     @Override
     public void dismiss() {
-        mIsAdded = false;
-        super.dismiss();
+        if (mIsAdded) {
+            mIsAdded = false;
+            super.dismiss();
+        }
     }
 
     @Click(R.id.btnClose)

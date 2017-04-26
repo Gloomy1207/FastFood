@@ -32,7 +32,7 @@ import java.lang.annotation.RetentionPolicy;
  * Copyright © 2017 AsianTech inc.
  * Created by HungTQB on 24/04/2017.
  */
-@EActivity(R.layout.activity_detail_place)
+@EActivity(R.layout.activity_detail_store)
 public class StoreDetailActivity extends BaseActivity implements IStoreDetailView {
 
     @Bean

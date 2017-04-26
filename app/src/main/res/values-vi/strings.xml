@@ -50,4 +50,7 @@
     <string name="button_text_submit">Đánh giá</string>
     <string name="rating_title_text">Đánh giá %s</string>
     <string name="rating_type_empty">Không có chỉ tiêu đánh giá nào</string>
+    <string name="empty_store_place_detail">Không có cửa hàng nào tại khu vực này, xin hãy xem khu vực khác!</string>
+    <string name="empty_province_place_detail">Không có quận nào ở thành phố này, xin hãy xem thành phố khác!</string>
+    <string name="empty_food_place_detail">Không có thức ăn ở khu vực này, làm ơn đến khu vực khác</string>
 </resources>

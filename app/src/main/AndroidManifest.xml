@@ -57,6 +57,10 @@
         <activity
             android:name=".mvp.views.detail.store.StoreDetailActivity_"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.views.detail.place.PlaceDetailActivity_"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

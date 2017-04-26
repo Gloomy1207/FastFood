@@ -86,7 +86,7 @@ public class HomeStorePresenter extends BasePresenter implements Callback<HomeSt
     }
 
     public void initRecyclerView(RecyclerView recyclerView) {
-        mStores = mHomeStoreResponse.getStores();
+        mStores.addAll(mHomeStoreResponse.getStores());
         recyclerView.setHasFixedSize(true);
         HomeStoreAdapter adapter = new HomeStoreAdapter(mContext, mStores, this);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(LAYOUT_COLUMN_NUM, StaggeredGridLayoutManager.VERTICAL);

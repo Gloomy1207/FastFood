@@ -15,10 +15,9 @@ import lombok.experimental.Builder;
  */
 @Builder
 @Getter
-
 public class RatingStoreRequest {
     @SerializedName(ApiParameters.RATING_LIST)
     private List<RatingType> ratingTypes;
     @SerializedName(ApiParameters.PLACE_ID)
-    private int placeId;
+    private int storeId;
 }

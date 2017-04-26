@@ -35,15 +35,11 @@ import retrofit2.Response;
 @EBean
 public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoodResponse>, HomeFoodAdapter.OnHomeFoodListener, SwipeRefreshLayout.OnRefreshListener {
     private static final int RECYCLER_NUM_COLUMN = 2;
-
+    @DimensionPixelOffsetRes(R.dimen.space_item_decoration_recycler_view)
+    int mDecorationSpace;
     @Setter
     @Accessors(prefix = "m")
     private IHomeFoodView mView;
-
-    @DimensionPixelOffsetRes(R.dimen.space_item_decoration_recycler_view)
-    int mDecorationSpace;
-
-
     private boolean mIsLastPage;
     private int mCurrentPage;
     private List<Food> mFoods = new ArrayList<>();
@@ -56,6 +52,7 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
     public void getHomeFoodData() {
         if (!NetworkUtil.isNetworkAvailable(mContext)) {
             mView.onNoInternetConnection();
+            return;
         }
         if (!mIsRefresh) {
             mView.onShowProgressDialog();
@@ -92,7 +89,7 @@ public class HomeFoodPresenter extends BasePresenter implements Callback<HomeFoo
     }
 
     public void initRecyclerView(RecyclerView recyclerView) {
-        mFoods = mHomeFoodResponse.getFoods();
+        mFoods.addAll(mHomeFoodResponse.getFoods());
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(RECYCLER_NUM_COLUMN, StaggeredGridLayoutManager.VERTICAL);
         HomeFoodAdapter adapter = new HomeFoodAdapter(mContext, mFoods, this);
         recyclerView.addItemDecoration(new SpacesItemDecoration(mDecorationSpace));

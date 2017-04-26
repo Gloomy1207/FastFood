@@ -22,6 +22,9 @@ import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.api.responses.StoreFoodResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
+import com.gloomy.fastfood.mvp.models.Province;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -173,5 +176,20 @@ interface ApiService {
                                          @Query(ApiParameters.SIZE) Integer size);
 
     @POST("auth/place/rating")
-    Call<PlaceRatingResponse> ratingPlace(@Body RatingStoreRequest request);
+    Call<PlaceRatingResponse> ratingStore(@Body RatingStoreRequest request);
+
+    @GET("basic/location/food")
+    Call<HomeFoodResponse> getPlaceFoodData(@Query(ApiParameters.LOCATION_ID) int placeId,
+                                            @Query(ApiParameters.LOCATION_TYPE) int placeType,
+                                            @Query(ApiParameters.PAGE) Integer page,
+                                            @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("basic/location/place")
+    Call<HomeStoreResponse> getPlaceStoreData(@Query(ApiParameters.LOCATION_ID) int placeId,
+                                              @Query(ApiParameters.LOCATION_TYPE) int placeType,
+                                              @Query(ApiParameters.PAGE) Integer page,
+                                              @Query(ApiParameters.SIZE) Integer size);
+
+    @GET("basic/location/province")
+    Call<List<Province>> getCityProvinceData(@Query(ApiParameters.CITY_ID) int cityId);
 }
