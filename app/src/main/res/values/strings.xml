@@ -41,4 +41,7 @@
     <string name="confirm_delete_comment">Do you want to delete this comment?</string>
     <string name="delete_button">Delete</string>
     <string name="button_cancel">Cancel</string>
+    <string name="button_text_submit">Submit</string>
+    <string name="rating_title_text">Rating %s</string>
+    <string name="rating_type_empty">There is no rating type!</string>
 </resources>

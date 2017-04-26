@@ -35,55 +35,32 @@ import java.lang.annotation.RetentionPolicy;
 @EActivity(R.layout.activity_detail_place)
 public class StoreDetailActivity extends BaseActivity implements IStoreDetailView {
 
-    /**
-     * StoreDetailItemPosition definition
-     */
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef
-    private @interface StoreDetailItemPosition {
-        int MENU = 0;
-        int COMMENT = 1;
-    }
-
     @Bean
     StoreDetailPresenter mPresenter;
-
     @ViewById(R.id.headerBar)
     HeaderBar mHeaderBar;
-
     @ViewById(R.id.textInputLayout)
     CustomTextInputLayout mCommentLayout;
-
     @ViewById(R.id.layoutParent)
     CoordinatorLayout mLayoutParent;
-
     @ViewById(R.id.tabLayout)
     TabLayout mTabLayout;
-
     @ViewById(R.id.viewPager)
     ViewPager mViewPager;
-
     @ViewById(R.id.imgPlace)
     ImageView mImgPlace;
-
     @ViewById(R.id.tvStoreName)
     TextView mTvStoreName;
-
     @ViewById(R.id.tvStoreTime)
     TextView mTvStoreTime;
-
     @ViewById(R.id.tvStoreAddress)
     TextView mTvStoreAddress;
-
     @ViewById(R.id.tvNumberStar)
     TextView mTvNumberStar;
-
     @ViewById(R.id.tvNumberRating)
     TextView mTvNumberRating;
-
     @ViewById(R.id.btnFavorite)
     FloatingActionButton mBtnFavorite;
-
     @Extra
     Parcelable mStoreParcel;
 
@@ -172,6 +149,16 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
         mViewPager.setCurrentItem(StoreDetailItemPosition.COMMENT);
     }
 
+    @Override
+    public void onRatingComplete(String message) {
+        showMessageDialog(message, getString(R.string.button_close));
+    }
+
+    @Override
+    public void onRatingFailure() {
+        showLoadDataFailure();
+    }
+
     @Click(R.id.btnFavorite)
     void onFavoriteClick() {
         mPresenter.onFavoriteClick(mBtnFavorite);
@@ -179,5 +166,20 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
 
     public void onSendCommentComplete() {
         mPresenter.onSendCommentComplete();
+    }
+
+    @Click(R.id.layoutRating)
+    void onRatingClick() {
+        mPresenter.onRatingClick(getFragmentManager());
+    }
+
+    /**
+     * StoreDetailItemPosition definition
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef
+    private @interface StoreDetailItemPosition {
+        int MENU = 0;
+        int COMMENT = 1;
     }
 }

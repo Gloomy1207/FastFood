@@ -28,4 +28,8 @@ public interface IStoreDetailView extends IBaseView {
     void onSendingComment();
 
     void onSendComment();
+
+    void onRatingComplete(String message);
+
+    void onRatingFailure();
 }

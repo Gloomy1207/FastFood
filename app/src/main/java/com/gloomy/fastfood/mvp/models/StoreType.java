@@ -1,5 +1,7 @@
 package com.gloomy.fastfood.mvp.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
@@ -18,6 +20,7 @@ import lombok.experimental.Builder;
 public class StoreType {
     int storeTypeId;
     String typeName;
+    @SerializedName("rating_type")
     List<RatingType> ratingTypes;
 
     @ParcelConstructor
