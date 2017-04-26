@@ -28,6 +28,7 @@ import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.api.responses.StoreFoodResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 import com.gloomy.fastfood.mvp.models.LatLng;
+import com.gloomy.fastfood.mvp.models.Province;
 import com.gloomy.fastfood.mvp.models.RatingType;
 
 import java.lang.annotation.Retention;
@@ -201,9 +202,21 @@ public final class ApiRequest {
         ServiceHelper.createApiService(mApplicationContext).getStoreFood(storeId, page, size).enqueue(callback);
     }
 
-    public void ratingPlace(int placeId, List<RatingType> ratingTypes, Callback<PlaceRatingResponse> callback) {
-        RatingStoreRequest request = RatingStoreRequest.builder().placeId(placeId).ratingTypes(ratingTypes).build();
-        ServiceHelper.createApiService(mApplicationContext).ratingPlace(request).enqueue(callback);
+    public void ratingStore(int storeId, List<RatingType> ratingTypes, Callback<PlaceRatingResponse> callback) {
+        RatingStoreRequest request = RatingStoreRequest.builder().storeId(storeId).ratingTypes(ratingTypes).build();
+        ServiceHelper.createApiService(mApplicationContext).ratingStore(request).enqueue(callback);
+    }
+
+    public void getPlaceFoodData(int placeId, int placeType, Integer page, Integer size, Callback<HomeFoodResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getPlaceFoodData(placeId, placeType, page, size).enqueue(callback);
+    }
+
+    public void getPlaceStoreData(int placeId, int placeType, Integer page, Integer size, Callback<HomeStoreResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getPlaceStoreData(placeId, placeType, page, size).enqueue(callback);
+    }
+
+    public void getCityProvinceData(int cityId, Callback<List<Province>> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getCityProvinceData(cityId).enqueue(callback);
     }
 
     /**

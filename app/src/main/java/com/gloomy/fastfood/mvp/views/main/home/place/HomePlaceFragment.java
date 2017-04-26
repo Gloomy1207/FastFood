@@ -9,11 +9,14 @@ import com.gloomy.fastfood.mvp.BaseFragment;
 import com.gloomy.fastfood.mvp.models.City;
 import com.gloomy.fastfood.mvp.models.Province;
 import com.gloomy.fastfood.mvp.presenters.main.home.place.HomePlacePresenter;
+import com.gloomy.fastfood.mvp.views.detail.place.PlaceDetailActivity_;
+import com.gloomy.fastfood.mvp.views.detail.place.PlaceDetailType;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -81,12 +84,12 @@ public class HomePlaceFragment extends BaseFragment implements IHomePlaceView {
 
     @Override
     public void onItemHomeCityClick(City city) {
-
+        PlaceDetailActivity_.intent(getActivity()).mPlaceType(PlaceDetailType.CITY).mPlaceParcelable(Parcels.wrap(city)).start();
     }
 
     @Override
     public void onItemProvinceClick(Province province) {
-
+        PlaceDetailActivity_.intent(getActivity()).mPlaceType(PlaceDetailType.PROVINCE).mPlaceParcelable(Parcels.wrap(province)).start();
     }
 
     @Override

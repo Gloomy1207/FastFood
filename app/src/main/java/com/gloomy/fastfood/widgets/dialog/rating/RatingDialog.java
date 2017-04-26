@@ -111,7 +111,7 @@ public class RatingDialog extends DialogFragment implements RatingAdapter.OnRati
             }
             return;
         }
-        ApiRequest.getInstance().ratingPlace(mStore.getStoreId(), mRatingTypes, new Callback<PlaceRatingResponse>() {
+        ApiRequest.getInstance().ratingStore(mStore.getStoreId(), mRatingTypes, new Callback<PlaceRatingResponse>() {
             @Override
             public void onResponse(Call<PlaceRatingResponse> call, Response<PlaceRatingResponse> response) {
                 if (getActivity() instanceof IBaseView) {
