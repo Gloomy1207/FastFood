@@ -1,5 +1,6 @@
 package com.gloomy.fastfood.api;
 
+import com.gloomy.fastfood.api.requests.RatingStoreRequest;
 import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
@@ -9,6 +10,7 @@ import com.gloomy.fastfood.api.responses.HomeStoreResponse;
 import com.gloomy.fastfood.api.responses.ImageResponse;
 import com.gloomy.fastfood.api.responses.LikeResponse;
 import com.gloomy.fastfood.api.responses.LoginResponse;
+import com.gloomy.fastfood.api.responses.PlaceRatingResponse;
 import com.gloomy.fastfood.api.responses.PostCommentResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
@@ -22,6 +24,7 @@ import com.gloomy.fastfood.api.responses.StoreFoodResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -168,4 +171,7 @@ interface ApiService {
     Call<StoreFoodResponse> getStoreFood(@Query(ApiParameters.PLACE_ID) int placeId,
                                          @Query(ApiParameters.PAGE) Integer page,
                                          @Query(ApiParameters.SIZE) Integer size);
+
+    @POST("auth/place/rating")
+    Call<PlaceRatingResponse> ratingPlace(@Body RatingStoreRequest request);
 }

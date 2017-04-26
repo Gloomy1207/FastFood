@@ -1,10 +1,10 @@
 package com.gloomy.fastfood.mvp.presenters.detail.store;
 
+import android.app.FragmentManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
@@ -22,6 +22,8 @@ import com.gloomy.fastfood.utils.NetworkUtil;
 import com.gloomy.fastfood.utils.TabLayoutUtil;
 import com.gloomy.fastfood.widgets.CustomTextInputLayout;
 import com.gloomy.fastfood.widgets.HeaderBar;
+import com.gloomy.fastfood.widgets.dialog.rating.RatingDialog;
+import com.gloomy.fastfood.widgets.dialog.rating.RatingDialog_;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.res.StringArrayRes;
@@ -41,20 +43,17 @@ import retrofit2.Response;
  * Created by HungTQB on 24/04/2017.
  */
 @EBean
-public class StoreDetailPresenter extends BasePresenter implements CustomTextInputLayout.OnTextInputLayoutListener {
+public class StoreDetailPresenter extends BasePresenter implements CustomTextInputLayout.OnTextInputLayoutListener, RatingDialog.OnRatingDialogListener {
 
+    private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
     @StringArrayRes(R.array.store_detail_tab_titles)
     String[] mTitles;
-
     @Setter
     @Accessors(prefix = "m")
     private IStoreDetailView mView;
-
     @Setter
     @Accessors(prefix = "m")
     private Store mStore;
-
-    private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
     private boolean mIsSendingComment;
 
     public void initHeaderBar(HeaderBar headerBar) {
@@ -171,5 +170,33 @@ public class StoreDetailPresenter extends BasePresenter implements CustomTextInp
 
     public void onSendCommentComplete() {
         mIsSendingComment = false;
+    }
+
+    public void onRatingClick(FragmentManager fragmentManager) {
+        RatingDialog dialog = RatingDialog_.builder().mStore(mStore).build();
+        dialog.setOnRatingDialogListener(this);
+        dialog.show(fragmentManager, RatingDialog.class.getSimpleName());
+    }
+
+    @Override
+    public void onRatingSuccess(String message) {
+        mView.onDismissProgressDialog();
+        mView.onRatingComplete(message);
+    }
+
+    @Override
+    public void onRatingFailure() {
+        mView.onDismissProgressDialog();
+        mView.onRatingFailure();
+    }
+
+    @Override
+    public void onNotLogin() {
+        mView.onNotLogin();
+    }
+
+    @Override
+    public void onNoInternetConnection() {
+        mView.onNoInternetConnection();
     }
 }

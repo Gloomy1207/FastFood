@@ -5,7 +5,8 @@ import android.content.Context;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 
-import com.gloomy.fastfood.api.responses.PostCommentResponse;
+import com.gloomy.fastfood.api.requests.RatingStoreRequest;
+import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
@@ -14,6 +15,8 @@ import com.gloomy.fastfood.api.responses.HomeStoreResponse;
 import com.gloomy.fastfood.api.responses.ImageResponse;
 import com.gloomy.fastfood.api.responses.LikeResponse;
 import com.gloomy.fastfood.api.responses.LoginResponse;
+import com.gloomy.fastfood.api.responses.PlaceRatingResponse;
+import com.gloomy.fastfood.api.responses.PostCommentResponse;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
 import com.gloomy.fastfood.api.responses.RatingPeopleResponse;
 import com.gloomy.fastfood.api.responses.RatingStoreResponse;
@@ -22,13 +25,14 @@ import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
-import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.StoreFoodResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
 import com.gloomy.fastfood.mvp.models.LatLng;
+import com.gloomy.fastfood.mvp.models.RatingType;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.List;
 
 import retrofit2.Callback;
 
@@ -37,28 +41,18 @@ import retrofit2.Callback;
  * Created by HungTQB on 29-Mar-17.
  */
 public final class ApiRequest {
-    /**
-     * DeleteCommentType definition
-     */
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef({DeleteCommentType.TOPIC, DeleteCommentType.STORE})
-    public @interface DeleteCommentType {
-        int TOPIC = 1;
-        int STORE = 2;
-    }
-
     @SuppressLint("StaticFieldLeak")
     private static ApiRequest sInstance;
     private Context mApplicationContext;
+
+    private ApiRequest() {
+    }
 
     public static ApiRequest getInstance() {
         if (sInstance == null) {
             throw new NullPointerException("Please call ApiRequest.initialize() first!");
         }
         return sInstance;
-    }
-
-    private ApiRequest() {
     }
 
     public static void initialize(@NonNull Context applicationContext) {
@@ -205,5 +199,20 @@ public final class ApiRequest {
 
     public void getStoreFood(int storeId, Integer page, Integer size, Callback<StoreFoodResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getStoreFood(storeId, page, size).enqueue(callback);
+    }
+
+    public void ratingPlace(int placeId, List<RatingType> ratingTypes, Callback<PlaceRatingResponse> callback) {
+        RatingStoreRequest request = RatingStoreRequest.builder().placeId(placeId).ratingTypes(ratingTypes).build();
+        ServiceHelper.createApiService(mApplicationContext).ratingPlace(request).enqueue(callback);
+    }
+
+    /**
+     * DeleteCommentType definition
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({DeleteCommentType.TOPIC, DeleteCommentType.STORE})
+    public @interface DeleteCommentType {
+        int TOPIC = 1;
+        int STORE = 2;
     }
 }

@@ -47,4 +47,7 @@
     <string name="confirm_delete_comment">Bạn có muốn xóa nhận xét này không?</string>
     <string name="delete_button">Xóa</string>
     <string name="button_cancel">Hủy</string>
+    <string name="button_text_submit">Đánh giá</string>
+    <string name="rating_title_text">Đánh giá %s</string>
+    <string name="rating_type_empty">Không có chỉ tiêu đánh giá nào</string>
 </resources>
