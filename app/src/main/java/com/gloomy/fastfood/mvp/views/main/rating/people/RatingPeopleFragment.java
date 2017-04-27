@@ -8,6 +8,7 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseFragment;
 import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.presenters.main.rating.people.RatingPeoplePresenter;
+import com.gloomy.fastfood.mvp.views.profile.ProfileActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -77,6 +78,6 @@ public class RatingPeopleFragment extends BaseFragment implements IRatingPeopleV
 
     @Override
     public void onItemPeopleClick(User user) {
-        // TODO: 17/04/2017 handle when click item people
+        ProfileActivity_.intent(this).mUser(user).start();
     }
 }

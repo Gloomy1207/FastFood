@@ -8,11 +8,13 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseFragment;
 import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.presenters.main.search.food.SearchTopicPresenter;
+import com.gloomy.fastfood.mvp.views.detail.topic.TopicDetailActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -84,7 +86,7 @@ public class SearchTopicFragment extends BaseFragment implements ISearchTopicVie
 
     @Override
     public void onItemTopicClick(Topic topic) {
-        // TODO: 16-Apr-17 Handle when click topic
+        TopicDetailActivity_.intent(getActivity()).mTopicParcel(Parcels.wrap(topic)).start();
     }
 
     @Override

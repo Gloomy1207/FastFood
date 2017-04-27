@@ -8,11 +8,13 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseFragment;
 import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.main.rating.store.RatingStorePresenter;
+import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.Parcels;
 
 /**
  * Copyright © 2017 Gloomy
@@ -77,6 +79,6 @@ public class RatingStoreFragment extends BaseFragment implements IRatingStoreVie
 
     @Override
     public void onItemStoreClick(Store store) {
-        // TODO: 16-Apr-17 handle when item store click
+        StoreDetailActivity_.intent(getActivity()).mStoreParcel(Parcels.wrap(store)).start();
     }
 }

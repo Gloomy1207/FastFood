@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,11 +24,13 @@ import java.util.List;
 public class ProfileFeedAdapter extends BaseAdapter<ProfileFeedAdapter.ItemProfileFeedVH> {
     private final List<Topic> mTopics;
     private final OnItemProfileFeedListener mOnItemProfileFeedListener;
+    private final int mImageWidth;
 
     public ProfileFeedAdapter(@NonNull Context mContext, List<Topic> topics, OnItemProfileFeedListener onItemProfileFeedListener) {
         super(mContext);
         mTopics = topics;
         mOnItemProfileFeedListener = onItemProfileFeedListener;
+        mImageWidth = (int) (ScreenUtil.getWidthScreen(getContext()) - ScreenUtil.convertDpiToPixel(getContext(), 20));
     }
 
     @Override
@@ -41,6 +44,7 @@ public class ProfileFeedAdapter extends BaseAdapter<ProfileFeedAdapter.ItemProfi
         Topic topic = mTopics.get(position);
         Picasso.with(getContext())
                 .load(topic.getMainImage())
+                .resize(mImageWidth, 0)
                 .into(holder.mImgTopic);
         holder.mTvTopicTitle.setText(topic.getTitle());
         holder.mTvNumberLike.setText(getContext().getString(R.string.number_of_like, topic.getCountTopicLikes()));

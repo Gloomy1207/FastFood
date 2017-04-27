@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseFragment;
+import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.presenters.main.profile.ProfilePresenter;
 import com.gloomy.fastfood.mvp.views.setting.SettingActivity_;
 import com.gloomy.fastfood.widgets.HeaderBar;
@@ -18,6 +19,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -61,9 +63,13 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     @ViewById(R.id.scrollView)
     NestedScrollView mNestedScrollView;
 
+    @FragmentArg
+    User mUser;
+
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
+        mPresenter.setUser(mUser);
         mPresenter.initHeaderBar(mHeaderBar);
         mPresenter.initViewPager(mViewPager, mTabLayout, getChildFragmentManager());
         mNestedScrollView.setFillViewport(true);
@@ -120,6 +126,11 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     public void onSettingClick() {
         SettingActivity_.intent(getActivity()).start();
         getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+    }
+
+    @Override
+    public void onBackPress() {
+        getActivity().onBackPressed();
     }
 
     @Click(R.id.btnFollow)

@@ -41,24 +41,45 @@ public class ProfilePresenter extends BasePresenter {
     @Accessors(prefix = "m")
     private IViewProfile mView;
 
+    @Setter
+    @Accessors(prefix = "m")
+    private User mUser;
+
     private ProfileResponse mProfileResponse;
 
     public void initHeaderBar(HeaderBar headerBar) {
-        headerBar.setRightButtonVisibility(View.VISIBLE);
-        headerBar.setLeftButtonVisibility(View.INVISIBLE);
-        headerBar.setImageResourceRightButton(R.drawable.ic_setting);
-        headerBar.setTitle(getString(R.string.footer_bar_my_page));
-        headerBar.setOnHeaderBarListener(new HeaderBar.OnHeaderBarListener() {
-            @Override
-            public void onLeftButtonClick() {
-                // No-op
-            }
+        if (mUser == null) {
+            headerBar.setRightButtonVisibility(View.VISIBLE);
+            headerBar.setLeftButtonVisibility(View.INVISIBLE);
+            headerBar.setImageResourceRightButton(R.drawable.ic_setting);
+            headerBar.setTitle(getString(R.string.footer_bar_my_page));
+            headerBar.setOnHeaderBarListener(new HeaderBar.OnHeaderBarListener() {
+                @Override
+                public void onLeftButtonClick() {
+                    // No-op
+                }
 
-            @Override
-            public void onRightButtonClick() {
-                mView.onSettingClick();
-            }
-        });
+                @Override
+                public void onRightButtonClick() {
+                    mView.onSettingClick();
+                }
+            });
+        } else {
+            headerBar.setRightButtonVisibility(View.INVISIBLE);
+            headerBar.setLeftButtonVisibility(View.VISIBLE);
+            headerBar.setTitle(mUser.getUsername());
+            headerBar.setOnHeaderBarListener(new HeaderBar.OnHeaderBarListener() {
+                @Override
+                public void onLeftButtonClick() {
+                    mView.onBackPress();
+                }
+
+                @Override
+                public void onRightButtonClick() {
+                    // No-op
+                }
+            });
+        }
     }
 
     public void getProfileData() {
@@ -67,7 +88,11 @@ public class ProfilePresenter extends BasePresenter {
             return;
         }
         mView.onShowProgressDialog();
-        ApiRequest.getInstance().getProfile(null, new Callback<ProfileResponse>() {
+        String username = null;
+        if (mUser != null) {
+            username = mUser.getUsername();
+        }
+        ApiRequest.getInstance().getProfile(username, new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
                 mView.onDismissProgressDialog();
