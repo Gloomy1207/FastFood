@@ -13,6 +13,7 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseActivity;
 import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.detail.store.StoreDetailPresenter;
+import com.gloomy.fastfood.mvp.views.detail.store.location.StoreDetailLocationActivity_;
 import com.gloomy.fastfood.widgets.CustomTextInputLayout;
 import com.gloomy.fastfood.widgets.HeaderBar;
 import com.squareup.picasso.Picasso;
@@ -37,30 +38,43 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
 
     @Bean
     StoreDetailPresenter mPresenter;
+
     @ViewById(R.id.headerBar)
     HeaderBar mHeaderBar;
+
     @ViewById(R.id.textInputLayout)
     CustomTextInputLayout mCommentLayout;
+
     @ViewById(R.id.layoutParent)
     CoordinatorLayout mLayoutParent;
+
     @ViewById(R.id.tabLayout)
     TabLayout mTabLayout;
+
     @ViewById(R.id.viewPager)
     ViewPager mViewPager;
+
     @ViewById(R.id.imgPlace)
     ImageView mImgPlace;
+
     @ViewById(R.id.tvStoreName)
     TextView mTvStoreName;
+
     @ViewById(R.id.tvStoreTime)
     TextView mTvStoreTime;
+
     @ViewById(R.id.tvStoreAddress)
     TextView mTvStoreAddress;
+
     @ViewById(R.id.tvNumberStar)
     TextView mTvNumberStar;
+
     @ViewById(R.id.tvNumberRating)
     TextView mTvNumberRating;
+
     @ViewById(R.id.btnFavorite)
     FloatingActionButton mBtnFavorite;
+
     @Extra
     Parcelable mStoreParcel;
 
@@ -171,6 +185,12 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
     @Click(R.id.layoutRating)
     void onRatingClick() {
         mPresenter.onRatingClick(getFragmentManager());
+    }
+
+    @Click(R.id.btnMap)
+    void onMapClick() {
+        Store store = Parcels.unwrap(mStoreParcel);
+        StoreDetailLocationActivity_.intent(this).mStore(store).start();
     }
 
     /**

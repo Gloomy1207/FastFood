@@ -47,4 +47,8 @@
     <string name="empty_store_place_detail">There is no store in this area yet. Please check out another!</string>
     <string name="empty_province_place_detail">There is no province in this city. Please check out another!</string>
     <string name="empty_food_place_detail">There is no food in this area. Please check out another!</string>
+    <string name="current_position">Your current position</string>
+    <string name="cant_get_location">Can\'t get your current location!</string>
+    <string name="cant_get_direction">Can\'t find the direction</string>
+    <string name="store_place_text">%s\'s address</string>
 </resources>

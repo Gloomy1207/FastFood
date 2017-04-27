@@ -61,6 +61,14 @@
         <activity
             android:name=".mvp.views.detail.place.PlaceDetailActivity_"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_direction_key" />
+
+        <activity
+            android:name=".mvp.views.detail.store.location.StoreDetailLocationActivity_"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
