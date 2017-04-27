@@ -32,4 +32,6 @@ public interface IStoreDetailView extends IBaseView {
     void onRatingComplete(String message);
 
     void onRatingFailure();
+
+    void onViewImagesClick();
 }

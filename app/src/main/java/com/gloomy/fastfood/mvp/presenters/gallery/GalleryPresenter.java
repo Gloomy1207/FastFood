@@ -3,6 +3,7 @@ package com.gloomy.fastfood.mvp.presenters.gallery;
 import android.support.annotation.IntDef;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
@@ -13,7 +14,9 @@ import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.views.gallery.GalleryRecyclerAdapter;
 import com.gloomy.fastfood.mvp.views.gallery.IGalleryView;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.gloomy.fastfood.widgets.HeaderBar;
+import com.gloomy.fastfood.widgets.SpacesItemDecoration;
 
 import org.androidannotations.annotations.EBean;
 
@@ -42,10 +45,11 @@ public class GalleryPresenter extends BasePresenter implements GalleryRecyclerAd
     public @interface GalleryType {
         int FOOD_TYPE = 1;
         int TOPIC_TYPE = 2;
+        int STORE_TYPE = 3;
     }
 
     private static final int LOAD_MORE_THRESHOLD = 15;
-    private static final int NUM_COLUMN = 3;
+    private static final int NUM_COLUMN = 2;
 
     private List<GalleryImage> mGalleryImages = new ArrayList<>();
     private int mCurrentPage;
@@ -59,13 +63,18 @@ public class GalleryPresenter extends BasePresenter implements GalleryRecyclerAd
             }
             ImageResponse imageResponse = response.body();
             parseDataToImage(imageResponse);
-            mCurrentPage = imageResponse.getCurrentPage();
-            mIsLastPage = imageResponse.isLast();
-            mView.onLoadDataComplete();
+            if (!mGalleryImages.isEmpty()) {
+                mCurrentPage = imageResponse.getCurrentPage();
+                mIsLastPage = imageResponse.isLast();
+                mView.onLoadDataComplete();
+            } else {
+                mView.onEmptyData();
+            }
         }
 
         @Override
         public void onFailure(Call<ImageResponse> call, Throwable t) {
+            Log.d("TAG", "onFailure: ");
             mView.onDismissProgressDialog();
             mView.onLoadDataFailure();
         }
@@ -104,6 +113,7 @@ public class GalleryPresenter extends BasePresenter implements GalleryRecyclerAd
 
     public void initRecyclerView(RecyclerView mRecyclerView) {
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(NUM_COLUMN, StaggeredGridLayoutManager.VERTICAL));
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration((int) ScreenUtil.convertDpiToPixel(getContext(), 2)));
         mRecyclerView.setAdapter(new GalleryRecyclerAdapter(getContext(), mGalleryImages, this));
         mRecyclerView.addOnScrollListener(new EndlessScrollListener(LOAD_MORE_THRESHOLD) {
             @Override
@@ -122,6 +132,9 @@ public class GalleryPresenter extends BasePresenter implements GalleryRecyclerAd
             case GalleryType.TOPIC_TYPE:
                 getGalleryTopicData();
                 break;
+            case GalleryType.STORE_TYPE:
+                getGalleryStoreData();
+                break;
         }
     }
 
@@ -136,6 +149,9 @@ public class GalleryPresenter extends BasePresenter implements GalleryRecyclerAd
                 break;
             case GalleryType.TOPIC_TYPE:
                 loadMoreTopicData();
+                break;
+            case GalleryType.STORE_TYPE:
+                loadMoreStoreData();
                 break;
         }
     }
@@ -180,5 +196,13 @@ public class GalleryPresenter extends BasePresenter implements GalleryRecyclerAd
 
     private void loadMoreTopicData() {
         ApiRequest.getInstance().getTopicImages(mCurrentPage, null, mGalleryId, mCallbackLoadMore);
+    }
+
+    private void getGalleryStoreData() {
+        ApiRequest.getInstance().getStoreImages(null, null, mGalleryId, mCallbackLoadData);
+    }
+
+    private void loadMoreStoreData() {
+        ApiRequest.getInstance().getStoreImages(mCurrentPage, null, mGalleryId, mCallbackLoadMore);
     }
 }

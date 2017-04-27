@@ -1,6 +1,8 @@
 package com.gloomy.fastfood.mvp.views.gallery;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseActivity;
@@ -39,6 +41,9 @@ public class GalleryActivity extends BaseActivity implements IGalleryView {
 
     @Bean
     GalleryPresenter mPresenter;
+
+    @ViewById(R.id.tvEmptyMessage)
+    TextView mTvEmptyMessage;
 
     @AfterViews
     void afterViews() {
@@ -90,5 +95,12 @@ public class GalleryActivity extends BaseActivity implements IGalleryView {
     @Override
     public void onBackButtonPressed() {
         finish();
+    }
+
+    @Override
+    public void onEmptyData() {
+        mRecyclerView.setVisibility(View.GONE);
+        mTvEmptyMessage.setVisibility(View.VISIBLE);
+        mTvEmptyMessage.setText(getString(R.string.empty_image_gallery));
     }
 }

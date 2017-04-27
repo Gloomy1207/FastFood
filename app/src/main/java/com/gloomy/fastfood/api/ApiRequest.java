@@ -219,6 +219,10 @@ public final class ApiRequest {
         ServiceHelper.createApiService(mApplicationContext).getCityProvinceData(cityId).enqueue(callback);
     }
 
+    public void getStoreImages(Integer page, Integer size, int storeId, Callback<ImageResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getStoreImages(storeId, page, size).enqueue(callback);
+    }
+
     /**
      * DeleteCommentType definition
      */

@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
@@ -58,6 +59,8 @@ public class StoreDetailPresenter extends BasePresenter implements CustomTextInp
 
     public void initHeaderBar(HeaderBar headerBar) {
         headerBar.setTitle(mStore.getStoreName());
+        headerBar.setRightButtonVisibility(View.VISIBLE);
+        headerBar.setImageResourceRightButton(R.drawable.ic_gallery_primary);
         headerBar.setOnHeaderBarListener(new HeaderBar.OnHeaderBarListener() {
             @Override
             public void onLeftButtonClick() {
@@ -66,7 +69,7 @@ public class StoreDetailPresenter extends BasePresenter implements CustomTextInp
 
             @Override
             public void onRightButtonClick() {
-                // No-op
+                mView.onViewImagesClick();
             }
         });
     }
