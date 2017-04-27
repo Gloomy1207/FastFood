@@ -22,4 +22,6 @@ public interface IViewProfile extends IBaseView {
     void onLoadDataFailure();
 
     void onSettingClick();
+
+    void onBackPress();
 }

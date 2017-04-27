@@ -100,7 +100,7 @@ interface ApiService {
     Call<TopicResponse> getRandomTopicData(@Query(ApiParameters.PAGE) Integer page,
                                            @Query(ApiParameters.SIZE) Integer size);
 
-    @GET("auth/user/profile")
+    @GET("basic/user/profile")
     Call<ProfileResponse> getProfile(@Query(ApiParameters.USERNAME) String username);
 
     @GET("auth/user/favorite")

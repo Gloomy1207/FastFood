@@ -11,15 +11,15 @@
         <RelativeLayout
             android:id="@+id/layoutImage"
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imgTopic"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:contentDescription="@null"
+                android:maxHeight="200dp"
                 android:scaleType="centerCrop" />
-
 
             <TextView
                 android:id="@+id/tvTopicTitle"

@@ -9,6 +9,7 @@ import com.gloomy.fastfood.mvp.BaseActivity;
 import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.presenters.detail.topic.TopicDetailPresenter;
+import com.gloomy.fastfood.mvp.views.profile.ProfileActivity_;
 import com.gloomy.fastfood.widgets.CustomConfirmDialog;
 import com.gloomy.fastfood.widgets.CustomFloatingButton;
 import com.gloomy.fastfood.widgets.CustomTextInputLayout;
@@ -96,7 +97,7 @@ public class TopicDetailActivity extends BaseActivity implements ITopicDetailVie
 
     @Override
     public void onUserClick(User user) {
-        // TODO: 23-Apr-17 Handle when click use
+        ProfileActivity_.intent(this).mUser(user).start();
     }
 
     @Override

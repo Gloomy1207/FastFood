@@ -18,6 +18,7 @@ import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
 import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity;
 import com.gloomy.fastfood.mvp.views.detail.store.comment.IStoreCommentView;
 import com.gloomy.fastfood.mvp.views.detail.store.comment.StoreCommentAdapter;
+import com.gloomy.fastfood.mvp.views.profile.ProfileActivity_;
 import com.gloomy.fastfood.utils.NetworkUtil;
 import com.gloomy.fastfood.viewholders.ItemCommentVH;
 import com.gloomy.fastfood.widgets.CustomConfirmDialog;
@@ -162,7 +163,7 @@ public class StoreCommentPresenter extends BasePresenter implements ItemCommentV
 
     @Override
     public void onUserClick(User user) {
-        // TODO: 25/04/2017 Handle when click user
+        ProfileActivity_.intent(getContext()).mUser(user).start();
     }
 
     public void onSendComment(Comment comment) {
