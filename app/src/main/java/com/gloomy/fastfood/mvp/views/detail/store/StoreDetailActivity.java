@@ -13,7 +13,9 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseActivity;
 import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.detail.store.StoreDetailPresenter;
+import com.gloomy.fastfood.mvp.presenters.gallery.GalleryPresenter;
 import com.gloomy.fastfood.mvp.views.detail.store.location.StoreDetailLocationActivity_;
+import com.gloomy.fastfood.mvp.views.gallery.GalleryActivity_;
 import com.gloomy.fastfood.widgets.CustomTextInputLayout;
 import com.gloomy.fastfood.widgets.HeaderBar;
 import com.squareup.picasso.Picasso;
@@ -171,6 +173,12 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
     @Override
     public void onRatingFailure() {
         showLoadDataFailure();
+    }
+
+    @Override
+    public void onViewImagesClick() {
+        Store store = Parcels.unwrap(mStoreParcel);
+        GalleryActivity_.intent(this).mGalleryId(store.getStoreId()).mGalleryName(store.getStoreName()).mGalleryType(GalleryPresenter.GalleryType.STORE_TYPE).start();
     }
 
     @Click(R.id.btnFavorite)

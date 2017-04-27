@@ -192,4 +192,9 @@ interface ApiService {
 
     @GET("basic/location/province")
     Call<List<Province>> getCityProvinceData(@Query(ApiParameters.CITY_ID) int cityId);
+
+    @GET("basic/image/place")
+    Call<ImageResponse> getStoreImages(@Query(ApiParameters.PLACE_ID) int storeId,
+                                       @Query(ApiParameters.PAGE) Integer page,
+                                       @Query(ApiParameters.SIZE) Integer size);
 }

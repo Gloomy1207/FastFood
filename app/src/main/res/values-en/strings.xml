@@ -57,4 +57,5 @@
     <string name="cant_get_location">Can\'t get your current location!</string>
     <string name="cant_get_direction">Can\'t find the direction</string>
     <string name="store_place_text">%s\'s address</string>
+    <string name="empty_image_gallery">No Images.</string>
 </resources>

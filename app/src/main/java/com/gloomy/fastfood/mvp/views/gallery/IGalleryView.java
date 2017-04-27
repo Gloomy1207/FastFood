@@ -17,4 +17,6 @@ public interface IGalleryView extends IBaseView {
     void onLoadDataComplete();
 
     void onBackButtonPressed();
+
+    void onEmptyData();
 }
