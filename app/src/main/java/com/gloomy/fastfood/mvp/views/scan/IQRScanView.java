@@ -15,4 +15,8 @@ public interface IQRScanView extends IBaseView {
     void onNoStoreFound(String message);
 
     void onLoadDataFailure();
+
+    void onOpenCamera();
+
+    void onPermissionDenied();
 }

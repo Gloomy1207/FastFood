@@ -22,6 +22,7 @@ public class ItemSetting {
     @IntDef({SettingItemType.LOGOUT})
     public @interface SettingItemType {
         int LOGOUT = 1;
+        int UPDATE_PROFILE = 2;
     }
 
     private String title;

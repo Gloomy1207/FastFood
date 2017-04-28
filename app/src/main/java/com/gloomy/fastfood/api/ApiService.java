@@ -3,6 +3,7 @@ package com.gloomy.fastfood.api;
 import com.gloomy.fastfood.api.requests.RatingStoreRequest;
 import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
+import com.gloomy.fastfood.api.responses.EditProfileResponse;
 import com.gloomy.fastfood.api.responses.FindStoreResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
@@ -28,12 +29,16 @@ import com.gloomy.fastfood.mvp.models.Province;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -205,4 +210,8 @@ interface ApiService {
 
     @GET("basic/search")
     Call<SearchResultResponse> searchData(@Query(ApiParameters.KEYWORD) String keyword);
+
+    @Multipart
+    @POST("basic/user/edit-profile")
+    Call<EditProfileResponse> editProfile(@Part MultipartBody.Part file, @Part(ApiParameters.BODY) RequestBody body);
 }

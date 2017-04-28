@@ -1,5 +1,7 @@
 package com.gloomy.fastfood.mvp.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
@@ -14,6 +16,7 @@ import lombok.Getter;
 public class User {
     Long userId;
     String username;
+    @SerializedName("full_name")
     String fullname;
     String email;
     String description;

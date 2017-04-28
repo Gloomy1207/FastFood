@@ -1,7 +1,6 @@
 package com.gloomy.fastfood.mvp.presenters.main.profile;
 
 import android.app.FragmentManager;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -9,6 +8,8 @@ import android.view.View;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.ProfileResponse;
+import com.gloomy.fastfood.auth.Auth;
+import com.gloomy.fastfood.auth.AuthSession;
 import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.views.main.profile.IViewProfile;
@@ -26,12 +27,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Copyright © 2017 Gloomy
  * Created by HungTQB on 27-Mar-17.
  */
 @EBean
 public class ProfilePresenter extends BasePresenter {
+    public static final int SETTING_REQUEST_CODE = 213;
+
     private static final int[] TAB_ICONS = {
             R.drawable.ic_feed,
             R.drawable.ic_detail
@@ -102,6 +107,9 @@ public class ProfilePresenter extends BasePresenter {
                 mProfileResponse = response.body();
                 if (mProfileResponse.isStatus()) {
                     User user = mProfileResponse.getUser();
+                    Auth auth = AuthSession.getInstance().getAuthLogin();
+                    auth.setUser(user);
+                    AuthSession.getInstance().setAuth(auth);
                     if (user != null) {
                         mView.setUsername(String.format("@%s", user.getUsername()));
                         mView.setFullName(user.getFullname());
@@ -128,7 +136,9 @@ public class ProfilePresenter extends BasePresenter {
         TabLayoutUtil.setCustomViewsTabLayout(tabLayout, TAB_ICONS, mContext);
     }
 
-    public void onFollowClick(FloatingActionButton btnFollow) {
-        btnFollow.setSelected(!btnFollow.isSelected());
+    public void onActivityResult(int requestCode, int resultCode) {
+        if (requestCode == SETTING_REQUEST_CODE && resultCode == RESULT_OK) {
+            getProfileData();
+        }
     }
 }

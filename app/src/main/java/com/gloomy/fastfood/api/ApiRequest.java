@@ -5,9 +5,11 @@ import android.content.Context;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 
+import com.gloomy.fastfood.api.requests.EditProfileRequest;
 import com.gloomy.fastfood.api.requests.RatingStoreRequest;
 import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
+import com.gloomy.fastfood.api.responses.EditProfileResponse;
 import com.gloomy.fastfood.api.responses.FindStoreResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
@@ -32,11 +34,16 @@ import com.gloomy.fastfood.api.responses.TopicResponse;
 import com.gloomy.fastfood.mvp.models.LatLng;
 import com.gloomy.fastfood.mvp.models.Province;
 import com.gloomy.fastfood.mvp.models.RatingType;
+import com.google.gson.Gson;
 
+import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Callback;
 
 /**
@@ -231,6 +238,17 @@ public final class ApiRequest {
 
     public void searchData(String keyword, Callback<SearchResultResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).searchData(keyword).enqueue(callback);
+    }
+
+    public void editProfile(File avatar, EditProfileRequest request, Callback<EditProfileResponse> callback) {
+        String userUpdateData = new Gson().toJson(request);
+        MultipartBody.Part avatarPart = null;
+        if (avatar != null) {
+            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), avatar);
+            avatarPart = MultipartBody.Part.createFormData(ApiParameters.AVATAR, avatar.getName(), requestBody);
+        }
+        RequestBody information = RequestBody.create(MediaType.parse("multipart/form-data"), userUpdateData);
+        ServiceHelper.createApiService(mApplicationContext).editProfile(avatarPart, information).enqueue(callback);
     }
 
     /**

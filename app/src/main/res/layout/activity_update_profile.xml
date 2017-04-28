@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <com.gloomy.fastfood.widgets.HeaderBar_
+            android:id="@+id/headerBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="40dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="@dimen/avatar_size_profile"
+                android:layout_height="@dimen/avatar_size_profile" />
+
+            <TextView
+                android:id="@+id/tvChangeAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/text_view_text_change_avatar" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edtFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/edit_text_hint_full_name"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="10dp"
+            android:textSize="13sp" />
+
+        <View style="@style/ViewLine" />
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/edit_text_hint_password"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:padding="10dp"
+            android:textSize="13sp" />
+
+        <View style="@style/ViewLine" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/edit_text_hint_email"
+            android:inputType="textEmailAddress"
+            android:lines="1"
+            android:padding="10dp"
+            android:textSize="13sp" />
+
+        <View style="@style/ViewLine" />
+
+        <EditText
+            android:id="@+id/edtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/edit_text_hint_description"
+            android:inputType="textCapSentences|textMultiLine"
+            android:lines="5"
+            android:maxLines="5"
+            android:padding="10dp"
+            android:scrollHorizontally="false"
+            android:textSize="13sp" />
+
+        <View style="@style/ViewLine" />
+
+        <TextView
+            android:id="@+id/btnUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/text_view_text_update_profile"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</ScrollView>
+

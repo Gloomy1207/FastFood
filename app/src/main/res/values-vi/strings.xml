@@ -63,4 +63,10 @@
     <string name="people_is_nothing">Không có người nào.</string>
     <string name="store_is_nothing">Không có cửa hàng nào</string>
     <string name="topic_is_nothing">Không có bài đăng nào</string>
+    <string name="camera_permission_denied">Làm ơn cho phép sử dụng Camera để quét mã QR</string>
+    <string name="setting_update_profile">Cập nhật thông tin</string>
+    <string name="text_view_text_change_avatar">Cập nhật ảnh đại diện</string>
+    <string name="edit_text_hint_full_name">Họ tên</string>
+    <string name="edit_text_hint_description">Mô tả</string>
+    <string name="text_view_text_update_profile">Cập nhật thông tin</string>
 </resources>

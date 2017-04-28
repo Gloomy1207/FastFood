@@ -11,4 +11,5 @@
     <dimen name="detail_food_margin_top">180dp</dimen>
     <dimen name="detail_food_img_height">250dp</dimen>
     <dimen name="default_avatar_size">60dp</dimen>
+    <dimen name="avatar_size_profile">100dp</dimen>
 </resources>

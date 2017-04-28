@@ -10,6 +10,7 @@ import com.gloomy.fastfood.mvp.models.ItemSetting;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.views.setting.ISettingView;
 import com.gloomy.fastfood.mvp.views.setting.SettingAdapter;
+import com.gloomy.fastfood.mvp.views.update.UpdateProfileActivity_;
 import com.gloomy.fastfood.widgets.HeaderBar;
 
 import org.androidannotations.annotations.EBean;
@@ -20,6 +21,8 @@ import java.util.List;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Copyright © 2017 AsianTech inc.
  * Created by HungTQB on 18/04/2017.
@@ -27,6 +30,7 @@ import lombok.experimental.Accessors;
 @EBean
 public class SettingPresenter extends BasePresenter implements SettingAdapter.OnSettingListener {
 
+    private static final int UPDATE_PROFILE_REQUEST_CODE = 123;
     @Setter
     @Accessors(prefix = "m")
     private ISettingView mView;
@@ -42,6 +46,10 @@ public class SettingPresenter extends BasePresenter implements SettingAdapter.On
 
     private void initSettingList() {
         mSettings.add(ItemSetting.builder()
+                .title(getString(R.string.setting_update_profile))
+                .type(ItemSetting.SettingItemType.UPDATE_PROFILE)
+                .build());
+        mSettings.add(ItemSetting.builder()
                 .title(getString(R.string.logout))
                 .type(ItemSetting.SettingItemType.LOGOUT)
                 .build());
@@ -52,6 +60,11 @@ public class SettingPresenter extends BasePresenter implements SettingAdapter.On
         AuthSession.getInstance().logout();
         LoginManager.getInstance().logOut();
         mView.onLogoutSuccess();
+    }
+
+    @Override
+    public void onUpdateProfileClick() {
+        UpdateProfileActivity_.intent(getContext()).startForResult(UPDATE_PROFILE_REQUEST_CODE);
     }
 
     public void initHeaderBar(HeaderBar headerBar) {
@@ -67,5 +80,12 @@ public class SettingPresenter extends BasePresenter implements SettingAdapter.On
                 // No-op
             }
         });
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode) {
+        if (requestCode == UPDATE_PROFILE_REQUEST_CODE && resultCode == RESULT_OK) {
+            mView.onUpdateProfile();
+        }
     }
 }

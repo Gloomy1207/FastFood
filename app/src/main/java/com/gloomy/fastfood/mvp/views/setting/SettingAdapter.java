@@ -54,6 +54,15 @@ public class SettingAdapter extends BaseAdapter<SettingAdapter.ItemSettingVH> {
                     }
                 });
                 break;
+            case ItemSetting.SettingItemType.UPDATE_PROFILE:
+                layoutParent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnSettingListener != null) {
+                            mOnSettingListener.onUpdateProfileClick();
+                        }
+                    }
+                });
         }
     }
 
@@ -81,5 +90,7 @@ public class SettingAdapter extends BaseAdapter<SettingAdapter.ItemSettingVH> {
      */
     public interface OnSettingListener {
         void onLogoutClick();
+
+        void onUpdateProfileClick();
     }
 }

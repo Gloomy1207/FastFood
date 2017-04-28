@@ -1,6 +1,7 @@
 package com.gloomy.fastfood.mvp.views.main;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -91,5 +92,10 @@ public class MainActivity extends BaseActivity implements IViewMain, BottomNavig
         } catch (IllegalAccessException e) {
             Log.e("TAG", "Unable to change value of shift mode");
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // No-op
     }
 }
