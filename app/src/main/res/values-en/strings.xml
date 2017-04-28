@@ -58,4 +58,5 @@
     <string name="cant_get_direction">Can\'t find the direction</string>
     <string name="store_place_text">%s\'s address</string>
     <string name="empty_image_gallery">No Images.</string>
+    <string name="wrong_qr_type">Not our QR image!</string>
 </resources>

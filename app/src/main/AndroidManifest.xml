@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".Application"
@@ -72,6 +73,10 @@
 
         <activity
             android:name=".mvp.views.profile.ProfileActivity_"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.views.scan.QRScanActivity_"
             android:screenOrientation="portrait" />
     </application>
 

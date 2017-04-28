@@ -3,6 +3,7 @@ package com.gloomy.fastfood.api;
 import com.gloomy.fastfood.api.requests.RatingStoreRequest;
 import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
+import com.gloomy.fastfood.api.responses.FindStoreResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
@@ -197,4 +198,6 @@ interface ApiService {
     Call<ImageResponse> getStoreImages(@Query(ApiParameters.PLACE_ID) int storeId,
                                        @Query(ApiParameters.PAGE) Integer page,
                                        @Query(ApiParameters.SIZE) Integer size);
+
+    Call<FindStoreResponse> getStoreById(@Query(ApiParameters.PLACE_ID) int storeId);
 }

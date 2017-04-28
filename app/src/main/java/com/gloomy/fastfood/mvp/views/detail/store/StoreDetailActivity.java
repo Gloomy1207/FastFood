@@ -80,6 +80,9 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
     @Extra
     Parcelable mStoreParcel;
 
+    @Extra
+    boolean mIsRating;
+
     @AfterViews
     void afterViews() {
         mLayoutParent.requestFocus();
@@ -91,6 +94,7 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
         mPresenter.initHeaderBar(mHeaderBar);
         mPresenter.initButtonFavorite(mBtnFavorite);
         mPresenter.initCommentLayout(mCommentLayout);
+        mPresenter.showRating(mIsRating, getFragmentManager());
     }
 
     @Override
