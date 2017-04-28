@@ -27,13 +27,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by HungTQB on 14/04/2017.
  */
 public class SearchPeopleAdapter extends BaseAdapter<SearchPeopleAdapter.ItemSearchPeopleVH> {
-    private List<User> mUsers;
-    private OnSearchPeopleListener mOnSearchPeopleListener;
+    private final List<User> mUsers;
+    private final OnSearchPeopleListener mOnSearchPeopleListener;
+    private final int mAvatarSize;
 
     public SearchPeopleAdapter(@NonNull Context mContext, List<User> users, OnSearchPeopleListener onSearchPeopleListener) {
         super(mContext);
         mUsers = users;
         mOnSearchPeopleListener = onSearchPeopleListener;
+        mAvatarSize = getContext().getResources().getDimensionPixelSize(R.dimen.default_avatar_size);
     }
 
     @Override
@@ -52,6 +54,7 @@ public class SearchPeopleAdapter extends BaseAdapter<SearchPeopleAdapter.ItemSea
         User user = mUsers.get(position);
         Picasso.with(getContext())
                 .load(user.getAvatar())
+                .resize(mAvatarSize, 0)
                 .into(holder.mImgAvatar);
         holder.mTvPoint.setText(getContext().getString(R.string.text_point, user.getPoint()));
         holder.mTvUsername.setText(user.getUsername());

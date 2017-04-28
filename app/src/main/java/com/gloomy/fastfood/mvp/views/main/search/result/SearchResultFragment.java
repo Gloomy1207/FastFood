@@ -47,5 +47,26 @@ public class SearchResultFragment extends BaseFragment implements IViewSearchRes
         mPresenter.initViewPager(mViewPager, mTabLayout, getChildFragmentManager());
         mPresenter.initSearchView(mSearchView, mQuery);
         mLayoutParent.requestFocus();
+        mPresenter.searchData(mQuery);
+    }
+
+    @Override
+    public void onShowProgressDialog() {
+        showProgressDialog();
+    }
+
+    @Override
+    public void onDismissProgressDialog() {
+        dismissProgressDialog();
+    }
+
+    @Override
+    public void onNoInternetConnection() {
+        showNoInternetConnectionMessage();
+    }
+
+    @Override
+    public void onLoadDataFailure() {
+        showLoadDataFailure();
     }
 }

@@ -92,18 +92,23 @@ public class SearchPeoplePresenter extends BasePresenter implements SearchPeople
         mView.onItemPeopleClick(mUsers.get(position));
     }
 
-    public void getSearchPeopleData() {
-        if (!NetworkUtil.isNetworkAvailable(getContext())) {
-            mView.onNoInternetConnection();
-            mDisableView.setVisibility(View.GONE);
-            return;
-        }
-        if (!mIsRefresh) {
-            mView.onShowProgressDialog();
-        }
-        if (mSearchPeopleResponse == null || mIsRefresh) {
-            ApiRequest.getInstance().getSearchPeopleData(null, null, this);
+    public void getSearchPeopleData(SearchPeopleResponse response) {
+        if (response == null) {
+            if (!NetworkUtil.isNetworkAvailable(getContext())) {
+                mView.onNoInternetConnection();
+                mDisableView.setVisibility(View.GONE);
+                return;
+            }
+            if (!mIsRefresh) {
+                mView.onShowProgressDialog();
+            }
+            if (mSearchPeopleResponse == null || mIsRefresh) {
+                ApiRequest.getInstance().getSearchPeopleData(null, null, this);
+            } else {
+                initValueForRecyclerView();
+            }
         } else {
+            mSearchPeopleResponse = response;
             initValueForRecyclerView();
         }
     }
@@ -131,7 +136,7 @@ public class SearchPeoplePresenter extends BasePresenter implements SearchPeople
         if (mEndlessScrollListener != null) {
             mEndlessScrollListener.resetValue();
         }
-        getSearchPeopleData();
+        getSearchPeopleData(null);
     }
 
     private void initValueForRecyclerView() {
@@ -143,7 +148,7 @@ public class SearchPeoplePresenter extends BasePresenter implements SearchPeople
             mIsRefresh = false;
             mView.onRefreshComplete();
         } else {
-            mView.onLoadDataComplete();
+            mView.onLoadDataComplete(mSearchPeopleResponse);
         }
     }
 }

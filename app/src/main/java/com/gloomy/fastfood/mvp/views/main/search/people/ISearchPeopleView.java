@@ -1,5 +1,6 @@
 package com.gloomy.fastfood.mvp.views.main.search.people;
 
+import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
 import com.gloomy.fastfood.mvp.IBaseView;
 import com.gloomy.fastfood.mvp.models.User;
 
@@ -8,7 +9,7 @@ import com.gloomy.fastfood.mvp.models.User;
  * Created by HungTQB on 14/04/2017.
  */
 public interface ISearchPeopleView extends IBaseView {
-    void onLoadDataComplete();
+    void onLoadDataComplete(SearchPeopleResponse response);
 
     void onLoadMoreComplete();
 

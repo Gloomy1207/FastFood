@@ -1,5 +1,6 @@
 package com.gloomy.fastfood.mvp.views.main.search.topic;
 
+import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.mvp.IBaseView;
 import com.gloomy.fastfood.mvp.models.Topic;
 
@@ -9,7 +10,7 @@ import com.gloomy.fastfood.mvp.models.Topic;
  */
 public interface ISearchTopicView extends IBaseView {
 
-    void onLoadDataComplete();
+    void onLoadDataComplete(SearchTopicResponse response);
 
     void onLoadMoreComplete();
 

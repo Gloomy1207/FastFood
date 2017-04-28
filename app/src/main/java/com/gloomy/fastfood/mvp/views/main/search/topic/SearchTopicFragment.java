@@ -5,9 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
+import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.mvp.BaseFragment;
 import com.gloomy.fastfood.mvp.models.Topic;
-import com.gloomy.fastfood.mvp.presenters.main.search.food.SearchTopicPresenter;
+import com.gloomy.fastfood.mvp.presenters.main.search.topic.SearchTopicPresenter;
 import com.gloomy.fastfood.mvp.views.detail.topic.TopicDetailActivity_;
 
 import org.androidannotations.annotations.AfterViews;
@@ -35,12 +36,14 @@ public class SearchTopicFragment extends BaseFragment implements ISearchTopicVie
     @Bean
     SearchTopicPresenter mPresenter;
 
+    private SearchTopicResponse mSearchTopicResponse;
+
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
         mPresenter.initRecyclerView(mRecyclerView);
         mPresenter.initSwipeRefresh(mSwipeRefreshLayout, mDisableView);
-        mPresenter.getSearchTopicData();
+        mPresenter.getSearchTopicData(mSearchTopicResponse);
     }
 
     @Override
@@ -61,7 +64,8 @@ public class SearchTopicFragment extends BaseFragment implements ISearchTopicVie
     }
 
     @Override
-    public void onLoadDataComplete() {
+    public void onLoadDataComplete(SearchTopicResponse response) {
+        mSearchTopicResponse = response;
         mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 

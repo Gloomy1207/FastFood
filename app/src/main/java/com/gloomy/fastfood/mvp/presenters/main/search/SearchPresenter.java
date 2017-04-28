@@ -37,14 +37,22 @@ public class SearchPresenter extends BasePresenter {
     @Accessors(prefix = "m")
     private IViewSearch mView;
 
-    private ViewPager mViewPager;
+    public void initViewPager(ViewPager viewPager, TabLayout tabLayout, FragmentManager fragmentManager, SearchViewPagerAdapter adapter) {
+        if (adapter == null) {
+            SearchViewPagerAdapter viewPagerAdapter = new SearchViewPagerAdapter(fragmentManager);
+            viewPager.setAdapter(viewPagerAdapter);
+            initTabLayout(tabLayout, viewPager);
+            mView.onInitViewPageComplete(viewPagerAdapter);
+        } else {
+            viewPager.setAdapter(adapter);
+            viewPager.getAdapter().notifyDataSetChanged();
+            initTabLayout(tabLayout, viewPager);
+        }
+    }
 
-    public void initViewPager(ViewPager viewPager, TabLayout tabLayout, FragmentManager fragmentManager) {
-        mViewPager = viewPager;
-        SearchViewPagerAdapter adapter = new SearchViewPagerAdapter(fragmentManager);
-        mViewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(mViewPager);
-        mViewPager.setOffscreenPageLimit(SearchViewPagerAdapter.PAGE_NUM);
+    private void initTabLayout(TabLayout tabLayout, ViewPager viewPager) {
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(SearchViewPagerAdapter.PAGE_NUM);
         TabLayoutUtil.setCustomViewsTabLayout(tabLayout, mTabTitles, TAB_ICONS, mContext);
     }
 

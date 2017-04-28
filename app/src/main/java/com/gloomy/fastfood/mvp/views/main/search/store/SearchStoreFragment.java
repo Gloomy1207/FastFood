@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
+import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.mvp.BaseFragment;
 import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.presenters.main.search.store.SearchStorePresenter;
@@ -37,10 +38,12 @@ public class SearchStoreFragment extends BaseFragment implements ISearchStoreVie
     @ViewById(R.id.disableView)
     View mDisableView;
 
+    private SearchStoreResponse mSearchStoreResponse;
+
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
-        mPresenter.getDataSearchStore();
+        mPresenter.getDataSearchStore(mSearchStoreResponse);
         mPresenter.initSwipeRefresh(mSwipeRefreshLayout, mDisableView);
     }
 
@@ -61,7 +64,8 @@ public class SearchStoreFragment extends BaseFragment implements ISearchStoreVie
     }
 
     @Override
-    public void onLoadDataComplete() {
+    public void onLoadDataComplete(SearchStoreResponse response) {
+        mSearchStoreResponse = response;
         mPresenter.initRecyclerView(mRecyclerView);
     }
 

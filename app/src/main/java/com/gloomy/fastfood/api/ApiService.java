@@ -19,6 +19,7 @@ import com.gloomy.fastfood.api.responses.RatingStoreResponse;
 import com.gloomy.fastfood.api.responses.RegistrationResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
+import com.gloomy.fastfood.api.responses.SearchResultResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.api.responses.StoreFoodResponse;
@@ -199,5 +200,9 @@ interface ApiService {
                                        @Query(ApiParameters.PAGE) Integer page,
                                        @Query(ApiParameters.SIZE) Integer size);
 
+    @GET("basic/place/find")
     Call<FindStoreResponse> getStoreById(@Query(ApiParameters.PLACE_ID) int storeId);
+
+    @GET("basic/search")
+    Call<SearchResultResponse> searchData(@Query(ApiParameters.KEYWORD) String keyword);
 }

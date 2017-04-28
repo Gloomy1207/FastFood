@@ -3,6 +3,7 @@ package com.gloomy.fastfood.mvp.presenters.main.search.food;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.gloomy.fastfood.api.ApiRequest;
@@ -98,22 +99,28 @@ public class SearchFoodPresenter extends BasePresenter implements SwipeRefreshLa
         if (mEndlessScrollListener != null) {
             mEndlessScrollListener.resetValue();
         }
-        getDataSearchFood();
+        getDataSearchFood(null);
     }
 
-    public void getDataSearchFood() {
-        if (!NetworkUtil.isNetworkAvailable(getContext())) {
-            mView.onNoInternetConnection();
-            mDisableView.setVisibility(View.GONE);
-            return;
-        }
-        mCurrentPosition = LocationUtil.getCurrentLatLng(getContext());
-        if (!mIsRefresh) {
-            mView.onShowProgressDialog();
-        }
-        if (mSearchFoodResponse == null || mIsRefresh) {
-            ApiRequest.getInstance().getSearchFoodData(null, null, mCurrentPosition, this);
+    public void getDataSearchFood(SearchFoodResponse response) {
+        if (response == null) {
+            if (!NetworkUtil.isNetworkAvailable(getContext())) {
+                mView.onNoInternetConnection();
+                mDisableView.setVisibility(View.GONE);
+                return;
+            }
+            mCurrentPosition = LocationUtil.getCurrentLatLng(getContext());
+            if (!mIsRefresh) {
+                mView.onShowProgressDialog();
+            }
+            if (mSearchFoodResponse == null || mIsRefresh) {
+                ApiRequest.getInstance().getSearchFoodData(null, null, mCurrentPosition, this);
+            } else {
+                initValueForRecyclerView();
+            }
         } else {
+            Log.d("TAG", "getDataSearchFood:");
+            mSearchFoodResponse = response;
             initValueForRecyclerView();
         }
     }
@@ -145,7 +152,7 @@ public class SearchFoodPresenter extends BasePresenter implements SwipeRefreshLa
         mCurrentPage = mSearchFoodResponse.getCurrentPage();
         mIsLastPage = mSearchFoodResponse.isLast();
         if (!mIsRefresh) {
-            mView.onLoadDataComplete();
+            mView.onLoadDataComplete(mSearchFoodResponse);
         } else {
             mView.onRefreshComplete();
         }

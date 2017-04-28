@@ -17,8 +17,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
+            android:layout_width="@dimen/default_avatar_size"
+            android:layout_height="@dimen/default_avatar_size" />
 
         <RelativeLayout
             android:layout_width="match_parent"

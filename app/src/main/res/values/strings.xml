@@ -53,4 +53,8 @@
     <string name="store_place_text">%s\'s address</string>
     <string name="empty_image_gallery">No Images.</string>
     <string name="wrong_qr_type">Not our QR image!</string>
+    <string name="food_is_nothing">Food is nothing</string>
+    <string name="people_is_nothing">People has nothing</string>
+    <string name="store_is_nothing">Store is nothing</string>
+    <string name="topic_is_nothing">Topic is nothing</string>
 </resources>

@@ -59,4 +59,8 @@
     <string name="store_place_text">Địa chỉ %s</string>
     <string name="empty_image_gallery">Không có ảnh nào</string>
     <string name="wrong_qr_type">Đây không phải anh QR của chúng tôi</string>
+    <string name="food_is_nothing">Không có món ăn nào.</string>
+    <string name="people_is_nothing">Không có người nào.</string>
+    <string name="store_is_nothing">Không có cửa hàng nào</string>
+    <string name="topic_is_nothing">Không có bài đăng nào</string>
 </resources>

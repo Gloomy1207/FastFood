@@ -6,4 +6,6 @@ package com.gloomy.fastfood.mvp.views.main.search;
  */
 public interface IViewSearch {
     void onSearchSubmit(String query);
+
+    void onInitViewPageComplete(SearchViewPagerAdapter adapter);
 }

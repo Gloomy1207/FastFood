@@ -1,4 +1,4 @@
-package com.gloomy.fastfood.mvp.presenters.main.search.food;
+package com.gloomy.fastfood.mvp.presenters.main.search.topic;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -88,39 +88,48 @@ public class SearchTopicPresenter extends BasePresenter implements SearchTopicAd
         mView.onItemTopicClick(mTopics.get(position));
     }
 
-    public void getSearchTopicData() {
-        if (!NetworkUtil.isNetworkAvailable(getContext())) {
-            mIsRefresh = false;
-            mView.onNoInternetConnection();
-            return;
-        }
-        if (!mIsRefresh) {
-            mView.onShowProgressDialog();
-        }
-        ApiRequest.getInstance().getSearchTopicData(null, null, new Callback<SearchTopicResponse>() {
-            @Override
-            public void onResponse(Call<SearchTopicResponse> call, Response<SearchTopicResponse> response) {
-                mView.onDismissProgressDialog();
-                if (response == null || response.body() == null) {
-                    return;
-                }
-                mSearchTopicResponse = response.body();
-                mTopics.clear();
-                mTopics.addAll(mSearchTopicResponse.getTopics());
-                mIsLast = mSearchTopicResponse.isLast();
-                mCurrentPage = mSearchTopicResponse.getCurrentPage();
-                if (mIsRefresh) {
-                    mView.onRefreshComplete();
-                } else {
-                    mView.onLoadDataComplete();
-                }
+    public void getSearchTopicData(SearchTopicResponse response) {
+        if (response == null) {
+            if (!NetworkUtil.isNetworkAvailable(getContext())) {
+                mIsRefresh = false;
+                mView.onNoInternetConnection();
+                return;
             }
+            if (!mIsRefresh) {
+                mView.onShowProgressDialog();
+            }
+            ApiRequest.getInstance().getSearchTopicData(null, null, new Callback<SearchTopicResponse>() {
+                @Override
+                public void onResponse(Call<SearchTopicResponse> call, Response<SearchTopicResponse> response) {
+                    mView.onDismissProgressDialog();
+                    if (response == null || response.body() == null) {
+                        return;
+                    }
+                    mSearchTopicResponse = response.body();
+                    initRecyclerViewData();
+                }
 
-            @Override
-            public void onFailure(Call<SearchTopicResponse> call, Throwable t) {
-                mView.onLoadDataFailure();
-            }
-        });
+                @Override
+                public void onFailure(Call<SearchTopicResponse> call, Throwable t) {
+                    mView.onLoadDataFailure();
+                }
+            });
+        } else {
+            mSearchTopicResponse = response;
+            initRecyclerViewData();
+        }
+    }
+
+    private void initRecyclerViewData() {
+        mTopics.clear();
+        mTopics.addAll(mSearchTopicResponse.getTopics());
+        mIsLast = mSearchTopicResponse.isLast();
+        mCurrentPage = mSearchTopicResponse.getCurrentPage();
+        if (mIsRefresh) {
+            mView.onRefreshComplete();
+        } else {
+            mView.onLoadDataComplete(mSearchTopicResponse);
+        }
     }
 
     public void initSwipeRefresh(SwipeRefreshLayout swipeRefreshLayout, View disableView) {
@@ -135,6 +144,6 @@ public class SearchTopicPresenter extends BasePresenter implements SearchTopicAd
         if (mEndlessScrollListener != null) {
             mEndlessScrollListener.resetValue();
         }
-        getSearchTopicData();
+        getSearchTopicData(null);
     }
 }
