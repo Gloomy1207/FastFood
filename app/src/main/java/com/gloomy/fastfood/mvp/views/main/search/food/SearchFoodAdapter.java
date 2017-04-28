@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.models.Food;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,13 +22,15 @@ import java.util.List;
  * Created by HungTQB on 14/04/2017.
  */
 public class SearchFoodAdapter extends BaseAdapter<SearchFoodAdapter.ItemSearchFoodVH> {
-    private List<Food> mFoods;
-    private OnSearchFoodListener mOnSearchFoodListener;
+    private final List<Food> mFoods;
+    private final OnSearchFoodListener mOnSearchFoodListener;
+    private final int mImageWith;
 
     public SearchFoodAdapter(@NonNull Context mContext, List<Food> foods, OnSearchFoodListener onSearchFoodListener) {
         super(mContext);
         mFoods = foods;
         mOnSearchFoodListener = onSearchFoodListener;
+        mImageWith = (int) (ScreenUtil.getWidthScreen(getContext()) - ScreenUtil.convertDpiToPixel(getContext(), 5) * 2);
     }
 
     @Override
@@ -41,6 +44,7 @@ public class SearchFoodAdapter extends BaseAdapter<SearchFoodAdapter.ItemSearchF
         Food food = mFoods.get(position);
         Picasso.with(getContext())
                 .load(food.getMainImage())
+                .resize(mImageWith, 0)
                 .into(holder.mImgFood);
         holder.mTvFoodDescription.setText(food.getDescription());
         holder.mTvFoodName.setText(food.getFoodName());

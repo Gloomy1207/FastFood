@@ -24,6 +24,7 @@ import com.gloomy.fastfood.api.responses.RatingStoreResponse;
 import com.gloomy.fastfood.api.responses.RegistrationResponse;
 import com.gloomy.fastfood.api.responses.SearchFoodResponse;
 import com.gloomy.fastfood.api.responses.SearchPeopleResponse;
+import com.gloomy.fastfood.api.responses.SearchResultResponse;
 import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.api.responses.SearchTopicResponse;
 import com.gloomy.fastfood.api.responses.StoreFoodResponse;
@@ -226,6 +227,10 @@ public final class ApiRequest {
 
     public void getStoreById(int storeId, Callback<FindStoreResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getStoreById(storeId).enqueue(callback);
+    }
+
+    public void searchData(String keyword, Callback<SearchResultResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).searchData(keyword).enqueue(callback);
     }
 
     /**

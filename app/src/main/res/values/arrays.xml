@@ -13,7 +13,6 @@
         <item>Topic</item>
     </string-array>
     <string-array name="fragment_search_result_view_pager_title">
-        <item>All</item>
         <item>Store</item>
         <item>Food</item>
         <item>People</item>

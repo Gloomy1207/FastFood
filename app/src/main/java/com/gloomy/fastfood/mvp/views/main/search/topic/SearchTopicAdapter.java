@@ -15,6 +15,7 @@ import com.gloomy.fastfood.mvp.models.Comment;
 import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -29,11 +30,13 @@ public class SearchTopicAdapter extends BaseAdapter<SearchTopicAdapter.ItemSearc
     private final List<Topic> mTopics;
     private final OnSearchTopicListener mOnSearchTopicListener;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy", Locale.getDefault());
+    private final int mImageWidth;
 
     public SearchTopicAdapter(@NonNull Context mContext, List<Topic> topics, OnSearchTopicListener onSearchTopicListener) {
         super(mContext);
         mOnSearchTopicListener = onSearchTopicListener;
         mTopics = topics;
+        mImageWidth = (int) (ScreenUtil.getWidthScreen(getContext()) - ScreenUtil.convertDpiToPixel(getContext(), 5));
     }
 
     @Override
@@ -47,6 +50,7 @@ public class SearchTopicAdapter extends BaseAdapter<SearchTopicAdapter.ItemSearc
         Topic topic = mTopics.get(position);
         Picasso.with(getContext())
                 .load(topic.getMainImage())
+                .resize(mImageWidth, 0)
                 .into(holder.mImgTopic);
         holder.mTvTopicTitle.setText(topic.getTitle());
         User postUser = topic.getUser();

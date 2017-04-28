@@ -33,10 +33,12 @@ public class SearchFragment extends BaseFragment implements IViewSearch {
     @Bean
     SearchPresenter mPresenter;
 
+    private SearchViewPagerAdapter mAdapter;
+
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
-        mPresenter.initViewPager(mViewPager, mTabLayout, getChildFragmentManager());
+        mPresenter.initViewPager(mViewPager, mTabLayout, getChildFragmentManager(), mAdapter);
         mPresenter.initSearchView(mSearchView);
     }
 
@@ -45,5 +47,10 @@ public class SearchFragment extends BaseFragment implements IViewSearch {
         replaceFragment(SearchResultFragment_.builder()
                 .mQuery(query)
                 .build(), true);
+    }
+
+    @Override
+    public void onInitViewPageComplete(SearchViewPagerAdapter adapter) {
+        mAdapter = adapter;
     }
 }

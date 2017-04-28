@@ -1,5 +1,6 @@
 package com.gloomy.fastfood.mvp.views.main.search.store;
 
+import com.gloomy.fastfood.api.responses.SearchStoreResponse;
 import com.gloomy.fastfood.mvp.IBaseView;
 import com.gloomy.fastfood.mvp.models.Store;
 
@@ -9,7 +10,7 @@ import com.gloomy.fastfood.mvp.models.Store;
  */
 public interface ISearchStoreView extends IBaseView {
 
-    void onLoadDataComplete();
+    void onLoadDataComplete(SearchStoreResponse response);
 
     void onLoadMoreComplete();
 

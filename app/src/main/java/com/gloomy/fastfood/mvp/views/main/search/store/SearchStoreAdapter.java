@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.models.SearchStoreItem;
 import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.gloomy.fastfood.viewholders.ItemTitleVH;
 import com.squareup.picasso.Picasso;
 
@@ -27,9 +29,10 @@ import java.util.Locale;
  */
 public class SearchStoreAdapter extends BaseAdapter {
 
-    private List<SearchStoreItem> mSearchStoreItems;
-    private OnSearchStoreListener mOnSearchStoreListener;
+    private final List<SearchStoreItem> mSearchStoreItems;
+    private final OnSearchStoreListener mOnSearchStoreListener;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+    private final int mImageSize;
 
     @Override
     public int getItemViewType(int position) {
@@ -40,6 +43,7 @@ public class SearchStoreAdapter extends BaseAdapter {
         super(mContext);
         mSearchStoreItems = searchStoreItems;
         mOnSearchStoreListener = onSearchStoreListener;
+        mImageSize = (int) ((ScreenUtil.getWidthScreen(getContext()) - ScreenUtil.convertDpiToPixel(getContext(), 5)) / 4);
     }
 
     @Override
@@ -69,6 +73,7 @@ public class SearchStoreAdapter extends BaseAdapter {
         Store store = ((SearchStoreItem.StoreItem) mSearchStoreItems.get(position)).getStore();
         Picasso.with(getContext())
                 .load(store.getMainImage())
+                .resize(mImageSize, 0)
                 .into(holder.mImgStore);
         holder.mTvPlaceName.setText(store.getStoreName());
         if (!TextUtils.isEmpty(store.getDescription())) {

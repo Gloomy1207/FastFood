@@ -4,6 +4,7 @@ import android.Manifest;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.gloomy.fastfood.R;
@@ -104,18 +105,24 @@ public class SearchStorePresenter extends BasePresenter implements SearchStoreAd
         mView.onItemStoreClick(((SearchStoreItem.StoreItem) mSearchStoreItems.get(position)).getStore());
     }
 
-    public void getDataSearchStore() {
-        if (!NetworkUtil.isNetworkAvailable(mContext)) {
-            mView.onNoInternetConnection();
-        }
-        if (PermissionUtil.isPermissionsGranted(mContext, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            if (!mIsRefresh) {
-                mView.onShowProgressDialog();
+    public void getDataSearchStore(SearchStoreResponse response) {
+        if (response == null) {
+            if (!NetworkUtil.isNetworkAvailable(mContext)) {
+                mView.onNoInternetConnection();
             }
-            mCurrentLocation = LocationUtil.getCurrentLatLng(mContext);
-            ApiRequest.getInstance().getSearchStoreData(null, null, mCurrentLocation, this);
+            if (PermissionUtil.isPermissionsGranted(mContext, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                if (!mIsRefresh) {
+                    mView.onShowProgressDialog();
+                }
+                mCurrentLocation = LocationUtil.getCurrentLatLng(mContext);
+                ApiRequest.getInstance().getSearchStoreData(null, null, mCurrentLocation, this);
+            } else {
+                mView.requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
+            }
         } else {
-            mView.requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
+            Log.d("TAG", "getDataSearchStore: ");
+            mSearchStoreResponse = response;
+            initValueAfterLoad();
         }
     }
 
@@ -126,10 +133,14 @@ public class SearchStorePresenter extends BasePresenter implements SearchStoreAd
             return;
         }
         mSearchStoreResponse = response.body();
+        initValueAfterLoad();
+    }
+
+    private void initValueAfterLoad() {
         mCurrentPage = mSearchStoreResponse.getCurrentPage();
         mIsLastPage = mSearchStoreResponse.isLast();
         if (!mIsRefresh) {
-            mView.onLoadDataComplete();
+            mView.onLoadDataComplete(mSearchStoreResponse);
         } else {
             mView.onRefreshComplete();
         }
@@ -152,7 +163,7 @@ public class SearchStorePresenter extends BasePresenter implements SearchStoreAd
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults != null && permissions != null &&
                     grantResults.length == permissions.length) {
-                getDataSearchStore();
+                getDataSearchStore(null);
             }
         }
     }
@@ -164,7 +175,7 @@ public class SearchStorePresenter extends BasePresenter implements SearchStoreAd
         }
         mIsRefresh = true;
         mDisableView.setVisibility(View.VISIBLE);
-        getDataSearchStore();
+        getDataSearchStore(null);
     }
 
     public void refreshData(RecyclerView recyclerView) {
