@@ -8,4 +8,6 @@ public interface ISettingView {
     void onLogoutSuccess();
 
     void onBackClick();
+
+    void onUpdateProfile();
 }

@@ -1,11 +1,16 @@
 package com.gloomy.fastfood.mvp.presenters.scan;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+
 import com.gloomy.fastfood.api.ApiRequest;
 import com.gloomy.fastfood.api.responses.FindStoreResponse;
 import com.gloomy.fastfood.mvp.models.QRCodeResult;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.views.scan.IQRScanView;
+import com.gloomy.fastfood.mvp.views.scan.QRScanActivity;
 import com.gloomy.fastfood.utils.NetworkUtil;
+import com.gloomy.fastfood.utils.PermissionUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.zxing.Result;
@@ -24,6 +29,7 @@ import retrofit2.Response;
  */
 @EBean
 public class QRScanPresenter extends BasePresenter {
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 242;
 
     @Setter
     @Accessors(prefix = "m")
@@ -66,5 +72,21 @@ public class QRScanPresenter extends BasePresenter {
                 mView.onLoadDataFailure();
             }
         });
+    }
+
+    public void checkCameraPermission(QRScanActivity activity) {
+        if (!PermissionUtil.isPermissionGranted(activity, Manifest.permission.CAMERA)) {
+            PermissionUtil.requestPermissions(activity, CAMERA_PERMISSION_REQUEST_CODE, Manifest.permission.CAMERA);
+        }
+    }
+
+    public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                mView.onOpenCamera();
+            } else {
+                mView.onPermissionDenied();
+            }
+        }
     }
 }

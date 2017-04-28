@@ -1,5 +1,7 @@
 package com.gloomy.fastfood.mvp.views.scan;
 
+import android.support.annotation.NonNull;
+
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.BaseActivity;
 import com.gloomy.fastfood.mvp.models.Store;
@@ -32,6 +34,7 @@ public class QRScanActivity extends BaseActivity implements IQRScanView, ZXingSc
     @AfterViews
     void afterViews() {
         mPresenter.setView(this);
+        mPresenter.checkCameraPermission(this);
     }
 
     @Override
@@ -85,6 +88,21 @@ public class QRScanActivity extends BaseActivity implements IQRScanView, ZXingSc
     }
 
     @Override
+    public void onOpenCamera() {
+        mScannerView.startCamera();
+    }
+
+    @Override
+    public void onPermissionDenied() {
+        showMessageDialog(getString(R.string.camera_permission_denied), getString(R.string.button_close), new CustomMessageDialog.OnCustomMessageDialogListener() {
+            @Override
+            public void onCloseClick() {
+                finish();
+            }
+        });
+    }
+
+    @Override
     public void onShowProgressDialog() {
         showProgressDialog();
     }
@@ -98,5 +116,11 @@ public class QRScanActivity extends BaseActivity implements IQRScanView, ZXingSc
     public void onNoInternetConnection() {
         showNoInternetConnection();
         finish();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mPresenter.onRequestPermissionResult(requestCode, permissions, grantResults);
     }
 }

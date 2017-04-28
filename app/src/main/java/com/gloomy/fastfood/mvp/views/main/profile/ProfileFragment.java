@@ -1,6 +1,6 @@
 package com.gloomy.fastfood.mvp.views.main.profile;
 
-import android.support.design.widget.FloatingActionButton;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
@@ -17,7 +17,6 @@ import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
@@ -53,9 +52,6 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
 
     @ViewById(R.id.viewPager)
     ViewPager mViewPager;
-
-    @ViewById(R.id.btnFollow)
-    FloatingActionButton mBtnFollow;
 
     @ViewById(R.id.tabLayout)
     TabLayout mTabLayout;
@@ -124,18 +120,13 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
 
     @Override
     public void onSettingClick() {
-        SettingActivity_.intent(getActivity()).start();
+        SettingActivity_.intent(this).startForResult(ProfilePresenter.SETTING_REQUEST_CODE);
         getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
     }
 
     @Override
     public void onBackPress() {
         getActivity().onBackPressed();
-    }
-
-    @Click(R.id.btnFollow)
-    void onFollowClick() {
-        mPresenter.onFollowClick(mBtnFollow);
     }
 
     @Override
@@ -151,5 +142,11 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     @Override
     public void onNoInternetConnection() {
         showNoInternetConnectionMessage();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mPresenter.onActivityResult(requestCode, resultCode);
     }
 }

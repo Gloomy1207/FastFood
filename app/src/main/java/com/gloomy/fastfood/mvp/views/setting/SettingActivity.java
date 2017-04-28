@@ -20,6 +20,7 @@ import org.androidannotations.annotations.ViewById;
  */
 @EActivity(R.layout.activity_setting)
 public class SettingActivity extends BaseActivity implements ISettingView {
+    private static final int UPDATE_PROFILE_REQUEST_CODE = 123;
 
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -48,5 +49,17 @@ public class SettingActivity extends BaseActivity implements ISettingView {
     public void onBackClick() {
         finish();
         overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+    }
+
+    @Override
+    public void onUpdateProfile() {
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mPresenter.onActivityResult(requestCode, resultCode);
     }
 }

@@ -27,4 +27,5 @@ public final class ApiParameters {
     public static final String LOCATION_TYPE = "location_type";
     public static final String CITY_ID = "city_id";
     public static final String KEYWORD = "keyword";
+    public static final String BODY = "body";
 }

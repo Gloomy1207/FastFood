@@ -63,4 +63,10 @@
     <string name="people_is_nothing">People has nothing</string>
     <string name="store_is_nothing">Store is nothing</string>
     <string name="topic_is_nothing">Topic is nothing</string>
+    <string name="camera_permission_denied">Please accept camera permission to scan QR code</string>
+    <string name="setting_update_profile">Update Profile</string>
+    <string name="text_view_text_change_avatar">Change avatar</string>
+    <string name="edit_text_hint_full_name">FullName</string>
+    <string name="edit_text_hint_description">Description</string>
+    <string name="text_view_text_update_profile">Update Profile</string>
 </resources>
