@@ -45,13 +45,15 @@ import retrofit2.Response;
  */
 @EBean
 public class StoreDetailPresenter extends BasePresenter implements CustomTextInputLayout.OnTextInputLayoutListener, RatingDialog.OnRatingDialogListener {
-
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+
     @StringArrayRes(R.array.store_detail_tab_titles)
     String[] mTitles;
+
     @Setter
     @Accessors(prefix = "m")
     private IStoreDetailView mView;
+
     @Setter
     @Accessors(prefix = "m")
     private Store mStore;
@@ -201,5 +203,11 @@ public class StoreDetailPresenter extends BasePresenter implements CustomTextInp
     @Override
     public void onNoInternetConnection() {
         mView.onNoInternetConnection();
+    }
+
+    public void showRating(boolean isRating, FragmentManager fragmentManager) {
+        if (isRating) {
+            onRatingClick(fragmentManager);
+        }
     }
 }

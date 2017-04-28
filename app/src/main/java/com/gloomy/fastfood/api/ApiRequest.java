@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import com.gloomy.fastfood.api.requests.RatingStoreRequest;
 import com.gloomy.fastfood.api.responses.CommentResponse;
 import com.gloomy.fastfood.api.responses.DeleteCommentResponse;
+import com.gloomy.fastfood.api.responses.FindStoreResponse;
 import com.gloomy.fastfood.api.responses.HomeFavoriteResponse;
 import com.gloomy.fastfood.api.responses.HomeFoodResponse;
 import com.gloomy.fastfood.api.responses.HomePlaceResponse;
@@ -221,6 +222,10 @@ public final class ApiRequest {
 
     public void getStoreImages(Integer page, Integer size, int storeId, Callback<ImageResponse> callback) {
         ServiceHelper.createApiService(mApplicationContext).getStoreImages(storeId, page, size).enqueue(callback);
+    }
+
+    public void getStoreById(int storeId, Callback<FindStoreResponse> callback) {
+        ServiceHelper.createApiService(mApplicationContext).getStoreById(storeId).enqueue(callback);
     }
 
     /**

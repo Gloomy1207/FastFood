@@ -9,6 +9,7 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.views.main.rating.IViewRating;
 import com.gloomy.fastfood.mvp.views.main.rating.RatingViewPagerAdapter;
+import com.gloomy.fastfood.mvp.views.scan.QRScanActivity_;
 import com.gloomy.fastfood.utils.TabLayoutUtil;
 import com.gloomy.fastfood.widgets.HeaderBar;
 
@@ -50,6 +51,6 @@ public class RatingPresenter extends BasePresenter {
     }
 
     public void onRatingClick() {
-        // TODO: 31-Mar-17 Handle when click rating
+        QRScanActivity_.intent(getContext()).start();
     }
 }
