@@ -47,7 +47,7 @@
     </LinearLayout>
 
     <com.gloomy.fastfood.widgets.CustomLabelView
-        android:id="@+id/text"
+        android:id="@+id/labelView"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignParentEnd="true"
