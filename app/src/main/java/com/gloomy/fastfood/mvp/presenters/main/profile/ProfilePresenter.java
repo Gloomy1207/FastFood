@@ -107,9 +107,11 @@ public class ProfilePresenter extends BasePresenter {
                 mProfileResponse = response.body();
                 if (mProfileResponse.isStatus()) {
                     User user = mProfileResponse.getUser();
-                    Auth auth = AuthSession.getInstance().getAuthLogin();
-                    auth.setUser(user);
-                    AuthSession.getInstance().setAuth(auth);
+                    if (AuthSession.isLogIn() && mUser == null) {
+                        Auth auth = AuthSession.getInstance().getAuthLogin();
+                        auth.setUser(user);
+                        AuthSession.getInstance().setAuth(auth);
+                    }
                     if (user != null) {
                         mView.setUsername(String.format("@%s", user.getUsername()));
                         mView.setFullName(user.getFullname());
