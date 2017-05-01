@@ -13,6 +13,7 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.models.Food;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
 import com.gloomy.fastfood.utils.ScreenUtil;
+import com.gloomy.fastfood.widgets.CustomLabelView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -51,6 +52,12 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
         holder.mTvFoodDescription.setText(food.getDescription());
         holder.mTvNumberStar.setText(String.valueOf(food.getRating()));
         holder.mTvNumberRating.setText(food.getNumberOfRatingText());
+
+        if (String.valueOf(mFoods.get(position).getRating()).equals("5.0")) {
+            holder.mCustomLabelView.setVisibility(View.VISIBLE);
+        } else {
+            holder.mCustomLabelView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -67,6 +74,7 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
         private final TextView mTvFoodDescription;
         private final TextView mTvNumberStar;
         private final TextView mTvNumberRating;
+        private final CustomLabelView mCustomLabelView;
 
         ItemHomeStoreVH(View itemView, final OnHomeFoodListener onHomeFoodListener) {
             super(itemView);
@@ -75,6 +83,7 @@ public class HomeFoodAdapter extends BaseAdapter<HomeFoodAdapter.ItemHomeStoreVH
             mTvFoodDescription = (TextView) itemView.findViewById(R.id.tvFoodDescription);
             mTvNumberStar = (TextView) itemView.findViewById(R.id.tvNumberStar);
             mTvNumberRating = (TextView) itemView.findViewById(R.id.tvNumberRating);
+            mCustomLabelView = (CustomLabelView) itemView.findViewById(R.id.labelView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
