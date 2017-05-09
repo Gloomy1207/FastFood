@@ -117,4 +117,19 @@ public class TopicContentFragment extends BaseFragment implements ITopicContentV
         TopicDetailActivity_.intent(getActivity()).mTopicParcel(Parcels.wrap(topic)).start();
         getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
     }
+
+    @Override
+    public void onFakeLike() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void onLikeFailure() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void onNotLogin() {
+        showLoginDialog();
+    }
 }
