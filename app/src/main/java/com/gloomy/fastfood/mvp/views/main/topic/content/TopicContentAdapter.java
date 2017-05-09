@@ -100,6 +100,14 @@ public class TopicContentAdapter extends BaseAdapter<TopicContentAdapter.ItemTop
             mTvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             mTvPostTime = (TextView) itemView.findViewById(R.id.tvPostTime);
 
+            mBtnLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onTopicListener.onItemLikeClick(getLayoutPosition());
+                }
+            });
+
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -116,5 +124,7 @@ public class TopicContentAdapter extends BaseAdapter<TopicContentAdapter.ItemTop
      */
     public interface OnTopicListener {
         void onItemTopicClick(int position);
+
+        void onItemLikeClick(int position);
     }
 }

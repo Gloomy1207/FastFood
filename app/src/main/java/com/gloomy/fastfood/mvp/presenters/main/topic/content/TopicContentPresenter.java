@@ -6,7 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.gloomy.fastfood.api.ApiRequest;
+import com.gloomy.fastfood.api.responses.LikeResponse;
 import com.gloomy.fastfood.api.responses.TopicResponse;
+import com.gloomy.fastfood.auth.AuthSession;
 import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.EndlessScrollListener;
@@ -91,6 +93,36 @@ public class TopicContentPresenter extends BasePresenter implements TopicContent
     @Override
     public void onItemTopicClick(int position) {
         mView.onItemTopicClick(mTopics.get(position));
+    }
+
+    @Override
+    public void onItemLikeClick(int position) {
+        if (!AuthSession.isLogIn()) {
+            mView.onNotLogin();
+            return;
+        }
+        if (!NetworkUtil.isNetworkAvailable(getContext())) {
+            mView.onNoInternetConnection();
+            return;
+        }
+        final Topic topic = mTopics.get(position);
+        topic.setLike(!topic.isLike());
+        mView.onFakeLike();
+        ApiRequest.getInstance().likeTopic(topic.getTopicId(), new Callback<LikeResponse>() {
+            @Override
+            public void onResponse(Call<LikeResponse> call, Response<LikeResponse> response) {
+                if (response == null || response.body() == null || response.body().isStatus()) {
+                    topic.setLike(!topic.isLike());
+                    mView.onLikeFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LikeResponse> call, Throwable t) {
+                topic.setLike(!topic.isLike());
+                mView.onLikeFailure();
+            }
+        });
     }
 
     public void initSwipeRefresh(SwipeRefreshLayout swipeRefreshLayout, View disableView) {
