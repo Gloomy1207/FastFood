@@ -15,6 +15,7 @@ import com.gloomy.fastfood.mvp.models.Province;
 import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.models.StoreAddress;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -27,11 +28,13 @@ public class RatingStoreAdapter extends BaseAdapter<RatingStoreAdapter.ItemRatin
 
     private final List<Store> mStores;
     private final OnRatingStoreListener mOnRatingStoreListener;
+    private final int mImageStoreSize;
 
     public RatingStoreAdapter(@NonNull Context mContext, List<Store> stores, OnRatingStoreListener onRatingStoreListener) {
         super(mContext);
         mStores = stores;
         mOnRatingStoreListener = onRatingStoreListener;
+        mImageStoreSize = ScreenUtil.getWidthScreen(getContext());
     }
 
     @Override
@@ -45,6 +48,7 @@ public class RatingStoreAdapter extends BaseAdapter<RatingStoreAdapter.ItemRatin
         Store store = mStores.get(position);
         Picasso.with(getContext())
                 .load(store.getMainImage())
+                .resize(mImageStoreSize, 0)
                 .into(holder.mImgStore);
         holder.mTvNumberStar.setText(String.valueOf(store.getAverageRating()));
         holder.mTvStoreName.setText(store.getStoreName());

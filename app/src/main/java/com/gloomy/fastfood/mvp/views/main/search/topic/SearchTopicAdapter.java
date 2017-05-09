@@ -31,12 +31,14 @@ public class SearchTopicAdapter extends BaseAdapter<SearchTopicAdapter.ItemSearc
     private final OnSearchTopicListener mOnSearchTopicListener;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy", Locale.getDefault());
     private final int mImageWidth;
+    private final int mAvatarWidth;
 
     public SearchTopicAdapter(@NonNull Context mContext, List<Topic> topics, OnSearchTopicListener onSearchTopicListener) {
         super(mContext);
         mOnSearchTopicListener = onSearchTopicListener;
         mTopics = topics;
         mImageWidth = (int) (ScreenUtil.getWidthScreen(getContext()) - ScreenUtil.convertDpiToPixel(getContext(), 5));
+        mAvatarWidth = getResources().getDimensionPixelOffset(R.dimen.search_topic_avatar_size);
     }
 
     @Override
@@ -57,6 +59,7 @@ public class SearchTopicAdapter extends BaseAdapter<SearchTopicAdapter.ItemSearc
         if (postUser != null) {
             Picasso.with(getContext())
                     .load(postUser.getAvatar())
+                    .resize(mAvatarWidth, 0)
                     .into(holder.mImgPostAvatar);
             holder.mTvPostUsername.setText(postUser.getUsername());
         }
@@ -70,6 +73,7 @@ public class SearchTopicAdapter extends BaseAdapter<SearchTopicAdapter.ItemSearc
             if (comment.getUser() != null) {
                 Picasso.with(getContext())
                         .load(comment.getUser().getAvatar())
+                        .resize(mAvatarWidth, 0)
                         .into(holder.mImgCommentAvatar);
             }
             holder.mTvCommentTime.setText(mSimpleDateFormat.format(comment.getPostTime()));

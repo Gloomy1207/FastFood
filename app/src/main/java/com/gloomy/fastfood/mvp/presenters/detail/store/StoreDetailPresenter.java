@@ -20,6 +20,7 @@ import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailActivity;
 import com.gloomy.fastfood.mvp.views.detail.store.StoreDetailPagerAdapter;
 import com.gloomy.fastfood.observer.StoreDetailObserver;
 import com.gloomy.fastfood.utils.NetworkUtil;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.gloomy.fastfood.utils.TabLayoutUtil;
 import com.gloomy.fastfood.widgets.CustomTextInputLayout;
 import com.gloomy.fastfood.widgets.HeaderBar;
@@ -113,7 +114,7 @@ public class StoreDetailPresenter extends BasePresenter implements CustomTextInp
             builder.delete(lastIndexOfSplitAddress, lastIndexOfSplitAddress + 2);
         }
         mView.onSetStoreAddress(builder.toString());
-        mView.onSetStoreImage(mStore.getMainImage());
+        mView.onSetStoreImage(mStore.getMainImage(), ScreenUtil.getWidthScreen(getContext()));
         mView.onSetNumberStars(String.valueOf(mStore.getAverageRating()));
         mView.onSetNumberRating(mStore.getNumberRating());
     }

@@ -11,7 +11,7 @@ public interface IFoodDetailView extends IBaseView {
 
     void onBackPressed();
 
-    void setImageFood(String mainImage);
+    void setImageFood(String mainImage, int width);
 
     void setFoodName(String foodName);
 

@@ -15,6 +15,7 @@ import com.gloomy.fastfood.mvp.models.Province;
 import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.models.StoreAddress;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -28,11 +29,13 @@ import me.grantland.widget.AutofitTextView;
 public class ProfileFavoriteAdapter extends BaseAdapter<ProfileFavoriteAdapter.ItemFavoriteVH> {
     private final List<Store> mStores;
     private final OnItemFavoriteListener mOnItemFavoriteListener;
+    private final int mStoreWidth;
 
     public ProfileFavoriteAdapter(@NonNull Context mContext, List<Store> stores, OnItemFavoriteListener onItemFavoriteListener) {
         super(mContext);
         mStores = stores;
         mOnItemFavoriteListener = onItemFavoriteListener;
+        mStoreWidth = ScreenUtil.getWidthScreen(getContext());
     }
 
     @Override
@@ -46,6 +49,7 @@ public class ProfileFavoriteAdapter extends BaseAdapter<ProfileFavoriteAdapter.I
         Store store = mStores.get(position);
         Picasso.with(getContext())
                 .load(store.getMainImage())
+                .resize(mStoreWidth, 0)
                 .into(holder.mImgStore);
         holder.mTvNumberStar.setText(String.valueOf(store.getAverageRating()));
         holder.mTvNumberRating.setText(store.getNumberRating());

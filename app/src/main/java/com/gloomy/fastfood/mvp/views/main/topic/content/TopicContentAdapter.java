@@ -13,6 +13,7 @@ import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.models.Topic;
 import com.gloomy.fastfood.mvp.models.User;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -29,11 +30,15 @@ public class TopicContentAdapter extends BaseAdapter<TopicContentAdapter.ItemTop
     private final List<Topic> mTopics;
     private final OnTopicListener mOnTopicListener;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy", Locale.getDefault());
+    private final int mImageTopicSize;
+    private final int mAvatarSize;
 
     public TopicContentAdapter(@NonNull Context mContext, List<Topic> topics, OnTopicListener onTopicListener) {
         super(mContext);
         mTopics = topics;
         mOnTopicListener = onTopicListener;
+        mImageTopicSize = ScreenUtil.getWidthScreen(getContext());
+        mAvatarSize = getResources().getDimensionPixelSize(R.dimen.topic_avatar_size);
     }
 
     @Override
@@ -47,6 +52,7 @@ public class TopicContentAdapter extends BaseAdapter<TopicContentAdapter.ItemTop
         Topic topic = mTopics.get(position);
         Picasso.with(getContext())
                 .load(topic.getMainImage())
+                .resize(mImageTopicSize, 0)
                 .into(holder.mImgTopic);
         holder.mBtnLike.setSelected(topic.isLike());
         holder.mTvTopicTitle.setText(topic.getTitle());
@@ -59,6 +65,7 @@ public class TopicContentAdapter extends BaseAdapter<TopicContentAdapter.ItemTop
         if (user != null) {
             Picasso.with(getContext())
                     .load(user.getAvatar())
+                    .resize(mAvatarSize, 0)
                     .into(holder.mImgAvatar);
             holder.mTvUsername.setText(user.getUsername());
         }

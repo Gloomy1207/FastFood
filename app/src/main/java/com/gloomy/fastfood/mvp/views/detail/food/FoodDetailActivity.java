@@ -98,9 +98,10 @@ public class FoodDetailActivity extends BaseActivity implements IFoodDetailView 
     }
 
     @Override
-    public void setImageFood(String mainImage) {
+    public void setImageFood(String mainImage, int width) {
         Picasso.with(this)
                 .load(mainImage)
+                .resize(width, 0)
                 .into(mImgFood);
     }
 

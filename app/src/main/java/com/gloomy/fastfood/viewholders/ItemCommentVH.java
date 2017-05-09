@@ -34,6 +34,7 @@ public class ItemCommentVH extends RecyclerView.ViewHolder {
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy", Locale.getDefault());
     private final OnCommentListener mOnCommentListener;
     private final TextView mTvStatus;
+    private final int mAvatarSize;
 
     public ItemCommentVH(Context context, ViewGroup parent, final OnCommentListener onCommentListener) {
         super(getItemView(context, parent));
@@ -46,6 +47,7 @@ public class ItemCommentVH extends RecyclerView.ViewHolder {
         mLayoutControl = (LinearLayout) itemView.findViewById(R.id.layoutControl);
         mOnCommentListener = onCommentListener;
         mContext = context;
+        mAvatarSize = context.getResources().getDimensionPixelSize(R.dimen.comment_avatar_size);
     }
 
     private static View getItemView(Context context, ViewGroup parent) {
@@ -57,6 +59,7 @@ public class ItemCommentVH extends RecyclerView.ViewHolder {
         if (user != null) {
             Picasso.with(mContext)
                     .load(user.getAvatar())
+                    .resize(mAvatarSize, 0)
                     .into(mImgAvatar);
             mTvUsername.setText(user.getUsername());
             View.OnClickListener onUserClick = new View.OnClickListener() {

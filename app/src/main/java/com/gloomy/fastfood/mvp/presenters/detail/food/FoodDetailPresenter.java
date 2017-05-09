@@ -11,6 +11,7 @@ import com.gloomy.fastfood.mvp.presenters.BasePresenter;
 import com.gloomy.fastfood.mvp.presenters.gallery.GalleryPresenter;
 import com.gloomy.fastfood.mvp.views.detail.food.IFoodDetailView;
 import com.gloomy.fastfood.mvp.views.gallery.GalleryActivity_;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.gloomy.fastfood.widgets.HeaderBar;
 
 import org.androidannotations.annotations.EBean;
@@ -51,7 +52,7 @@ public class FoodDetailPresenter extends BasePresenter {
             return;
         }
         mFood = Parcels.unwrap(foodParcelable);
-        mView.setImageFood(mFood.getMainImage());
+        mView.setImageFood(mFood.getMainImage(), ScreenUtil.getWidthScreen(getContext()));
         mView.setFoodName(mFood.getFoodName());
         mView.setRatingBar(mFood.getRating());
         mView.setDescription(mFood.getDescription());

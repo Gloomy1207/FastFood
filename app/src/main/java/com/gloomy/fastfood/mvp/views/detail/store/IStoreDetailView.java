@@ -15,7 +15,7 @@ public interface IStoreDetailView extends IBaseView {
 
     void onSetStoreAddress(String storeAddress);
 
-    void onSetStoreImage(String imagePath);
+    void onSetStoreImage(String imagePath, int width);
 
     void onSetNumberStars(String stars);
 
