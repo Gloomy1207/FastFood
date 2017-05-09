@@ -83,9 +83,10 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     }
 
     @Override
-    public void setAvatar(String avatar) {
+    public void setAvatar(String avatar, int width) {
         Picasso.with(getActivity())
                 .load(avatar)
+                .resize(width, 0)
                 .transform(new CropCircleTransformation())
                 .into(mImgAvatar);
     }
@@ -99,9 +100,10 @@ public class ProfileFragment extends BaseFragment implements IViewProfile {
     }
 
     @Override
-    public void setImageBackground(String avatar) {
+    public void setImageBackground(String avatar, int width) {
         Picasso.with(getActivity())
                 .load(avatar)
+                .resize(width, 0)
                 .into(mImgBackground);
     }
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.mvp.models.Store;
 import com.gloomy.fastfood.mvp.views.BaseAdapter;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -28,11 +29,13 @@ public class HomeFavoriteAdapter extends BaseAdapter<HomeFavoriteAdapter.ItemHom
     private final List<Store> mStores;
     private final OnHomeFavoriteListener mOnHomeFavoriteListener;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+    private final int mStoreImageSize;
 
     public HomeFavoriteAdapter(@NonNull Context mContext, List<Store> stores, OnHomeFavoriteListener onHomeFavoriteListener) {
         super(mContext);
         mStores = stores;
         mOnHomeFavoriteListener = onHomeFavoriteListener;
+        mStoreImageSize = ScreenUtil.getWidthScreen(getContext());
     }
 
     @Override
@@ -46,6 +49,7 @@ public class HomeFavoriteAdapter extends BaseAdapter<HomeFavoriteAdapter.ItemHom
         Store store = mStores.get(position);
         Picasso.with(getContext())
                 .load(store.getMainImage())
+                .resize(mStoreImageSize, 0)
                 .into(holder.mImgStore);
         if (store.getStoreAddress() != null) {
             holder.mTvPlaceAddress.setText(store.getStoreAddress().getAddressName());

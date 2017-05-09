@@ -16,6 +16,7 @@ import com.gloomy.fastfood.mvp.views.main.profile.IViewProfile;
 import com.gloomy.fastfood.mvp.views.main.profile.ProfileViewPagerAdapter;
 import com.gloomy.fastfood.observer.ProfileObserver;
 import com.gloomy.fastfood.utils.NetworkUtil;
+import com.gloomy.fastfood.utils.ScreenUtil;
 import com.gloomy.fastfood.utils.TabLayoutUtil;
 import com.gloomy.fastfood.widgets.HeaderBar;
 
@@ -115,8 +116,8 @@ public class ProfilePresenter extends BasePresenter {
                     if (user != null) {
                         mView.setUsername(String.format("@%s", user.getUsername()));
                         mView.setFullName(user.getFullname());
-                        mView.setAvatar(user.getAvatar());
-                        mView.setImageBackground(user.getAvatar());
+                        mView.setAvatar(user.getAvatar(), getContext().getResources().getDimensionPixelOffset(R.dimen.fragment_profile_avatar_size));
+                        mView.setImageBackground(user.getAvatar(), ScreenUtil.getWidthScreen(getContext()));
                     }
                     ProfileObserver.post(mProfileResponse);
                 }

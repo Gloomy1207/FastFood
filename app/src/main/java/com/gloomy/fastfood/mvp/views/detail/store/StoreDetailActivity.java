@@ -133,9 +133,10 @@ public class StoreDetailActivity extends BaseActivity implements IStoreDetailVie
     }
 
     @Override
-    public void onSetStoreImage(String imagePath) {
+    public void onSetStoreImage(String imagePath, int width) {
         Picasso.with(this)
                 .load(imagePath)
+                .resize(width, 0)
                 .into(mImgPlace);
     }
 

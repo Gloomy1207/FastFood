@@ -31,11 +31,13 @@ public class RatingPeopleAdapter extends BaseAdapter<RatingPeopleAdapter.ItemRat
 
     private final List<User> mUsers;
     private final OnRatingPeopleListener mOnRatingPeopleListener;
+    private final int mAvatarSize;
 
     public RatingPeopleAdapter(@NonNull Context mContext, List<User> users, OnRatingPeopleListener onRatingPeopleListener) {
         super(mContext);
         mUsers = users;
         mOnRatingPeopleListener = onRatingPeopleListener;
+        mAvatarSize = getResources().getDimensionPixelSize(R.dimen.topic_user_avatar_size);
     }
 
     @Override
@@ -49,6 +51,7 @@ public class RatingPeopleAdapter extends BaseAdapter<RatingPeopleAdapter.ItemRat
         User user = mUsers.get(position);
         Picasso.with(getContext())
                 .load(user.getAvatar())
+                .resize(mAvatarSize, 0)
                 .into(holder.mImgAvatar);
         holder.mTvPoint.setText(getContext().getString(R.string.text_point, user.getPoint()));
         holder.mTvUsername.setText(user.getUsername());

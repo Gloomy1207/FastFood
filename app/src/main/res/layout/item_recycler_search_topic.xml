@@ -110,8 +110,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgCommentAvatar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/search_topic_avatar_size"
+                android:layout_height="@dimen/search_topic_avatar_size"
                 android:layout_marginEnd="10dp" />
 
             <LinearLayout

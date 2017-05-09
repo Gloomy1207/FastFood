@@ -56,6 +56,7 @@ public class TopicDetailAdapter extends BaseAdapter {
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy", Locale.getDefault());
     private final OnTopicDetailListener mOnTopicDetailListener;
     private final ItemCommentVH.OnCommentListener mOnCommentListener;
+    private final int mAvatarSize;
 
     public TopicDetailAdapter(@NonNull Context mContext, List<Comment> comments, Topic topic, OnTopicDetailListener onTopicDetailListener, ItemCommentVH.OnCommentListener onCommentListener) {
         super(mContext);
@@ -63,6 +64,7 @@ public class TopicDetailAdapter extends BaseAdapter {
         mComments = comments;
         mOnTopicDetailListener = onTopicDetailListener;
         mOnCommentListener = onCommentListener;
+        mAvatarSize = getContext().getResources().getDimensionPixelSize(R.dimen.topic_user_avatar_size);
     }
 
     @Override
@@ -120,6 +122,7 @@ public class TopicDetailAdapter extends BaseAdapter {
         if (user != null) {
             Picasso.with(getContext())
                     .load(user.getAvatar())
+                    .resize(mAvatarSize, 0)
                     .into(holder.mImgAvatar);
             holder.mTvUsername.setText(user.getUsername());
             holder.mTvPostTime.setText(mSimpleDateFormat.format(mTopic.getPostTime()));

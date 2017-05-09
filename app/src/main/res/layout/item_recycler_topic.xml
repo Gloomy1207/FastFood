@@ -79,8 +79,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="@dimen/topic_avatar_size"
+            android:layout_height="@dimen/topic_avatar_size" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -11,11 +11,11 @@ public interface IViewProfile extends IBaseView {
 
     void setFullName(String fullName);
 
-    void setAvatar(String avatar);
+    void setAvatar(String avatar, int width);
 
     void setAvatar(int resId);
 
-    void setImageBackground(String avatar);
+    void setImageBackground(String avatar, int width);
 
     void setImageBackground(int resId);
 
