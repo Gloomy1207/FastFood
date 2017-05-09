@@ -18,4 +18,10 @@ public interface ITopicContentView extends IBaseView {
     void onDataEmpty();
 
     void onItemTopicClick(Topic topic);
+
+    void onFakeLike();
+
+    void onLikeFailure();
+
+    void onNotLogin();
 }

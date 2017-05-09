@@ -10,7 +10,6 @@ import com.gloomy.fastfood.widgets.HeaderBar;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -38,10 +37,5 @@ public class TopicFragment extends BaseFragment implements IViewTopic {
         mPresenter.setView(this);
         mPresenter.initViewPager(mViewPager, mTabLayout, getChildFragmentManager());
         mPresenter.initHeaderBar(mHeaderBar);
-    }
-
-    @Click(R.id.btnPost)
-    void onPostClick() {
-        mPresenter.onPostClick();
     }
 }
