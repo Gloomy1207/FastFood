@@ -20,7 +20,6 @@ import org.androidannotations.annotations.ViewById;
  */
 @EActivity(R.layout.activity_setting)
 public class SettingActivity extends BaseActivity implements ISettingView {
-    private static final int UPDATE_PROFILE_REQUEST_CODE = 123;
 
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;

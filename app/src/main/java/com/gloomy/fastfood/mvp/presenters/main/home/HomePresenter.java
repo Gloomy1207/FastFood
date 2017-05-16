@@ -39,19 +39,15 @@ public class HomePresenter extends BasePresenter {
     @Accessors(prefix = "m")
     private IViewHome mView;
 
-    private ViewPager mViewPager;
-    private HomeViewPagerAdapter mAdapter;
-
     public void initViewPager(ViewPager viewPager, TabLayout tabLayout, FragmentManager fragmentManager) {
-        mViewPager = viewPager;
-        mAdapter = new HomeViewPagerAdapter(fragmentManager);
-        mViewPager.setAdapter(mAdapter);
-        tabLayout.setupWithViewPager(mViewPager);
+        HomeViewPagerAdapter adapter = new HomeViewPagerAdapter(fragmentManager);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
         TabLayoutUtil.setCustomViewsTabLayout(tabLayout, mTabTitles, TAB_ICONS, mContext);
         if (AuthSession.isLogIn()) {
-            mViewPager.setOffscreenPageLimit(HomeViewPagerAdapter.PAGE_LOGIN_NUM);
+            viewPager.setOffscreenPageLimit(HomeViewPagerAdapter.PAGE_LOGIN_NUM);
         } else {
-            mViewPager.setOffscreenPageLimit(HomeViewPagerAdapter.PAGE_NOT_LOGIN_NUM);
+            viewPager.setOffscreenPageLimit(HomeViewPagerAdapter.PAGE_NOT_LOGIN_NUM);
         }
     }
 

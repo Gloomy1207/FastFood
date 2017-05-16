@@ -12,4 +12,5 @@ import lombok.Setter;
 public class StoreFood {
     private String localName;
     private Food food;
+    private double price;
 }

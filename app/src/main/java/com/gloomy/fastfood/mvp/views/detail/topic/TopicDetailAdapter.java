@@ -34,23 +34,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class TopicDetailAdapter extends BaseAdapter {
 
-    /**
-     * TopicItemType definition
-     */
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef({TopicItemType.TOPIC_IMAGE, TopicItemType.USER_INFORMATION, TopicItemType.NUMBER_LIKE_COMMENT, TopicItemType.COMMENT})
-    @interface TopicItemType {
-        int TOPIC_IMAGE = 1;
-        int USER_INFORMATION = 2;
-        int NUMBER_LIKE_COMMENT = 3;
-        int COMMENT = 4;
-    }
-
     private static final int IMAGE_POSITION = 0;
     private static final int USER_POSITION = 1;
     private static final int LIKE_COMMENT_POSITION = 2;
-    private static final int COMMENT_OFFSET = 3;
-
+    private static final int CONTENT = 3;
+    private static final int COMMENT_OFFSET = 4;
     private final Topic mTopic;
     private final List<Comment> mComments;
     private final SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy", Locale.getDefault());
@@ -76,6 +64,8 @@ public class TopicDetailAdapter extends BaseAdapter {
                 return TopicItemType.USER_INFORMATION;
             case LIKE_COMMENT_POSITION:
                 return TopicItemType.NUMBER_LIKE_COMMENT;
+            case CONTENT:
+                return TopicItemType.CONTENT;
             default:
                 return TopicItemType.COMMENT;
         }
@@ -90,6 +80,8 @@ public class TopicDetailAdapter extends BaseAdapter {
                 return new ItemUserInformationVH(getViewFromResId(R.layout.item_recycler_topic_user, parent), mOnTopicDetailListener);
             case TopicItemType.NUMBER_LIKE_COMMENT:
                 return new ItemNumberPhotoVH(getContext(), parent);
+            case TopicItemType.CONTENT:
+                return new ItemContentVH(getViewFromResId(R.layout.item_recycler_topic_content, parent));
             case TopicItemType.COMMENT:
                 return new ItemCommentVH(getContext(), parent, mOnCommentListener);
         }
@@ -104,9 +96,15 @@ public class TopicDetailAdapter extends BaseAdapter {
             onBindItemUserInformation(((ItemUserInformationVH) holder));
         } else if (holder instanceof ItemNumberPhotoVH) {
             onBindItemNumberLike(((ItemNumberPhotoVH) holder));
+        } else if (holder instanceof ItemContentVH) {
+            onBindItemContent(((ItemContentVH) holder));
         } else {
             onBindItemComment((ItemCommentVH) holder, position);
         }
+    }
+
+    private void onBindItemContent(ItemContentVH holder) {
+        holder.mTvContent.setText(mTopic.getContent());
     }
 
     private void onBindItemTopicImage(ItemImageVH holder) {
@@ -153,6 +151,40 @@ public class TopicDetailAdapter extends BaseAdapter {
     }
 
     /**
+     * TopicItemType definition
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({TopicItemType.TOPIC_IMAGE, TopicItemType.USER_INFORMATION, TopicItemType.NUMBER_LIKE_COMMENT, TopicItemType.CONTENT, TopicItemType.COMMENT})
+    @interface TopicItemType {
+        int TOPIC_IMAGE = 1;
+        int USER_INFORMATION = 2;
+        int NUMBER_LIKE_COMMENT = 3;
+        int CONTENT = 4;
+        int COMMENT = 5;
+    }
+
+    /**
+     * OnTopicDetailListener interface
+     */
+    public interface OnTopicDetailListener {
+        void onUserClick(User user);
+
+        void onViewImageClick();
+    }
+
+    /**
+     * ItemContentVH class
+     */
+    private static class ItemContentVH extends RecyclerView.ViewHolder {
+        private TextView mTvContent;
+
+        public ItemContentVH(View itemView) {
+            super(itemView);
+            mTvContent = (TextView) itemView.findViewById(R.id.tvContent);
+        }
+    }
+
+    /**
      * ItemUserInformationVH class
      */
     private static class ItemUserInformationVH extends RecyclerView.ViewHolder {
@@ -176,14 +208,5 @@ public class TopicDetailAdapter extends BaseAdapter {
                 }
             });
         }
-    }
-
-    /**
-     * OnTopicDetailListener interface
-     */
-    public interface OnTopicDetailListener {
-        void onUserClick(User user);
-
-        void onViewImageClick();
     }
 }
