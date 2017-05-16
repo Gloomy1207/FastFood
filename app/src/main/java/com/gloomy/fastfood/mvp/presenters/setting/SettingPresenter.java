@@ -1,17 +1,23 @@
 package com.gloomy.fastfood.mvp.presenters.setting;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.facebook.login.LoginManager;
+import com.gloomy.fastfood.Application;
 import com.gloomy.fastfood.R;
 import com.gloomy.fastfood.auth.AuthSession;
 import com.gloomy.fastfood.mvp.models.ItemSetting;
 import com.gloomy.fastfood.mvp.presenters.BasePresenter;
+import com.gloomy.fastfood.mvp.views.main.MainActivity_;
 import com.gloomy.fastfood.mvp.views.setting.ISettingView;
+import com.gloomy.fastfood.mvp.views.setting.SettingActivity;
 import com.gloomy.fastfood.mvp.views.setting.SettingAdapter;
 import com.gloomy.fastfood.mvp.views.update.UpdateProfileActivity_;
 import com.gloomy.fastfood.widgets.HeaderBar;
+import com.gloomy.fastfood.widgets.dialog.CustomLanguageDialog;
+import com.gloomy.fastfood.widgets.dialog.CustomLanguageDialog_;
 
 import org.androidannotations.annotations.EBean;
 
@@ -50,6 +56,10 @@ public class SettingPresenter extends BasePresenter implements SettingAdapter.On
                 .type(ItemSetting.SettingItemType.UPDATE_PROFILE)
                 .build());
         mSettings.add(ItemSetting.builder()
+                .title(getString(R.string.setting_language))
+                .type(ItemSetting.SettingItemType.LANGUAGE)
+                .build());
+        mSettings.add(ItemSetting.builder()
                 .title(getString(R.string.logout))
                 .type(ItemSetting.SettingItemType.LOGOUT)
                 .build());
@@ -65,6 +75,27 @@ public class SettingPresenter extends BasePresenter implements SettingAdapter.On
     @Override
     public void onUpdateProfileClick() {
         UpdateProfileActivity_.intent(getContext()).startForResult(UPDATE_PROFILE_REQUEST_CODE);
+    }
+
+    @Override
+    public void onLanguageClick() {
+        CustomLanguageDialog dialog = CustomLanguageDialog_.builder().build();
+        dialog.setOnLanguageListener(new CustomLanguageDialog.OnLanguageListener() {
+            @Override
+            public void onLanguageChange() {
+                if (getContext() instanceof SettingActivity) {
+                    if (((SettingActivity) getContext()).getApplication() instanceof Application) {
+                        ((Application) ((SettingActivity) getContext()).getApplication()).setLanguage();
+                    }
+                }
+                MainActivity_.intent(getContext())
+                        .flags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        .start();
+            }
+        });
+        if (getContext() instanceof SettingActivity) {
+            dialog.show(((SettingActivity) getContext()).getFragmentManager(), CustomLanguageDialog.class.getSimpleName());
+        }
     }
 
     public void initHeaderBar(HeaderBar headerBar) {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fragment_home_view_pager_titles">
+        <item>Thức ăn</item>
+        <item>Cửa hàng</item>
+        <item>Địa điểm</item>
+        <item>Ưa thích</item>
+    </string-array>
+    <string-array name="fragment_search_view_pager_titles">
+        <item>Cửa hàng</item>
+        <item>Thức ăn</item>
+        <item>Người dùng</item>
+        <item>Bài đăng</item>
+    </string-array>
+    <string-array name="fragment_search_result_view_pager_title">
+        <item>Cửa hàng</item>
+        <item>Thức ăn</item>
+        <item>Người dùng</item>
+        <item>Bài đăng</item>
+    </string-array>
+    <string-array name="fragment_rating_view_pager_title">
+        <item>Cửa hàng</item>
+        <item>Người dùng</item>
+    </string-array>
+    <string-array name="fragment_topic_view_pager_titles">
+        <item>Nổi bật</item>
+        <item>Xu hướng</item>
+        <item>Mới</item>
+        <item>Ngẫu nhiên</item>
+    </string-array>
+    <string-array name="store_detail_tab_titles">
+        <item>Thực đơn</item>
+        <item>Nhận xét</item>
+    </string-array>
+</resources>

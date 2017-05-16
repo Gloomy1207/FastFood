@@ -63,4 +63,8 @@
     <string name="edit_text_hint_full_name">FullName</string>
     <string name="edit_text_hint_description">Description</string>
     <string name="text_view_text_update_profile">Update Profile</string>
+    <string name="setting_language">Language</string>
+    <string name="setting_language_english">English</string>
+    <string name="setting_language_vietnamese">Vietnamese</string>
+    <string name="textview_text_ok" translatable="false">OK</string>
 </resources>

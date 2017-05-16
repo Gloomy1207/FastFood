@@ -15,6 +15,9 @@ import lombok.experimental.Builder;
 @Getter
 @Builder
 public class ItemSetting {
+    private String title;
+    private int type;
+
     /**
      * SettingItemType definition
      */
@@ -23,8 +26,6 @@ public class ItemSetting {
     public @interface SettingItemType {
         int LOGOUT = 1;
         int UPDATE_PROFILE = 2;
+        int LANGUAGE = 3;
     }
-
-    private String title;
-    private int type;
 }

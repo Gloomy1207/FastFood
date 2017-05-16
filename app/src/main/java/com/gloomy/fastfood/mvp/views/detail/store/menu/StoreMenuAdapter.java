@@ -17,7 +17,10 @@ import com.gloomy.fastfood.mvp.views.BaseAdapter;
 import com.gloomy.fastfood.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Copyright © 2017 Gloomy
@@ -27,17 +30,22 @@ public class StoreMenuAdapter extends BaseAdapter<StoreMenuAdapter.ItemStoreMenu
     private final List<StoreFood> mStoreFoods;
     private final OnStoreMenuListener mOnStoreMenuListener;
     private final int mImageWidth;
+    private final NumberFormat mMoneyFormat;
 
     public StoreMenuAdapter(@NonNull Context context, List<StoreFood> storeFoods, OnStoreMenuListener onStoreMenuListener) {
         super(context);
         mStoreFoods = storeFoods;
         mOnStoreMenuListener = onStoreMenuListener;
         mImageWidth = (int) ((ScreenUtil.getWidthScreen(context) - ScreenUtil.convertDpiToPixel(context, 20)) / 2);
+        Locale locale = new Locale("vi", "VN");
+        Currency currency = Currency.getInstance(locale);
+        mMoneyFormat = NumberFormat.getCurrencyInstance();
+        mMoneyFormat.setCurrency(currency);
     }
 
     @Override
     public ItemStoreMenuVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_recycler_home_food, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_recycler_store_menu, parent, false);
         return new ItemStoreMenuVH(view, mOnStoreMenuListener);
     }
 
@@ -54,12 +62,20 @@ public class StoreMenuAdapter extends BaseAdapter<StoreMenuAdapter.ItemStoreMenu
             holder.mTvFoodDescription.setText(food.getDescription());
             holder.mTvNumberStar.setText(String.valueOf(food.getRating()));
             holder.mTvNumberRating.setText(food.getNumberOfRatingText());
+            holder.mTvFoodPrice.setText(mMoneyFormat.format(storeFood.getPrice()));
         }
     }
 
     @Override
     public int getItemCount() {
         return mStoreFoods.size();
+    }
+
+    /**
+     * OnStoreMenuListener interface
+     */
+    public interface OnStoreMenuListener {
+        void onFoodClick(int position);
     }
 
     /**
@@ -71,6 +87,7 @@ public class StoreMenuAdapter extends BaseAdapter<StoreMenuAdapter.ItemStoreMenu
         private final TextView mTvFoodDescription;
         private final TextView mTvNumberStar;
         private final TextView mTvNumberRating;
+        private final TextView mTvFoodPrice;
 
         ItemStoreMenuVH(View itemView, final OnStoreMenuListener onStoreMenuListener) {
             super(itemView);
@@ -80,6 +97,7 @@ public class StoreMenuAdapter extends BaseAdapter<StoreMenuAdapter.ItemStoreMenu
             mTvFoodDescription = (TextView) itemView.findViewById(R.id.tvFoodDescription);
             mTvNumberStar = (TextView) itemView.findViewById(R.id.tvNumberStar);
             mTvNumberRating = (TextView) itemView.findViewById(R.id.tvNumberRating);
+            mTvFoodPrice = (TextView) itemView.findViewById(R.id.tvFoodPrice);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,12 +108,5 @@ public class StoreMenuAdapter extends BaseAdapter<StoreMenuAdapter.ItemStoreMenu
                 }
             });
         }
-    }
-
-    /**
-     * OnStoreMenuListener interface
-     */
-    public interface OnStoreMenuListener {
-        void onFoodClick(int position);
     }
 }
